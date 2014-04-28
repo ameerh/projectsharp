@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_datetime: 2014-04-28 23:12:41
+  gamenumber: 1
+  sporttype: MyString
+  league: MyString
+  is_liveve: false
+
+two:
+  event_datetime: 2014-04-28 23:12:41
+  gamenumber: 1
+  sporttype: MyString
+  league: MyString
+  is_liveve: false

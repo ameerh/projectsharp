@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participant_name: MyString
+  contestantnum: 1
+  rotnum: 1
+  visiting_home_draw: MyString
+
+two:
+  participant_name: MyString
+  contestantnum: 1
+  rotnum: 1
+  visiting_home_draw: MyString
