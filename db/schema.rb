@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429140946) do
+ActiveRecord::Schema.define(version: 20140429144029) do
 
   create_table "events", force: true do |t|
     t.datetime "event_datetime"
     t.integer  "gamenumber"
     t.string   "sporttype"
     t.string   "league"
-    t.boolean  "is_liveve"
+    t.boolean  "is_live"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

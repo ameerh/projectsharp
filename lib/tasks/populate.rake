@@ -16,7 +16,7 @@ task :populate => :environment do
 
 			#Reading Participants of Events
 			event.xpath('participants/participant').each do |participant|
-				@name = participant.xpath('particicipant_name').text.to_s
+				@name = participant.xpath('participant_name').text.to_s
 				@contestnum = participant.xpath('contestantnum').text.to_i
 				@rotnum = participant.xpath('rotnum').text.to_i
 				@visiting = participant.xpath('visiting_home_draw').text.to_s
