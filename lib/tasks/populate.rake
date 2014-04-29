@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 task :populate => :environment do
-	@uri = "http://xml.pinnaclesports.com/pinnacleFeed.aspx?sportType=Basketball&sportsubtype=NBA"
+	@uri = "http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=Basketball&sportsubtype=NBA"
 	xml = Nokogiri::XML(open(@uri))
 	#Reading Events
 	xml.xpath("//events/event").each do |event|
@@ -21,6 +21,14 @@ task :populate => :environment do
 		    @visiting = participant.xpath('visiting_home_draw').text.to_s	
 		    #Participants of Event Creation 
 			@participant = Participant.create(:participant_name => @name, :contestantnum => @contestnum, :rotnum => @rotnum, :visiting_home_draw => @visiting, :event_id => @event.id)
+			
+			if participant.xpath('odds').present?
+				participant.xpath('odds').each do |odd|
+					@money = odd.xpath('moneyline_value').text.to_i
+					@base = odd.xpath('to_base').text.to_i
+					@odd = Odd.create(:moneyline_value => @money, :to_base => @base, :participant_id => @participant.id)
+				end
+			end
 		end
 	end
 end
