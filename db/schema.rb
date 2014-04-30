@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140430145101) do
     t.integer  "tootal_point"
     t.integer  "over_adjust"
     t.integer  "under_adjust"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
