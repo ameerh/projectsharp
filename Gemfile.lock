@@ -64,6 +64,7 @@ GEM
     mysql2 (0.3.15)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    pg (0.17.1)
     polyglot (0.3.4)
     protected_attributes (1.0.7)
       activemodel (>= 4.0.1, < 5.0)
@@ -144,6 +145,7 @@ DEPENDENCIES
   less-rails
   mysql2
   nokogiri
+  pg
   protected_attributes
   pry-rails
   rails (= 4.0.2)
