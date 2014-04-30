@@ -4,9 +4,11 @@
   <thead>
     <tr>
       <th>Team A</th>
-      <th>Odds</th>
+      <th>Moneyline Visiting</th>
+      <th>Spread Visiting</th>
       <th>Team B</th>
-      <th>Odds</th>
+      <th>Moneyline Home</th>
+      <th>Spread Home</th>
       <th>Total Points</th>
       <th>Start Time</th>
     </tr>
@@ -27,6 +29,11 @@
           <%else%>
             <td>0</td>
           <%end%>
+          <%if event.periods[0].present? %>
+            <td><%= event.periods[0].spread_visiting %></td>
+          <%else%>
+            <td>0</td>
+          <%end%>
           <%if event.participants[(i*2)+1].present?%>
             <td><%= event.participants[(i*2)+1].participant_name %></td>
           <%else%>
@@ -34,6 +41,11 @@
           <%end%>
           <%if event.periods[0].present? %>
             <td><%= event.periods[0].moneyline_home %></td>
+          <%else%>
+            <td>0</td>
+          <%end%>
+          <%if event.periods[0].present? %>
+            <td><%= event.periods[0].spread_home %></td>
           <%else%>
             <td>0</td>
           <%end%>
