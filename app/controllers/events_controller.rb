@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.all.paginate(:page => params[:page], :per_page => 20)
   end
 
   # GET /events/1
@@ -59,6 +59,14 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
+  end
+
+  def nba
+    @events = Event.where(:league => "NBA").paginate(:page => params[:page], :per_page => 20)
+  end
+
+  def mlb
+    @events = Event.where(:league => "MLB").paginate(:page => params[:page], :per_page => 20)
   end
 
   private
