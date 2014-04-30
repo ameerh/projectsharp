@@ -81,7 +81,6 @@ task :populate => :environment do
 							@under_adjust = total.xpath('under_adjust').text.to_i
 						end
 					end
-					binding.pry
 					#Creating Periods
 					@period = Period.create(:event_id => @event.id, :period_number => @period_number, :period_description => @period_desc, :periodcutoff_datetime => @periodcutoff_datetime, :period_status => @period_status, :period_update => @period_update, :spread_maximum => @spread_maximum, :moneyline_maximum => @moneyline_maximum, :total_maximum => @total_maximum, :moneyline_visiting => @moneyline_visiting, :moneyline_home => @moneyline_home, :spread_visiting => @spread_visiting, :spread_adjust_visiting => @spread_adjust_visiting, :spread_home => @spread_home, :spread_adjust_home => @spread_adjust_home, :tootal_point => @total_points, :over_adjust => @over_adjust, :under_adjust => @under_adjust)
 				end
