@@ -4,8 +4,10 @@
   <thead>
     <tr>
       <th>Team A</th>
+      <th>Pitcher</th>
       <th>Odds</th>
       <th>Team B</th>
+      <th>Pitcher</th>
       <th>Odds</th>
       <th>Start Time</th>
     </tr>
@@ -21,6 +23,11 @@
           <%else%>
             <td></td>
           <%end%>
+          <%if event.participants[(i*2)].present?%>
+            <td><%= event.participants[(i*2)].pitcher %></td>
+          <%else%>
+            <td></td>
+          <%end%>
           <%if event.participants[(i*2)].odd.present? %>
             <td><%= event.participants[(i*2)].odd.moneyline_value %></td>
           <%else%>
@@ -28,6 +35,11 @@
           <%end%>
           <%if event.participants[(i*2)+1].present?%>
             <td><%= event.participants[(i*2)+1].participant_name %></td>
+          <%else%>
+            <td></td>
+          <%end%>
+          <%if event.participants[(i*2)+1].present?%>
+            <td><%= event.participants[(i*2)+1].pitcher %></td>
           <%else%>
             <td></td>
           <%end%>
