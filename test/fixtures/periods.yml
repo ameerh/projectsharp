@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  period_number: 1
+  period_description: MyString
+  periodcutoff_datetime: 2014-04-30 19:51:01
+  period_status: MyString
+  period_update: MyString
+  spread_maximum: 1
+  moneyline_maximum: 1
+  total_maximum: 1
+  moneyline_visiting: 1
+  moneyline_home: 1
+  spread_visiting: 1.5
+  spread_adjust_visiting: 1
+  spread_home: 1.5
+  spread_adjust_home: 1
+  tootal_point: 1
+  over_adjust: 1
+  under_adjust: 1
+
+two:
+  period_number: 1
+  period_description: MyString
+  periodcutoff_datetime: 2014-04-30 19:51:01
+  period_status: MyString
+  period_update: MyString
+  spread_maximum: 1
+  moneyline_maximum: 1
+  total_maximum: 1
+  moneyline_visiting: 1
+  moneyline_home: 1
+  spread_visiting: 1.5
+  spread_adjust_visiting: 1
+  spread_home: 1.5
+  spread_adjust_home: 1
+  tootal_point: 1
+  over_adjust: 1
+  under_adjust: 1

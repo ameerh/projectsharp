@@ -37,6 +37,52 @@ task :populate => :environment do
 					end
 				end
 			end
+			#Reading Period of Event 
+			event.xpath('periods/period').each do |period|
+				@period_number = period.xpath('period_number').text.to_i
+				@period_desc = period.xpath('period_description').text.to_s
+				@periodcutoff_datetime = period.xpath('periodcutoff_datetimeGMT').text.to_datetime
+				@period_status = period.xpath('period_status').text.to_s
+				@period_update = period.xpath('period_update').text.to_s
+				@spread_maximum = period.xpath('spread_maximum').text.to_i
+				@moneyline_maximum = period.xpath('moneyline_maximum').text.to_i
+				@total_maximum = period.xpath('total_maximum').text.to_i
+				@moneyline_visiting = 0
+				@moneyline_home = 0
+				#Reading Moneyline of Period
+				if period.xpath('moneyline').present?
+					period.xpath('moneyline').each do |money|
+						@moneyline_visiting = money.xpath('moneyline_visiting').text.to_i
+						@moneyline_home = money.xpath('moneyline_home').text.to_i
+					end
+				end
+				@spread_visiting = 0.0
+				@spread_adjust_visiting = 0
+				@spread_home = 0.0
+				@spread_adjust_home = 0	
+				#Reading Spread of Period			
+				if period.xpath('spread').present?
+					period.xpath('spread').each do |spread|
+						@spread_visiting = spread.xpath('spread_visiting').text.to_f
+						@spread_adjust_visiting = spread.xpath('spread_adjust_visiting').text.to_i
+						@spread_home = spread.xpath('spread_home').text.to_f
+						@spread_adjust_home = spread.xpath('spread_adjust_home').text.to_i
+					end
+				end
+				@total_points = 0
+				@over_adjust = 0
+				@under_adjust = 0
+				#Reading Total of Period
+				if period.xpath('total').present?
+					period.xpath('total').each do |total|
+						@total_points = total.xpath('total_points').text.to_i
+						@over_adjust = total.xpath('over_adjust').text.to_i
+						@under_adjust = total.xpath('under_adjust').text.to_i
+					end
+				end
+				#Creating Periods
+				@period = Period.create(:period_number => @period_number, :period_description => @period_desc, :periodcutoff_datetime => @periodcutoff_datetime, :period_status => @period_status, :period_update => @period_update, :spread_maximum => @spread_maximum, :moneyline_maximum => @moneyline_maximum, :total_maximum => @total_maximum, :moneyline_visiting => @moneyline_visiting, :moneyline_home => @moneyline_home, :spread_visiting => @spread_visiting, :spread_adjust_visiting => @spread_adjust_visiting, :spread_home => @spread_home, :spread_adjust_home => @spread_adjust_home, :tootal_point => @total_points, :over_adjust => @over_adjust, :under_adjust => @under_adjust)
+			end			
 		end
 	end	
 end

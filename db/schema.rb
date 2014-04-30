@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429144029) do
+ActiveRecord::Schema.define(version: 20140430145101) do
 
   create_table "events", force: true do |t|
     t.datetime "event_datetime"
@@ -40,6 +40,28 @@ ActiveRecord::Schema.define(version: 20140429144029) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pitcher"
+  end
+
+  create_table "periods", force: true do |t|
+    t.integer  "period_number"
+    t.string   "period_description"
+    t.datetime "periodcutoff_datetime"
+    t.string   "period_status"
+    t.string   "period_update"
+    t.integer  "spread_maximum"
+    t.integer  "moneyline_maximum"
+    t.integer  "total_maximum"
+    t.integer  "moneyline_visiting"
+    t.integer  "moneyline_home"
+    t.float    "spread_visiting"
+    t.integer  "spread_adjust_visiting"
+    t.float    "spread_home"
+    t.integer  "spread_adjust_home"
+    t.integer  "tootal_point"
+    t.integer  "over_adjust"
+    t.integer  "under_adjust"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
