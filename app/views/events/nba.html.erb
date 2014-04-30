@@ -1,18 +1,13 @@
-<h1>Listing NBA Events</h1>
+<h1>NBA Events</h1>
 
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th colspan="7">
-        NBA
-      </th>
-    </tr>
-    <tr>
     <tr>
       <th>Team A</th>
       <th>Odds</th>
       <th>Team B</th>
       <th>Odds</th>
+      <th>Total Points</th>
       <th>Start Time</th>
     </tr>
   </thead>
@@ -27,8 +22,8 @@
           <%else%>
             <td></td>
           <%end%>
-          <%if event.participants[(i*2)].odd.present? %>
-            <td><%= event.participants[(i*2)].odd.moneyline_value %></td>
+          <%if event.periods[0].present? %>
+            <td><%= event.periods[0].moneyline_visiting %></td>
           <%else%>
             <td>0</td>
           <%end%>
@@ -37,8 +32,13 @@
           <%else%>
             <td></td>
           <%end%>
-          <%if event.participants[(i*2)+1].odd.present?%>
-            <td><%= event.participants[(i*2)+1].odd.moneyline_value %></td>
+          <%if event.periods[0].present? %>
+            <td><%= event.periods[0].moneyline_home %></td>
+          <%else%>
+            <td>0</td>
+          <%end%>
+          <%if event.periods[0].present?%>
+            <td><%= event.periods[0].tootal_point %></td>
           <%else%>
             <td>0</td>
           <%end%>
