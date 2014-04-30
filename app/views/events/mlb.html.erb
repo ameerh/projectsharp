@@ -50,7 +50,7 @@
             <td>0</td>
           <%end%>
           <%if event.periods[0].present?%>
-            <td><%= event.periods[0].tootal_point + "o" %> <br/><%= event.periods[0].tootal_point + "u" %></td>
+            <td><%= event.periods[0].tootal_point.to_s + "o" %> <br/><%= event.periods[0].tootal_point.to_s + "u" %></td>
           <%else%>
             <td>0</td>
           <%end%>
