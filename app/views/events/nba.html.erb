@@ -15,6 +15,7 @@
   </thead>
 
   <tbody>
+    <% j =0%>
     <% @events.each do |event| %>
         <%i = 0%>
         <tr>
@@ -54,8 +55,52 @@
           <%else%>
             <td>0</td>
           <%end%>
-          <% i = i+1 %>
-          <td><%= event.event_datetime.strftime("%b %d, %Y @ %l%p") %></td>
+          <div class="datetime" id ="time_<%="#{j}"%>"> <%=event.event_datetime.to_i %></div>
+          <td id ="count"><div id="countdown_<%="#{j}"%>">
+               <div class="clock-days">
+                          <div class="inner">
+                              <div id="canvas-days"></div>
+                                  <p class="val">0</p>
+                                  <p class="type-days type-time">DAYS</p>
+                          </div><!-- /.inner -->    
+                  </div><!-- /.clock-item -->
+
+                  <div class=" clock-hours">
+                          <div class="inner">
+                              <div id="canvas-hours"></div>
+
+                              <div class="text">
+                                  <p class="val">0</p>
+                                  <p class="type-hours type-time">HOURS</p>
+                              </div><!-- /.text -->
+                          </div><!-- /.inner -->
+                  </div><!-- /.clock-item -->
+
+                  <div class="clock-minutes">
+                          <div class="inner">
+                              <div id="canvas-minutes"></div>
+
+                              <div class="text">
+                                  <p class="val">0</p>
+                                  <p class="type-minutes type-time">MINUTES</p>
+                              </div><!-- /.text -->
+                          </div><!-- /.inner -->
+                  </div><!-- /.clock-item -->
+
+                  <div class="clock-seconds">
+                          <div class="inner">
+                              <div id="canvas-seconds"></div>
+
+                              <div class="text">
+                                  <p class="val">0</p>
+                                  <p class="type-seconds type-time">SECONDS</p>
+                              </div><!-- /.text -->
+                          </div><!-- /.inner -->
+                  </div><!-- /.clock-item -->
+              </div><!-- /.countdown-wrapper -->
+            </td>
+            <% i = i+1 %>
+            <% j = j+1 %>
           </tr>
           <%end%>
     <% end %>
@@ -72,4 +117,38 @@
   td {
     text-align: center!important;
   }
+  .datetime{
+    display: none;
+  }
+  /*
+  #canvas-days{
+    display: none;
+  }
+  #canvas-hours{
+    display: none;
+  }
+  #canvas-minutes{
+    display: none;
+  }
+  #canvas-seconds{
+    display: none;
+  }*/
 </style>
+
+<script type="text/javascript">
+var i = 0;
+$("td").each(function() {
+    var id = $(this).attr('id');
+    if (id == "count")
+      i++;
+    // compare id to what you want
+});
+
+for (var j=0; j<i; j++){
+  $('#countdown_'+j).final_countdown({
+        'start': <%= Time.now.to_i %>,
+        'end': parseInt($('#time_'+j).text()),
+        'now': <%= Time.now.to_i %>        
+    });
+}
+</script>
