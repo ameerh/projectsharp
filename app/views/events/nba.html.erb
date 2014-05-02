@@ -55,49 +55,9 @@
           <%else%>
             <td>0</td>
           <%end%>
-          <div class="datetime" id ="time_<%="#{j}"%>"> <%=event.event_datetime.to_i %></div>
-          <td id ="count"><div id="countdown_<%="#{j}"%>">
-               <div class="clock-days">
-                          <div class="inner">
-                              <div id="canvas-days"></div>
-                                  <p class="val">0</p>
-                                  <p class="type-days type-time">DAYS</p>
-                          </div><!-- /.inner -->    
-                  </div><!-- /.clock-item -->
-
-                  <div class=" clock-hours">
-                          <div class="inner">
-                              <div id="canvas-hours"></div>
-
-                              <div class="text">
-                                  <p class="val">0</p>
-                                  <p class="type-hours type-time">HOURS</p>
-                              </div><!-- /.text -->
-                          </div><!-- /.inner -->
-                  </div><!-- /.clock-item -->
-
-                  <div class="clock-minutes">
-                          <div class="inner">
-                              <div id="canvas-minutes"></div>
-
-                              <div class="text">
-                                  <p class="val">0</p>
-                                  <p class="type-minutes type-time">MINUTES</p>
-                              </div><!-- /.text -->
-                          </div><!-- /.inner -->
-                  </div><!-- /.clock-item -->
-
-                  <div class="clock-seconds">
-                          <div class="inner">
-                              <div id="canvas-seconds"></div>
-
-                              <div class="text">
-                                  <p class="val">0</p>
-                                  <p class="type-seconds type-time">SECONDS</p>
-                              </div><!-- /.text -->
-                          </div><!-- /.inner -->
-                  </div><!-- /.clock-item -->
-              </div><!-- /.countdown-wrapper -->
+          <td id="count">
+          <div id="time_<%="#{j}"%>" data-date="<%= "#{event.event_datetime}" %>" style="width: 500px; height: 125px; padding: 0px; box-sizing: border-box; background-color: #E0E8EF">
+          </div>
             </td>
             <% i = i+1 %>
             <% j = j+1 %>
@@ -145,10 +105,7 @@ $("td").each(function() {
 });
 
 for (var j=0; j<i; j++){
-  $('#countdown_'+j).final_countdown({
-        'start': <%= Time.now.to_i %>,
-        'end': parseInt($('#time_'+j).text()),
-        'now': <%= Time.now.to_i %>        
-    });
+  console.log("hy");
+  $("#time_"+j).TimeCircles();
 }
 </script>
