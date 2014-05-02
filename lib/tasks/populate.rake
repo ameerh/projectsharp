@@ -1,9 +1,17 @@
 require 'nokogiri'
 require 'open-uri'
 task :populate => :environment do
-	@uri = ["http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=Basketball&sportsubtype=NBA", "http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=BaseBall&sportsubtype=MLB"]
+	@feedtime = Feedtime.last
+	if @feedtime.blank?
+		@uri = ["http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=Basketball&sportsubtype=NBA", "http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=BaseBall&sportsubtype=MLB"]
+	else
+		@time = @feedtime.feedtime
+		@uri = ["http://xml.pinnaclesports.com/pinnacleFeed.aspx?last="+@time.to_s+"&sporttype=Basketball&sportsubtype=NBA", "http://xml.pinnaclesports.com/pinnacleFeed.aspx?last="+@time.to_s+"&sporttype=BaseBall&sportsubtype=MLB"]
+	end
 	@uri.each do |uri|
 		xml = Nokogiri::XML(open(uri))
+		@feed = xml.xpath("//PinnacleFeedTime").text.to_i
+		Feedtime.create(:feedtime => @feed)
 		#Reading Events
 		xml.xpath("//events/event").each do |event|
 		    @datetime = event.xpath('event_datetimeGMT').text.to_datetime

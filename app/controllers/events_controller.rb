@@ -62,11 +62,11 @@ class EventsController < ApplicationController
   end
 
   def nba
-    @events = Event.where("league = ? AND event_datetime > ?", "NBA", Time.now.to_datetime).paginate(:page => params[:page], :per_page => 20)
+    @events = Event.where("league = ? AND event_datetime >= ?", "NBA", Time.now.to_datetime).paginate(:page => params[:page], :per_page => 20)
   end
 
   def mlb
-    @events = Event.where("league = ? AND event_datetime > ?", "MLB", Time.now.to_datetime).paginate(:page => params[:page], :per_page => 20)
+    @events = Event.where("league = ? AND event_datetime >= ?", "MLB", Time.now.to_datetime).paginate(:page => params[:page], :per_page => 20)
   end
 
   private
