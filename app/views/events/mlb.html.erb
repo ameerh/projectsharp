@@ -55,12 +55,10 @@
           <%else%>
             <td>0</td>
           <%end%>
-         <td id="count">
-          <div id="time_<%="#{j}"%>" data-date="<%= "#{event.event_datetime}" %>" style="width: 400px; height: 90px; padding: 0px; box-sizing: border-box;">
-          </div>
+         <td>
+          <%= event.event_datetime.strftime("%d, %b @ %I:%M%p") %>
             </td>
             <% i = i+1 %>
-            <% j = j+1 %>
           </tr>
           <%end%>
     <% end %>
@@ -79,17 +77,3 @@
     text-align: center!important;
   }
 </style>
-
-<script type="text/javascript">
-var i = 0;
-$("td").each(function() {
-    var id = $(this).attr('id');
-    if (id == "count")
-      i++;
-    // compare id to what you want
-});
-
-for (var j=0; j<i; j++){
-  $("#time_"+j).TimeCircles();
-}
-</script>

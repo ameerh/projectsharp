@@ -22,8 +22,8 @@
           <%else%>
             <td></td>
           <%end%>
-          <%if event.participants[(i*2)].odd.present? %>
-            <td><%= event.participants[(i*2)].odd.moneyline_value %></td>
+          <%if event.periods[0].present? %>
+            <td><%= event.periods[0].moneyline_visiting %></td>
           <%else%>
             <td>0</td>
           <%end%>
@@ -32,8 +32,8 @@
           <%else%>
             <td></td>
           <%end%>
-          <%if event.participants[(i*2)+1].odd.present?%>
-            <td><%= event.participants[(i*2)+1].odd.moneyline_value %></td>
+          <%if event.periods[0].present?%>
+            <td><%= event.periods[0].moneyline_home %></td>
           <%else%>
             <td>0</td>
           <%end%>
@@ -48,7 +48,6 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @events %>
 <br>
 
 <%= link_to 'New Event', new_event_path %>
@@ -70,6 +69,29 @@ $("td").each(function() {
 });
 
 for (var j=0; j<i; j++){
-  $("#time_"+j).TimeCircles();
+  $("#time_"+j).TimeCircles({"time": {
+        "Days": {
+            "text": "Days",
+            "color": "#FFCC66",
+            "show": false
+        },
+        "Hours": {
+            "text": "Hours",
+            "color": "#99CCFF",
+            "show": true
+        },
+        "Minutes": {
+            "text": "Minutes",
+            "color": "#BBFFBB",
+            "show": true
+        },
+        "Seconds": {
+            "text": "Seconds",
+            "color": "#FF9999",
+            "show": true
+        }
+      }
+    }
+);
 }
 </script>
