@@ -20,6 +20,7 @@
         <%i = 0%>
         <tr>
         <%(event.participants.count/2).times do%>
+        <% if event.participants[(i*2)].participant_name != "Away Runs" %>
           <%if event.participants[(i*2)].present?%>
             <td><%= event.participants[(i*2)].participant_name %></td>
           <%else%>
@@ -61,6 +62,7 @@
             <% i = i+1 %>
           </tr>
           <%end%>
+        <%end%>
     <% end %>
   </tbody>
 </table>
