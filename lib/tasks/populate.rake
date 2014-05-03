@@ -6,7 +6,7 @@ task :populate => :environment do
 		@uri = ["http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=Basketball&sportsubtype=NBA", "http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=BaseBall&sportsubtype=MLB"]
 	else
 		@time = @feedtime.feedtime
-		@uri = ["http://xml.pinnaclesports.com/pinnacleFeed.aspx?last="+@time.to_s+"&sporttype=Basketball&sportsubtype=NBA", "http://xml.pinnaclesports.com/pinnacleFeed.aspx?last="+@time.to_s+"&sporttype=BaseBall&sportsubtype=MLB"]
+		@uri = ["http://xml.pinnaclesports.com/pinnacleFeed.aspx?last=1196336347638&sporttype=BaseBall&sportsubtype=MLB"]
 	end
 	@uri.each do |uri|
 		xml = Nokogiri::XML(open(uri))
@@ -25,6 +25,9 @@ task :populate => :environment do
 			#Reading Participants of Events
 			event.xpath('participants/participant').each do |participant|
 				@name = participant.xpath('participant_name').text.to_s
+				if @name === "Atlanta Hawks"
+					binding.pry
+			end
 				@contestnum = participant.xpath('contestantnum').text.to_i
 				@rotnum = participant.xpath('rotnum').text.to_i
 				@visiting = participant.xpath('visiting_home_draw').text.to_s
