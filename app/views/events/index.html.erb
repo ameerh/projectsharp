@@ -52,8 +52,7 @@
             <td>0</td>
           <%end%>
           <td>
-            <% date = event.event_datetime.in_time_zone("Azores") %>
-            <%= date.in_time_zone(Time.zone.name).strftime("%d, %b @ %I:%M%p") %>
+            <%= event.event_datetime.strftime("%d, %b @ %I:%M%p") %>
           </td>
           <td id="count">
           <div id="time_<%="#{j}"%>" data-date="<%= "#{event.event_datetime.in_time_zone(Time.zone.name)}" %>" style="width: 400px; height: 90px; padding: 0px; box-sizing: border-box;">
