@@ -19,7 +19,6 @@ gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 gem 'will_paginate', '~> 3.0'
-gem 'geocoder'
 gem 'jquery-cookie-rails'
 
 # Use SCSS for stylesheets
