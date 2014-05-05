@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   def set_timezone  
 	min = request.cookies["time_zone"].to_i
+	min += 60
 	Time.zone = ActiveSupport::TimeZone[-min.minutes]
   end 
 end
