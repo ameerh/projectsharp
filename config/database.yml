@@ -36,5 +36,5 @@ production:
   database: sports_odds_production
   pool: 5
   username: root
-  password: 
+  password: sharpnation
   socket: /var/run/mysqld/mysqld.sock
