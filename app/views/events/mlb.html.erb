@@ -57,7 +57,7 @@
             <td>0</td>
           <%end%>
          <td>
-          <%= event.event_datetime.in_time_zone(Time.zone.name).strftime("%d, %b @ %I:%M%p") %>
+          <%= event.event_datetime.in_time_zone("Azores").in_time_zone(Time.zone.name).strftime("%d, %b @ %I:%M%p") %>
             </td>
             <% i = i+1 %>
           </tr>
