@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
 
 	min = request.cookies["time_zone"].to_i
 	Time.zone = ActiveSupport::TimeZone[-min.minutes]
-	puts Time.zone.name
+	puts Time.zone.to_s
   end 
 end
