@@ -57,7 +57,7 @@
             <td>0</td>
           <%end%>
          <td>
-          <%= event.event_datetime.strftime("%d, %b @ %I:%M%p") %>
+          <%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %>
             </td>
             <% i = i+1 %>
           </tr>

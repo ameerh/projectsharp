@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
 	# time_zone_string = "GMT-1:00"
 	# offset = time_zone_string.match(/GMT(\+|-)(\d+):(\d+)/) { "#{$1}1".to_i * ($2.to_i.hours + $3.to_i.minutes) }
 	# time_zone = ActiveSupport::TimeZone.new(offset)
-	# time_zone # (GMT+5:30) Chennai
 
 	# binding.pry
 

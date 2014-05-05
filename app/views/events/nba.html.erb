@@ -31,7 +31,7 @@
           <%else%>
             <td></td>
           <%end%>
-          <td><%= event.event_datetime.strftime("%d, %b @ %I:%M%p") %></td>
+          <td><%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %></td>
           <%if event.periods[0].present? %>
             <td><%= event.periods[0].moneyline_visiting %></td>
           <%else%>
