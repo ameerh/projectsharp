@@ -1,0 +1,8 @@
+table span
+{
+	display: inline-block;
+	width: 45px;
+}
+.time_circles {
+	width: 50% !important;
+}

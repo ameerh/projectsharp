@@ -52,12 +52,12 @@
             <td>0</td>
           <%end%>
           <%if event.periods[0].present?%>
-            <td><%= event.periods[0].tootal_point.to_s + "o" %> <br/><%= event.periods[0].tootal_point.to_s + "u" %></td>
+            <td><span>Over</span><%=event.periods[0].tootal_point.to_s %> <br/><span>Under</span><%= event.periods[0].tootal_point.to_s %></td>
           <%else%>
             <td>0</td>
           <%end%>
          <td>
-          <%= event.event_datetime.strftime("%d, %b @ %I:%M%p") %>
+          <%= event.event_datetime.in_time_zone(Time.zone.name).strftime("%d, %b @ %I:%M%p") %>
             </td>
             <% i = i+1 %>
           </tr>
