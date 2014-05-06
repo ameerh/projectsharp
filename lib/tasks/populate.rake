@@ -11,8 +11,9 @@ task :populate => :environment do
 		    @league = event.xpath('league').text.to_s
 		    @sporttype = event.xpath('sporttype').text.to_s
 		    @islive = event.xpath('IsLive').text.to_s
-		    #Event Creation
-		    @eve = Event.where(:gamenumber => @gamenumber)
+		    #Event Searching
+		    @eve = Event.where(:event_datetime => @datetime, :gamenumber => @gamenumber, :sporttype => @sporttype, :league => @league, :is_live => @islive)
+		    #If event exists
 		    if @eve.present?
 		    	@event = @eve.first
 		    	@event = @event.update(:event_datetime => @datetime, :gamenumber => @gamenumber, :sporttype => @sporttype, :league => @league, :is_live => @islive)
@@ -25,18 +26,17 @@ task :populate => :environment do
 					if participant.xpath('pitcher').present?
 						@pitcher = participant.xpath('pitcher').text.to_s
 					end	
-					#Participants of Event Creation 
-					@part = Participant.where(:event_id => @eve.first.id)
-					@part = @part[i] 
+					#Participants of Event Updation 
+					@party = Participant.where(:event_id => @eve.first.id, :participant_name => @name, :contestantnum => @contestnum, :rotnum => @rotnum, :visiting_home_draw => @visiting, :pitcher => @pitcher)
+					@part = @party.first 
 					@participant = @part.update(:participant_name => @name, :contestantnum => @contestnum, :rotnum => @rotnum, :visiting_home_draw => @visiting, :pitcher => @pitcher)
-					
 					#Reading Odds of the Participant
 					if participant.xpath('odds').present?
 						participant.xpath('odds').each do |odd|
 							@money = odd.xpath('moneyline_value').text.to_i
 							@base = odd.xpath('to_base').text.to_i
 							#Odds Creation
-							@od = Odd.where(:participant_id => @part.id).first
+							@od = Odd.where(:participant_id => @part.id, :moneyline_value => @money, :to_base => @base).first
 							@odd = @od.update(:moneyline_value => @money, :to_base => @base)
 						end
 					end
@@ -85,11 +85,14 @@ task :populate => :environment do
 								@under_adjust = total.xpath('under_adjust').text.to_i
 							end
 						end
-						#Creating Periods
-						@per = Period.where(:event_id => @eve.first.id).first
-						@period = @per.update(:period_number => @period_number, :period_description => @period_desc, :periodcutoff_datetime => @periodcutoff_datetime, :period_status => @period_status, :period_update => @period_update, :spread_maximum => @spread_maximum, :moneyline_maximum => @moneyline_maximum, :total_maximum => @total_maximum, :moneyline_visiting => @moneyline_visiting, :moneyline_home => @moneyline_home, :spread_visiting => @spread_visiting, :spread_adjust_visiting => @spread_adjust_visiting, :spread_home => @spread_home, :spread_adjust_home => @spread_adjust_home, :tootal_point => @total_points, :over_adjust => @over_adjust, :under_adjust => @under_adjust)
+						#Updating Periods
+						@per = Period.where(:period_number => @period_number, :period_description => @period_desc, :periodcutoff_datetime => @periodcutoff_datetime, :period_status => @period_status, :period_update => @period_update, :spread_maximum => @spread_maximum, :moneyline_maximum => @moneyline_maximum, :total_maximum => @total_maximum, :moneyline_visiting => @moneyline_visiting, :moneyline_home => @moneyline_home, :spread_visiting => @spread_visiting, :spread_adjust_visiting => @spread_adjust_visiting, :spread_home => @spread_home, :spread_adjust_home => @spread_adjust_home, :tootal_point => @total_points, :over_adjust => @over_adjust, :under_adjust => @under_adjust, :event_id => @eve.first.id).first
+						if @per.present?
+							@period = @per.update(:period_number => @period_number, :period_description => @period_desc, :periodcutoff_datetime => @periodcutoff_datetime, :period_status => @period_status, :period_update => @period_update, :spread_maximum => @spread_maximum, :moneyline_maximum => @moneyline_maximum, :total_maximum => @total_maximum, :moneyline_visiting => @moneyline_visiting, :moneyline_home => @moneyline_home, :spread_visiting => @spread_visiting, :spread_adjust_visiting => @spread_adjust_visiting, :spread_home => @spread_home, :spread_adjust_home => @spread_adjust_home, :tootal_point => @total_points, :over_adjust => @over_adjust, :under_adjust => @under_adjust)
+						end
 					end
 				end
+		    #if event does not exists
 		    else	
 		    	@event = Event.create(:event_datetime => @datetime, :gamenumber => @gamenumber, :sporttype => @sporttype, :league => @league, :is_live => @islive)
 		    	#Reading Participants of Events
