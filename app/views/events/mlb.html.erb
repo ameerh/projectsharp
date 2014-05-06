@@ -54,7 +54,7 @@
           <%if event.periods[0].present?%>
             <td><span>Over</span><%=event.periods[0].tootal_point.to_s %> <br/><span>Under</span><%= event.periods[0].tootal_point.to_s %></td>
           <%else%>
-            <td>0</td>
+            <td></td>
           <%end%>
          <td>
           <%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %>
