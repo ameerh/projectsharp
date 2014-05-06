@@ -15,7 +15,7 @@ task :populate => :environment do
 		    @eve = Event.where(:gamenumber => @gamenumber)
 		    if @eve.present?
 		    	@event = @eve.first
-		    	@event = @event.update(:event_datetime => @datetime, :gamenumber => @gamenumber, :sporttype => @sporttype, :league => @league, :is_liveve => @islive)
+		    	@event = @event.update(:event_datetime => @datetime, :gamenumber => @gamenumber, :sporttype => @sporttype, :league => @league, :is_live => @islive)
 		    	event.xpath('participants/participant').each_with_index do |participant, i|
 					@name = participant.xpath('participant_name').text.to_s
 					@contestnum = participant.xpath('contestantnum').text.to_i
@@ -91,7 +91,7 @@ task :populate => :environment do
 					end
 				end
 		    else	
-		    	@event = Event.create(:event_datetime => @datetime, :gamenumber => @gamenumber, :sporttype => @sporttype, :league => @league, :is_liveve => @islive)
+		    	@event = Event.create(:event_datetime => @datetime, :gamenumber => @gamenumber, :sporttype => @sporttype, :league => @league, :is_live => @islive)
 		    	#Reading Participants of Events
 				event.xpath('participants/participant').each do |participant|
 					@name = participant.xpath('participant_name').text.to_s
