@@ -45,7 +45,7 @@
           <%else%>
             <td></td>
           <%end%>
-          <%if event.participants[(i*2)].present?%>
+          <%if event.participants[(i*2)].present? && event.league == "MLB"%>
             <td><%= event.participants[(i*2)].pitcher %></td>
           <%else%>
             <td></td>
@@ -65,7 +65,7 @@
           <%else%>
             <td></td>
           <%end%>
-          <%if event.participants[(i*2)+1].present?%>
+          <%if event.participants[(i*2)+1].present? && event.league == "MLB"%>
             <td><%= event.participants[(i*2)+1].pitcher %></td>
           <%else%>
             <td></td>
