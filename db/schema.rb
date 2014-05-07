@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502135943) do
+ActiveRecord::Schema.define(version: 20140507170317) do
+
+  create_table "espn_games", force: true do |t|
+    t.integer  "team_a"
+    t.integer  "team_h"
+    t.time     "time"
+    t.date     "date"
+    t.string   "pitcher_a"
+    t.string   "pitcher_h"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "espn_teams", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.datetime "event_datetime"
@@ -19,12 +36,6 @@ ActiveRecord::Schema.define(version: 20140502135943) do
     t.string   "sporttype"
     t.string   "league"
     t.boolean  "is_live"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "feedtimes", force: true do |t|
-    t.integer  "feedtime",   limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end

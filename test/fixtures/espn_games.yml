@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team_a: 1
+  team_h: 1
+  time: 2014-05-07 22:03:06
+  date: 2014-05-07
+  pitcher_a: MyString
+  pitcher: MyString
+
+two:
+  team_a: 1
+  team_h: 1
+  time: 2014-05-07 22:03:06
+  date: 2014-05-07
+  pitcher_a: MyString
+  pitcher: MyString
