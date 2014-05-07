@@ -6,8 +6,12 @@
       <th>Sport Type</th>
       <th>Team A</th>
       <th>Odds</th>
+      <th>Spread Visiting</th>
+      <th>Pitcher</th>
       <th>Team B</th>
       <th>Odds</th>
+      <th>Spread Home</th>
+      <th>Pitcher</th>
       <th>Total Point</th>
       <th>Start Time</th>
       <th>Countdown</th>
@@ -36,6 +40,16 @@
           <%else%>
             <td></td>
           <%end%>
+          <%if event.periods[0].present? && event.league == "NBA"%>
+            <td><%= event.periods[0].spread_visiting %></td>
+          <%else%>
+            <td></td>
+          <%end%>
+          <%if event.participants[(i*2)].present?%>
+            <td><%= event.participants[(i*2)].pitcher %></td>
+          <%else%>
+            <td></td>
+          <%end%>
           <%if event.participants[(i*2)+1].present?%>
             <td><%= event.participants[(i*2)+1].participant_name %></td>
           <%else%>
@@ -43,6 +57,16 @@
           <%end%>
           <%if event.periods[0].present?%>
             <td><%= event.periods[0].moneyline_home %></td>
+          <%else%>
+            <td></td>
+          <%end%>
+          <%if event.periods[0].present? && event.league == "NBA"%>
+            <td><%= event.periods[0].spread_home %></td>
+          <%else%>
+            <td></td>
+          <%end%>
+          <%if event.participants[(i*2)+1].present?%>
+            <td><%= event.participants[(i*2)+1].pitcher %></td>
           <%else%>
             <td></td>
           <%end%>
