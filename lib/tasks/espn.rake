@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 task :espn => :environment do
-	start_date = Date.new(2014, 5, 8) 
+	start_date = Date.new(2014, 8, 25) 
 	end_date   = Date.new(2014, 10, 30)
 	(start_date..end_date).each do |date| 
 	@date = date.strftime("%Y%m%d") 
@@ -20,6 +20,10 @@ task :espn => :environment do
 				@game_id = span.first.attributes['id'].value.split("-")[0]
 				#To Do Time Conversion
 				@time    = game.css("#"+@game_id.to_s+"-statusLine1").first.children.first.text
+				# Boundry check for not correct games
+				if (game.css("#"+@game_id.to_s+"-aTeamName").first.children[0].children[0]).blank?
+					next
+				end	
 				@team_a = game.css("#"+@game_id.to_s+"-aTeamName").first.children[0].children[0].text
 				@team_h = game.css("#"+@game_id.to_s+"-hTeamName").first.children[0].children[0].text
 				@pitcher_a = game.css("#"+@game_id.to_s+"-awayStarter").first.children[1].text
