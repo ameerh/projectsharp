@@ -12,6 +12,8 @@ SportsOdds::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
+  resources :espn_games
+
   resources :events do
     collection do
       get :nba

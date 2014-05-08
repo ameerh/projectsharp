@@ -1,0 +1,48 @@
+<h1>Listing Espn Games</h1>
+
+<p>Date: <input type="text" id="datepicker"></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Home Team</th>
+      <th>Pitcher</th>
+      <th>Visiitng Team</th>
+      <th>Pitcher</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @espn_games.each do |game| %>
+      <tr>
+        <td><%= EspnTeam.find(game.team_h).name %></td>
+        <td><%= game.pitcher_h %></td>
+        <td><%= EspnTeam.find(game.team_a).name %></td>
+        <td><%= game.pitcher_a %></td>
+        <td><%= game.time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script>
+  $(function() {
+    $('#datepicker').datepicker()
+  .on('changeDate', function(ev) {
+    var d = new Date(ev.date)
+    
+    var day = d.getDate();
+    var month = d.getMonth()+1;
+    var year = d.getFullYear();
+
+    var date = year +"-"+ month  +"-"+ day; 
+
+    window.location = location.origin + location.pathname + "?date=" + date;
+    $(this).datepicker('hide');
+  });
+
+  });
+  </script>
