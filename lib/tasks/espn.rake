@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 task :espn => :environment do
-	start_date = Date.new(2014, 8, 25) 
+	start_date = Date.new(2014, 5, 8) 
 	end_date   = Date.new(2014, 10, 30)
 	(start_date..end_date).each do |date| 
 	@date = date.strftime("%Y%m%d") 
