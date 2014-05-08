@@ -1,19 +1,15 @@
 require 'nokogiri'
 require 'open-uri'
-task :espn => :environment do
-	start_date = Date.new(2014, 5, 8) 
-	end_date   = Date.new(2014, 10, 30)
-	(start_date..end_date).each do |date| 
-	@date = date.strftime("%Y%m%d") 
+task :update_next_day_games => :environment do
+	@date = (Date.today+1).strftime("%Y%m%d") 
 	url = "http://scores.espn.go.com/mlb/scoreboard?date="+@date.to_s
 	data = Nokogiri::HTML(open(url))
 
-	puts @date
 	@sides = ['#gamesLeft-1', '#gamesRight-1']
 	@sides.each do |side|
 		#Reading Side
 		left_side = data.css(side)
-		if left_side.present?	
+		if left_side.present?
 			@left_games = left_side.css(".mod-container")
 			@left_games.each do |game|
 				span = game.css("span")
@@ -37,10 +33,13 @@ task :espn => :environment do
 				else
 					@team_home = @team_home.first
 				end
-
-				@game_create = EspnGame.create(:game_id => @game_id.to_i, :time => @time, :team_a => @team_away.id, :team_h => @team_home.id, :date => @date.to_s.to_date, :pitcher_a => @pitcher_a, :pitcher_h => @pitcher_h) 
+				@game = EspnGame.where(:game_id => @game_id).first
+				if @game.present?
+					@game_update = @game.update(:time => @time, :team_a => @team_away.id, :team_h => @team_home.id, :date => @date.to_s.to_date, :pitcher_a => @pitcher_a, :pitcher_h => @pitcher_h)
+				else
+					@game_create = EspnGame.create(:game_id => @game_id.to_i, :time => @time, :team_a => @team_away.id, :team_h => @team_home.id, :date => @date.to_s.to_date, :pitcher_a => @pitcher_a, :pitcher_h => @pitcher_h) 
+				end
 			end
 		end
-	end	
-end
+	endx	
 end
