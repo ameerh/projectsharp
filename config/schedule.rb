@@ -21,4 +21,8 @@ every 10.minutes do # Many shortcuts available: :hour, :day, :month, :year, :reb
   rake "populate"
 end
 
+every 10.minutes do # Many shortcuts available: :hour, :day, :month, :year, :reboot
+  rake "update_next_day_games"
+end
+
 # Learn more: http://github.com/javan/whenever

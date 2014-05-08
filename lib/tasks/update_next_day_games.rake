@@ -41,5 +41,5 @@ task :update_next_day_games => :environment do
 				end
 			end
 		end
-	endx	
+	end	
 end
