@@ -30,19 +30,34 @@
 
 <script>
   $(function() {
-    $('#datepicker').datepicker()
-  .on('changeDate', function(ev) {
-    var d = new Date(ev.date)
-    
-    var day = d.getDate();
-    var month = d.getMonth()+1;
-    var year = d.getFullYear();
+    $('#datepicker').datepicker().on('changeDate', function(ev) {
+      var d = new Date(ev.date)
+      
+      var day = d.getDate();
+      var month = d.getMonth()+1;
+      var year = d.getFullYear();
 
-    var date = year +"-"+ month  +"-"+ day; 
+      var date = year +"-"+ month  +"-"+ day; 
 
-    window.location = location.origin + location.pathname + "?date=" + date;
-    $(this).datepicker('hide');
+      window.location = location.origin + location.pathname + "?date=" + date;
+      $(this).datepicker('hide');
+    });
   });
 
-  });
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd='0'+dd
+  } 
+
+  if(mm<10) {
+      mm='0'+mm
+  } 
+
+  today = yyyy+'-'+dd+'-'+mm;
+  var DATE = location.search.split('date=')[1] ? location.search.split('date=')[1] : today;
+  $("#datepicker").val(DATE);
   </script>
