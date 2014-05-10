@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508141931) do
+ActiveRecord::Schema.define(version: 20140509160030) do
 
   create_table "espn_games", force: true do |t|
     t.integer  "team_a"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140508141931) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
   end
 
   create_table "events", force: true do |t|
@@ -79,6 +80,42 @@ ActiveRecord::Schema.define(version: 20140508141931) do
     t.integer  "over_adjust"
     t.integer  "under_adjust"
     t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stat_ranks", force: true do |t|
+    t.integer  "at_bats"
+    t.integer  "runs_scored"
+    t.integer  "hits"
+    t.integer  "double_hit"
+    t.integer  "triple_hit"
+    t.integer  "home_run"
+    t.integer  "stolen_base"
+    t.integer  "caught_stealing"
+    t.integer  "bases_balls"
+    t.integer  "strikeout"
+    t.integer  "ba"
+    t.integer  "obp"
+    t.integer  "slg"
+    t.integer  "ops"
+    t.integer  "total_bases"
+    t.integer  "hbp"
+    t.integer  "sf"
+    t.integer  "team_stat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "team_stats", force: true do |t|
+    t.integer  "game_played"
+    t.integer  "runs_scored"
+    t.float    "hits"
+    t.float    "obp"
+    t.float    "slg"
+    t.string   "reacord"
+    t.string   "position"
+    t.integer  "espn_team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
