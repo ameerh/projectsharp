@@ -28,6 +28,12 @@ task :populate_teams_stats => :environment do
 		@current_year_total = EspnTeamStats.create(:split => @split, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 
 		#Last 7Days totals
+		@split    = data.css("#total tbody tr")[1].css("td[1]").first.text.to_s
+		@GS       = data.css("#total tbody tr")[1].css("td[4]").first.text.to_s
+		@R        = data.css("#total tbody tr")[1].css("td[7]").first.text.to_s
+		@BA       = data.css("#total tbody tr")[1].css("td[17]").first.text.to_s
+		@OBP      = data.css("#total tbody tr")[1].css("td[18]").first.text.to_s
+		@SLG      = data.css("#total tbody tr")[1].css("td[19]").first.text.to_s
 
 		@last7_days_total = EspnTeamStats.create(:split => @split, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 
