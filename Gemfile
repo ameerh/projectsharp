@@ -8,6 +8,7 @@ gem 'pg'
 gem 'mysql2'
 
 gem 'pry-rails', :group => :development
+
 gem 'seed_dump', :group => :development
 
 gem 'nokogiri'
