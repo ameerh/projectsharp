@@ -10,6 +10,7 @@
       <th>Visiitng Team</th>
       <th>Pitcher</th>
       <th>Time</th>
+      <th>Team Previews</th>
     </tr>
   </thead>
 
@@ -21,6 +22,15 @@
         <td><%= EspnTeam.find(game.team_a).name %></td>
         <td><%= game.pitcher_a %></td>
         <td><%= game.time %></td>
+        <%
+        if(game.date >= Date.today)
+        %>
+        <td><a href="espn_games/previews?team_a=<%= game.team_a %>&team_h=<%= game.team_h %>">Previews</a></td>
+        <%
+        else
+          "<td></td>"
+        end  
+        %>  
       </tr>
     <% end %>
   </tbody>

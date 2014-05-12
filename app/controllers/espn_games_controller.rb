@@ -66,6 +66,17 @@ class EspnGamesController < ApplicationController
     end
   end
 
+  def previews
+    if params[:team_a].present? && params[:team_h].present?
+      @team_a = EspnTeam.find(params[:team_a])
+      @team_a_stats = EspnTeamStats.where("espn_team_id=?",params[:team_a])
+      @team_h = EspnTeam.find(params[:team_h])
+      @team_h_stats = EspnTeamStats.where("espn_team_id=?",params[:team_h])
+    else
+      redirect_to "/espn_games"
+    end  
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_espn_game

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  split: MyString
+  GS: MyString
+  R: MyString
+  BA: MyString
+  OBP: MyString
+  SLG: MyString
+  record: MyString
+  position: MyString
+
+two:
+  split: MyString
+  GS: MyString
+  R: MyString
+  BA: MyString
+  OBP: MyString
+  SLG: MyString
+  record: MyString
+  position: MyString
