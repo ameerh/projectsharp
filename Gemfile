@@ -15,10 +15,16 @@ gem 'protected_attributes'
 
 gem 'whenever', :require => false
 
+gem 'devise'
+
 gem "therubyracer"
+
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+
 gem "twitter-bootstrap-rails"
+
 gem 'will_paginate', '~> 3.0'
+
 gem 'jquery-cookie-rails', '~> 1.3.1.1'
 
 # Use SCSS for stylesheets
