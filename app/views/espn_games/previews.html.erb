@@ -1,0 +1,169 @@
+<h2><%= @team_h.name %> (Home Team)</h2>
+<h4>Record & Position: <%= "#{@team_h_stats.first.record}, #{@team_h_stats.first.position}" %></h4><br/>
+
+<h4><u>Season Totals</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>GS</th>
+      <th>R</th>
+      <th>BA</th>
+      <th>OBP</th>
+      <th>SLG</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 3.times do |count|%>
+      <tr>
+        <td><%= @team_h_stats[count+1].split %></td>
+        <td><%= @team_h_stats[count+1].GS %></td>
+        <td><%= @team_h_stats[count+1].R %></td>
+        <td><%= @team_h_stats[count+1].BA %></td>
+        <td><%= @team_h_stats[count+1].OBP %></td>
+        <td><%= @team_h_stats[count+1].SLG %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4><u>Platoon Splits</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>GS</th>
+      <th>R</th>
+      <th>BA</th>
+      <th>OBP</th>
+      <th>SLG</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 2.times do |count|%>
+      <tr>
+        <td><%= @team_h_stats[count+4].split %></td>
+        <td><%= @team_h_stats[count+4].GS %></td>
+        <td><%= @team_h_stats[count+4].R %></td>
+        <td><%= @team_h_stats[count+4].BA %></td>
+        <td><%= @team_h_stats[count+4].OBP %></td>
+        <td><%= @team_h_stats[count+4].SLG %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4><u>Home or Away</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>GS</th>
+      <th>R</th>
+      <th>BA</th>
+      <th>OBP</th>
+      <th>SLG</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 2.times do |count|%>
+      <tr>
+        <td><%= @team_h_stats[count+6].split %></td>
+        <td><%= @team_h_stats[count+6].GS %></td>
+        <td><%= @team_h_stats[count+6].R %></td>
+        <td><%= @team_h_stats[count+6].BA %></td>
+        <td><%= @team_h_stats[count+6].OBP %></td>
+        <td><%= @team_h_stats[count+6].SLG %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2><%= @team_a.name %> (Away Team)</h2>
+<h4>Record & Position: <%= "#{@team_a_stats.first.record}, #{@team_a_stats.first.position}" %></h4><br/>
+
+<h4><u>Season Totals</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>GS</th>
+      <th>R</th>
+      <th>BA</th>
+      <th>OBP</th>
+      <th>SLG</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 3.times do |count|%>
+      <tr>
+        <td><%= @team_a_stats[count+1].split %></td>
+        <td><%= @team_a_stats[count+1].GS %></td>
+        <td><%= @team_a_stats[count+1].R %></td>
+        <td><%= @team_a_stats[count+1].BA %></td>
+        <td><%= @team_a_stats[count+1].OBP %></td>
+        <td><%= @team_a_stats[count+1].SLG %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4><u>Platoon Splits</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>GS</th>
+      <th>R</th>
+      <th>BA</th>
+      <th>OBP</th>
+      <th>SLG</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 2.times do |count|%>
+      <tr>
+        <td><%= @team_a_stats[count+4].split %></td>
+        <td><%= @team_a_stats[count+4].GS %></td>
+        <td><%= @team_a_stats[count+4].R %></td>
+        <td><%= @team_a_stats[count+4].BA %></td>
+        <td><%= @team_a_stats[count+4].OBP %></td>
+        <td><%= @team_a_stats[count+4].SLG %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4><u>Home or Away</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>GS</th>
+      <th>R</th>
+      <th>BA</th>
+      <th>OBP</th>
+      <th>SLG</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 2.times do |count|%>
+      <tr>
+        <td><%= @team_a_stats[count+6].split %></td>
+        <td><%= @team_a_stats[count+6].GS %></td>
+        <td><%= @team_a_stats[count+6].R %></td>
+        <td><%= @team_a_stats[count+6].BA %></td>
+        <td><%= @team_a_stats[count+6].OBP %></td>
+        <td><%= @team_a_stats[count+6].SLG %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
