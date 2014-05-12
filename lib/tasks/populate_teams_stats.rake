@@ -9,7 +9,6 @@ task :populate_teams_stats => :environment do
 		data = Nokogiri::HTML(open(url).read, nil, 'utf-8')
 		@team_id = team.id
 
-		binding.pry
 		#Team Record & Position
 		@record   = data.css("#info_box").children[5].children[0].text.to_s
 		@position = data.css("#info_box").children[5].children[1].text.split(', ')[1].to_s
