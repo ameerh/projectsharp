@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509160030) do
+ActiveRecord::Schema.define(version: 20140510135040) do
 
   create_table "espn_games", force: true do |t|
     t.integer  "team_a"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 20140509160030) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "game_id"
+  end
+
+  create_table "espn_team_stats", force: true do |t|
+    t.string   "split"
+    t.string   "GS"
+    t.string   "R"
+    t.string   "BA"
+    t.string   "OBP"
+    t.string   "SLG"
+    t.string   "record"
+    t.string   "position"
+    t.integer  "espn_team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "espn_teams", force: true do |t|
