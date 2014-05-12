@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-task :populate_teams_stats => :environment do
+task :populate_teams_stats_p => :environment do
 	# @teams = EspnTeam.find(:all, :order => "id desc")
 	# @teams = EspnTeam.where("id=29")
 	@teams = EspnTeam.all
