@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 task :populate_pitchers_stats => :environment do
 	# @pitchers = Pitcher.all
-	@pitchers = Pitcher.where("id=116")
+	@pitchers = Pitcher.where("url != ''")
 	@pitchers.each do |pitcher|	
 		url = pitcher.url
 		data = Nokogiri::HTML(open(url).read, nil, 'utf-8')
