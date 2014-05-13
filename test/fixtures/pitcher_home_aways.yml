@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  split: MyString
+  W: 1
+  L: 1
+  ERA: 1.5
+  GS: 1.5
+  WHIP: 1.5
+
+two:
+  split: MyString
+  W: 1
+  L: 1
+  ERA: 1.5
+  GS: 1.5
+  WHIP: 1.5

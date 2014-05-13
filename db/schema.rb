@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513114617) do
+ActiveRecord::Schema.define(version: 20140513135225) do
 
   create_table "espn_games", force: true do |t|
     t.integer  "team_a"
@@ -98,11 +98,65 @@ ActiveRecord::Schema.define(version: 20140513114617) do
     t.datetime "updated_at"
   end
 
+  create_table "pitcher_home_aways", force: true do |t|
+    t.string   "split"
+    t.integer  "W"
+    t.integer  "L"
+    t.float    "ERA"
+    t.float    "GS"
+    t.float    "WHIP"
+    t.integer  "pitcher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pitcher_platoon_splits", force: true do |t|
+    t.string   "split"
+    t.string   "BA"
+    t.integer  "pitcher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pitcher_season_totals", force: true do |t|
+    t.string   "split"
+    t.integer  "W"
+    t.integer  "L"
+    t.float    "W_L"
+    t.float    "ERA"
+    t.integer  "G"
+    t.integer  "GS"
+    t.integer  "GF"
+    t.integer  "CG"
+    t.integer  "SHO"
+    t.integer  "SV"
+    t.integer  "IP"
+    t.integer  "H"
+    t.integer  "R"
+    t.integer  "ER"
+    t.integer  "HR"
+    t.integer  "BB"
+    t.integer  "IBB"
+    t.integer  "SO"
+    t.integer  "HBP"
+    t.integer  "BK"
+    t.integer  "WP"
+    t.integer  "BF"
+    t.float    "WHIP"
+    t.float    "SOp"
+    t.integer  "pitcher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pitchers", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
+    t.string   "throws"
+    t.float    "age"
+    t.string   "full_name"
   end
 
   create_table "stat_ranks", force: true do |t|

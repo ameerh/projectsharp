@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  split: MyString
+  W: 1
+  L: 1
+  W-L%: 
+  ERA: 1.5
+  G: 1
+  GS: 1
+  GF: 1
+  CG: 1
+  SHO: 1
+  SV: 1
+  IP: 1
+  H: 1
+  R: 1
+  ER: 1
+  HR: 1
+  BB: 1
+  IBB: 1
+  SO: 1
+  HBP: 1
+  BK: 1
+  WP: 1
+  BF: 1
+  WHIP: 1.5
+  SOp: 1.5
+
+two:
+  split: MyString
+  W: 1
+  L: 1
+  W-L%: 
+  ERA: 1.5
+  G: 1
+  GS: 1
+  GF: 1
+  CG: 1
+  SHO: 1
+  SV: 1
+  IP: 1
+  H: 1
+  R: 1
+  ER: 1
+  HR: 1
+  BB: 1
+  IBB: 1
+  SO: 1
+  HBP: 1
+  BK: 1
+  WP: 1
+  BF: 1
+  WHIP: 1.5
+  SOp: 1.5
