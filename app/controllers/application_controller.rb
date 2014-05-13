@@ -5,14 +5,12 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone 
 
   def set_timezone  
-	# time_zone_string = "GMT-1:00"
-	# offset = time_zone_string.match(/GMT(\+|-)(\d+):(\d+)/) { "#{$1}1".to_i * ($2.to_i.hours + $3.to_i.minutes) }
-	# time_zone = ActiveSupport::TimeZone.new(offset)
-
-	# binding.pry
-
 	min = request.cookies["time_zone"].to_i
 	Time.zone = ActiveSupport::TimeZone[-min.minutes]
 	puts Time.zone.to_s
   end 
+
+  def after_sign_in_path_for(resource)
+  	"/admin"
+  end
 end

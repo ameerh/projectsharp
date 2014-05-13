@@ -30,3 +30,7 @@ EspnTeam.create!([
   {name: "Yankees", url: "http://www.baseball-reference.com/teams/split.cgi?t=b&team=NYY&year=2014"},
   {name: "Brewers", url: "http://www.baseball-reference.com/teams/split.cgi?t=b&team=MIL&year=2014"}
 ])
+
+User.create!([
+  {email: "admin@admin.com", password: "12345678"}
+])
