@@ -18,9 +18,9 @@
     <% @espn_games.each do |game| %>
       <tr>
         <td><%= EspnTeam.find(game.team_h).name %></td>
-        <td><%= game.pitcher_h %></td>
+        <td><%= Pitcher.find(game.pitcher_h).name %></td>
         <td><%= EspnTeam.find(game.team_a).name %></td>
-        <td><%= game.pitcher_a %></td>
+        <td><%= Pitcher.find(game.pitcher_a).name %></td>
         <td><%= game.time %></td>
         <%
         if(game.date >= Date.today)
