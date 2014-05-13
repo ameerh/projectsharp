@@ -25,4 +25,11 @@ every 18.hours do # Many shortcuts available: :hour, :day, :month, :year, :reboo
   rake "update_next_day_games"
 end
 
+every 12.hours do # Many shortcuts available: :hour, :day, :month, :year, :reboot
+  rake "populate_teams_stats_p"
+end
+
+every 12.hours do # Many shortcuts available: :hour, :day, :month, :year, :reboot
+  rake "populate_pitchers_stats"
+end
 # Learn more: http://github.com/javan/whenever
