@@ -14,11 +14,11 @@ task :populate_teams_stats_p => :environment do
 		@position = data.css("#info_box").children[5].children[1].text.split(', ')[1].to_s
 		@split	  = "record-position"
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@record_position = @espnTeamStats.update(:split => @split, :record => @record, :position => @position, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@record_position = @EspnTeamStat.update(:split => @split, :record => @record, :position => @position, :espn_team_id => @team_id)
 		else
-			@record_position = EspnTeamStats.create(:split => @split, :record => @record, :position => @position, :espn_team_id => @team_id)
+			@record_position = EspnTeamStat.create(:split => @split, :record => @record, :position => @position, :espn_team_id => @team_id)
 		end	
 		#Season Totals Section Scraping
 		#Current year totals
@@ -30,11 +30,11 @@ task :populate_teams_stats_p => :environment do
 		@OBP      = data.css("#total tbody tr")[0].css("td[17]").first.text.to_s
 		@SLG      = data.css("#total tbody tr")[0].css("td[18]").first.text.to_s
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@current_year_total = @espnTeamStats.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@current_year_total = @EspnTeamStat.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		else
-			@current_year_total = EspnTeamStats.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+			@current_year_total = EspnTeamStat.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		end	
 
 		#Last 7Days totals
@@ -46,11 +46,11 @@ task :populate_teams_stats_p => :environment do
 		@OBP      = data.css("#total tbody tr")[1].css("td[17]").first.text.to_s
 		@SLG      = data.css("#total tbody tr")[1].css("td[18]").first.text.to_s
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@last7_days_total = @espnTeamStats.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@last7_days_total = @EspnTeamStat.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		else
-			@last7_days_total = EspnTeamStats.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+			@last7_days_total = EspnTeamStat.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		end	
 
 		#Last 28Days totals
@@ -62,11 +62,11 @@ task :populate_teams_stats_p => :environment do
 		@OBP      = data.css("#total tbody tr")[3].css("td[17]").first.text.to_s
 		@SLG      = data.css("#total tbody tr")[3].css("td[18]").first.text.to_s
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@last28_days_total = @espnTeamStats.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@last28_days_total = @EspnTeamStat.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		else
-			@last28_days_total = EspnTeamStats.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+			@last28_days_total = EspnTeamStat.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		end	
 
 		#Platoon Splits Section Scraping
@@ -79,11 +79,11 @@ task :populate_teams_stats_p => :environment do
 		@OBP      = data.css("#plato tbody tr")[0].css("td[17]").first.text.to_s
 		@SLG      = data.css("#plato tbody tr")[0].css("td[18]").first.text.to_s
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@vs_rhp_total = @espnTeamStats.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@vs_rhp_total = @EspnTeamStat.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		else
-			@vs_rhp_total = EspnTeamStats.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+			@vs_rhp_total = EspnTeamStat.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		end	
 
 		#vs LHP
@@ -95,11 +95,11 @@ task :populate_teams_stats_p => :environment do
 		@OBP      = data.css("#plato tbody tr")[1].css("td[17]").first.text.to_s
 		@SLG      = data.css("#plato tbody tr")[1].css("td[18]").first.text.to_s
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@vs_lhp_total = @espnTeamStats.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@vs_lhp_total = @EspnTeamStat.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		else
-			@vs_lhp_total = EspnTeamStats.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+			@vs_lhp_total = EspnTeamStat.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		end	
 
 		#Home or Away Section Scraping
@@ -112,11 +112,11 @@ task :populate_teams_stats_p => :environment do
 		@OBP      = data.css("#hmvis tbody tr")[0].css("td[17]").first.text.to_s
 		@SLG      = data.css("#hmvis tbody tr")[0].css("td[18]").first.text.to_s
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@home_total = @espnTeamStats.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@home_total = @EspnTeamStat.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		else
-			@home_total = EspnTeamStats.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+			@home_total = EspnTeamStat.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		end	
 
 		#Away
@@ -128,11 +128,11 @@ task :populate_teams_stats_p => :environment do
 		@OBP      = data.css("#hmvis tbody tr")[1].css("td[17]").first.text.to_s
 		@SLG      = data.css("#hmvis tbody tr")[1].css("td[18]").first.text.to_s
 
-		@espnTeamStats = EspnTeamStats.where("split=? AND espn_team_id=?",@split,@team_id).first
-		if @espnTeamStats.present?
-			@away_total = @espnTeamStats.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+		@EspnTeamStat = EspnTeamStat.where("split=? AND espn_team_id=?",@split,@team_id).first
+		if @EspnTeamStat.present?
+			@away_total = @EspnTeamStat.update(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		else
-			@away_total = EspnTeamStats.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
+			@away_total = EspnTeamStat.create(:split => @split, :G => @G, :GS => @GS, :R => @R, :BA => @BA, :OBP => @OBP, :SLG => @SLG, :espn_team_id => @team_id)
 		end	
 		
 		puts "#{team.id}. #{team.name} Stats have been scraped succesfully"					
