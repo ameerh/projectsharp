@@ -16,7 +16,6 @@ task :populate_pitchers_stats => :environment do
 		result     = pitcher.update(:throws => @throws, :age => @age, :full_name => @full_name)
 
 		#Seasons Total - Current Year
-		binding.pry
 		@split    = data.css("#total_extra tbody tr")[0].css("td[2]").first.text.to_s
 		@W       = data.css("#total_extra tbody tr")[0].css("td[3]").first.text.to_s
 		@L       = data.css("#total_extra tbody tr")[0].css("td[4]").first.text.to_s
