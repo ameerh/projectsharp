@@ -16,31 +16,32 @@ task :populate_pitchers_stats => :environment do
 		result     = pitcher.update(:throws => @throws, :age => @age, :full_name => @full_name)
 
 		#Seasons Total - Current Year
-		@split    = data.css("#total tbody tr")[0].css("td[1]").first.text.to_s
-		@W       = data.css("#total tbody tr")[0].css("td[3]").first.text.to_s
-		@L       = data.css("#total tbody tr")[0].css("td[4]").first.text.to_s
-		@W_L     = data.css("#total tbody tr")[0].css("td[5]").first.text.to_s
-		@ERA     = data.css("#total tbody tr")[0].css("td[6]").first.text.to_s
-		@G       = data.css("#total tbody tr")[0].css("td[7]").first.text.to_s
-		@GS      = data.css("#total tbody tr")[0].css("td[8]").first.text.to_s
-		@GF      = data.css("#total tbody tr")[0].css("td[9]").first.text.to_s
-		@CG      = data.css("#total tbody tr")[0].css("td[10]").first.text.to_s
-		@SHO     = data.css("#total tbody tr")[0].css("td[11]").first.text.to_s
-		@SV      = data.css("#total tbody tr")[0].css("td[12]").first.text.to_s
-		@IP      = data.css("#total tbody tr")[0].css("td[13]").first.text.to_s
-		@H       = data.css("#total tbody tr")[0].css("td[14]").first.text.to_s
-		@R       = data.css("#total tbody tr")[0].css("td[15]").first.text.to_s
-		@ER      = data.css("#total tbody tr")[0].css("td[16]").first.text.to_s
-		@HR      = data.css("#total tbody tr")[0].css("td[17]").first.text.to_s
-		@BB      = data.css("#total tbody tr")[0].css("td[18]").first.text.to_s
-		@IBB     = data.css("#total tbody tr")[0].css("td[19]").first.text.to_s
-		@SO      = data.css("#total tbody tr")[0].css("td[20]").first.text.to_s
-		@HBP     = data.css("#total tbody tr")[0].css("td[21]").first.text.to_s
-		@BK      = data.css("#total tbody tr")[0].css("td[22]").first.text.to_s
-		@WP      = data.css("#total tbody tr")[0].css("td[23]").first.text.to_s
-		@BF      = data.css("#total tbody tr")[0].css("td[24]").first.text.to_s
-		@WHIP    = data.css("#total tbody tr")[0].css("td[25]").first.text.to_s
-		@SOp     = data.css("#total tbody tr")[0].css("td[26]").first.text.to_s
+		binding.pry
+		@split    = data.css("#total_extra tbody tr")[0].css("td[1]").first.text.to_s
+		@W       = data.css("#total_extra tbody tr")[0].css("td[3]").first.text.to_s
+		@L       = data.css("#total_extra tbody tr")[0].css("td[4]").first.text.to_s
+		@W_L     = data.css("#total_extra tbody tr")[0].css("td[5]").first.text.to_s
+		@ERA     = data.css("#total_extra tbody tr")[0].css("td[6]").first.text.to_s
+		@G       = data.css("#total_extra tbody tr")[0].css("td[7]").first.text.to_s
+		@GS      = data.css("#total_extra tbody tr")[0].css("td[8]").first.text.to_s
+		@GF      = data.css("#total_extra tbody tr")[0].css("td[9]").first.text.to_s
+		@CG      = data.css("#total_extra tbody tr")[0].css("td[10]").first.text.to_s
+		@SHO     = data.css("#total_extra tbody tr")[0].css("td[11]").first.text.to_s
+		@SV      = data.css("#total_extra tbody tr")[0].css("td[12]").first.text.to_s
+		@IP      = data.css("#total_extra tbody tr")[0].css("td[13]").first.text.to_s
+		@H       = data.css("#total_extra tbody tr")[0].css("td[14]").first.text.to_s
+		@R       = data.css("#total_extra tbody tr")[0].css("td[15]").first.text.to_s
+		@ER      = data.css("#total_extra tbody tr")[0].css("td[16]").first.text.to_s
+		@HR      = data.css("#total_extra tbody tr")[0].css("td[17]").first.text.to_s
+		@BB      = data.css("#total_extra tbody tr")[0].css("td[18]").first.text.to_s
+		@IBB     = data.css("#total_extra tbody tr")[0].css("td[19]").first.text.to_s
+		@SO      = data.css("#total_extra tbody tr")[0].css("td[20]").first.text.to_s
+		@HBP     = data.css("#total_extra tbody tr")[0].css("td[21]").first.text.to_s
+		@BK      = data.css("#total_extra tbody tr")[0].css("td[22]").first.text.to_s
+		@WP      = data.css("#total_extra tbody tr")[0].css("td[23]").first.text.to_s
+		@BF      = data.css("#total_extra tbody tr")[0].css("td[24]").first.text.to_s
+		@WHIP    = data.css("#total_extra tbody tr")[0].css("td[25]").first.text.to_s
+		@SOp     = data.css("#total_extra tbody tr")[0].css("td[26]").first.text.to_s
 		@pitcherSeasonTotals = PitcherSeasonTotals.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
 		if @pitcherSeasonTotals.present?
 			result   = @pitcherSeasonTotals.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
@@ -48,31 +49,31 @@ task :populate_pitchers_stats => :environment do
 			result   = PitcherSeasonTotals.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		end	
 		#Seasons Total - Last 7 days
-		@split    = data.css("#total tbody tr")[1].css("td[1]").first.text.to_s
-		@W       = data.css("#total tbody tr")[1].css("td[3]").first.text.to_s
-		@L       = data.css("#total tbody tr")[1].css("td[4]").first.text.to_s
-		@W_L     = data.css("#total tbody tr")[1].css("td[5]").first.text.to_s
-		@ERA     = data.css("#total tbody tr")[1].css("td[6]").first.text.to_s
-		@G       = data.css("#total tbody tr")[1].css("td[7]").first.text.to_s
-		@GS      = data.css("#total tbody tr")[1].css("td[8]").first.text.to_s
-		@GF      = data.css("#total tbody tr")[1].css("td[9]").first.text.to_s
-		@CG      = data.css("#total tbody tr")[1].css("td[10]").first.text.to_s
-		@SHO     = data.css("#total tbody tr")[1].css("td[11]").first.text.to_s
-		@SV      = data.css("#total tbody tr")[1].css("td[12]").first.text.to_s
-		@IP      = data.css("#total tbody tr")[1].css("td[13]").first.text.to_s
-		@H       = data.css("#total tbody tr")[1].css("td[14]").first.text.to_s
-		@R       = data.css("#total tbody tr")[1].css("td[15]").first.text.to_s
-		@ER      = data.css("#total tbody tr")[1].css("td[16]").first.text.to_s
-		@HR      = data.css("#total tbody tr")[1].css("td[17]").first.text.to_s
-		@BB      = data.css("#total tbody tr")[1].css("td[18]").first.text.to_s
-		@IBB     = data.css("#total tbody tr")[1].css("td[19]").first.text.to_s
-		@SO      = data.css("#total tbody tr")[1].css("td[20]").first.text.to_s
-		@HBP     = data.css("#total tbody tr")[1].css("td[21]").first.text.to_s
-		@BK      = data.css("#total tbody tr")[1].css("td[22]").first.text.to_s
-		@WP      = data.css("#total tbody tr")[1].css("td[23]").first.text.to_s
-		@BF      = data.css("#total tbody tr")[1].css("td[24]").first.text.to_s
-		@WHIP    = data.css("#total tbody tr")[1].css("td[25]").first.text.to_s
-		@SOp     = data.css("#total tbody tr")[1].css("td[26]").first.text.to_s
+		@split    = data.css("#total_extra tbody tr")[1].css("td[1]").first.text.to_s
+		@W       = data.css("#total_extra tbody tr")[1].css("td[3]").first.text.to_s
+		@L       = data.css("#total_extra tbody tr")[1].css("td[4]").first.text.to_s
+		@W_L     = data.css("#total_extra tbody tr")[1].css("td[5]").first.text.to_s
+		@ERA     = data.css("#total_extra tbody tr")[1].css("td[6]").first.text.to_s
+		@G       = data.css("#total_extra tbody tr")[1].css("td[7]").first.text.to_s
+		@GS      = data.css("#total_extra tbody tr")[1].css("td[8]").first.text.to_s
+		@GF      = data.css("#total_extra tbody tr")[1].css("td[9]").first.text.to_s
+		@CG      = data.css("#total_extra tbody tr")[1].css("td[10]").first.text.to_s
+		@SHO     = data.css("#total_extra tbody tr")[1].css("td[11]").first.text.to_s
+		@SV      = data.css("#total_extra tbody tr")[1].css("td[12]").first.text.to_s
+		@IP      = data.css("#total_extra tbody tr")[1].css("td[13]").first.text.to_s
+		@H       = data.css("#total_extra tbody tr")[1].css("td[14]").first.text.to_s
+		@R       = data.css("#total_extra tbody tr")[1].css("td[15]").first.text.to_s
+		@ER      = data.css("#total_extra tbody tr")[1].css("td[16]").first.text.to_s
+		@HR      = data.css("#total_extra tbody tr")[1].css("td[17]").first.text.to_s
+		@BB      = data.css("#total_extra tbody tr")[1].css("td[18]").first.text.to_s
+		@IBB     = data.css("#total_extra tbody tr")[1].css("td[19]").first.text.to_s
+		@SO      = data.css("#total_extra tbody tr")[1].css("td[20]").first.text.to_s
+		@HBP     = data.css("#total_extra tbody tr")[1].css("td[21]").first.text.to_s
+		@BK      = data.css("#total_extra tbody tr")[1].css("td[22]").first.text.to_s
+		@WP      = data.css("#total_extra tbody tr")[1].css("td[23]").first.text.to_s
+		@BF      = data.css("#total_extra tbody tr")[1].css("td[24]").first.text.to_s
+		@WHIP    = data.css("#total_extra tbody tr")[1].css("td[25]").first.text.to_s
+		@SOp     = data.css("#total_extra tbody tr")[1].css("td[26]").first.text.to_s
 		@pitcherSeasonTotals = PitcherSeasonTotals.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
 		if @pitcherSeasonTotals.present?
 			result   = @pitcherSeasonTotals.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
@@ -81,31 +82,31 @@ task :populate_pitchers_stats => :environment do
 		end	
 
 		#Seasons Total - Last 28 days
-		@split    = data.css("#total tbody tr")[3].css("td[1]").first.text.to_s
-		@W       = data.css("#total tbody tr")[3].css("td[3]").first.text.to_s
-		@L       = data.css("#total tbody tr")[3].css("td[4]").first.text.to_s
-		@W_L     = data.css("#total tbody tr")[3].css("td[5]").first.text.to_s
-		@ERA     = data.css("#total tbody tr")[3].css("td[6]").first.text.to_s
-		@G       = data.css("#total tbody tr")[3].css("td[7]").first.text.to_s
-		@GS      = data.css("#total tbody tr")[3].css("td[8]").first.text.to_s
-		@GF      = data.css("#total tbody tr")[3].css("td[9]").first.text.to_s
-		@CG      = data.css("#total tbody tr")[3].css("td[10]").first.text.to_s
-		@SHO     = data.css("#total tbody tr")[3].css("td[11]").first.text.to_s
-		@SV      = data.css("#total tbody tr")[3].css("td[12]").first.text.to_s
-		@IP      = data.css("#total tbody tr")[3].css("td[13]").first.text.to_s
-		@H       = data.css("#total tbody tr")[3].css("td[14]").first.text.to_s
-		@R       = data.css("#total tbody tr")[3].css("td[15]").first.text.to_s
-		@ER      = data.css("#total tbody tr")[3].css("td[16]").first.text.to_s
-		@HR      = data.css("#total tbody tr")[3].css("td[17]").first.text.to_s
-		@BB      = data.css("#total tbody tr")[3].css("td[18]").first.text.to_s
-		@IBB     = data.css("#total tbody tr")[3].css("td[19]").first.text.to_s
-		@SO      = data.css("#total tbody tr")[3].css("td[20]").first.text.to_s
-		@HBP     = data.css("#total tbody tr")[3].css("td[21]").first.text.to_s
-		@BK      = data.css("#total tbody tr")[3].css("td[22]").first.text.to_s
-		@WP      = data.css("#total tbody tr")[3].css("td[23]").first.text.to_s
-		@BF      = data.css("#total tbody tr")[3].css("td[24]").first.text.to_s
-		@WHIP    = data.css("#total tbody tr")[3].css("td[25]").first.text.to_s
-		@SOp     = data.css("#total tbody tr")[3].css("td[26]").first.text.to_s
+		@split    = data.css("#total_extra tbody tr")[3].css("td[1]").first.text.to_s
+		@W       = data.css("#total_extra tbody tr")[3].css("td[3]").first.text.to_s
+		@L       = data.css("#total_extra tbody tr")[3].css("td[4]").first.text.to_s
+		@W_L     = data.css("#total_extra tbody tr")[3].css("td[5]").first.text.to_s
+		@ERA     = data.css("#total_extra tbody tr")[3].css("td[6]").first.text.to_s
+		@G       = data.css("#total_extra tbody tr")[3].css("td[7]").first.text.to_s
+		@GS      = data.css("#total_extra tbody tr")[3].css("td[8]").first.text.to_s
+		@GF      = data.css("#total_extra tbody tr")[3].css("td[9]").first.text.to_s
+		@CG      = data.css("#total_extra tbody tr")[3].css("td[10]").first.text.to_s
+		@SHO     = data.css("#total_extra tbody tr")[3].css("td[11]").first.text.to_s
+		@SV      = data.css("#total_extra tbody tr")[3].css("td[12]").first.text.to_s
+		@IP      = data.css("#total_extra tbody tr")[3].css("td[13]").first.text.to_s
+		@H       = data.css("#total_extra tbody tr")[3].css("td[14]").first.text.to_s
+		@R       = data.css("#total_extra tbody tr")[3].css("td[15]").first.text.to_s
+		@ER      = data.css("#total_extra tbody tr")[3].css("td[16]").first.text.to_s
+		@HR      = data.css("#total_extra tbody tr")[3].css("td[17]").first.text.to_s
+		@BB      = data.css("#total_extra tbody tr")[3].css("td[18]").first.text.to_s
+		@IBB     = data.css("#total_extra tbody tr")[3].css("td[19]").first.text.to_s
+		@SO      = data.css("#total_extra tbody tr")[3].css("td[20]").first.text.to_s
+		@HBP     = data.css("#total_extra tbody tr")[3].css("td[21]").first.text.to_s
+		@BK      = data.css("#total_extra tbody tr")[3].css("td[22]").first.text.to_s
+		@WP      = data.css("#total_extra tbody tr")[3].css("td[23]").first.text.to_s
+		@BF      = data.css("#total_extra tbody tr")[3].css("td[24]").first.text.to_s
+		@WHIP    = data.css("#total_extra tbody tr")[3].css("td[25]").first.text.to_s
+		@SOp     = data.css("#total_extra tbody tr")[3].css("td[26]").first.text.to_s
 		@pitcherSeasonTotals = PitcherSeasonTotals.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
 		if @pitcherSeasonTotals.present?
 			result   = @pitcherSeasonTotals.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
