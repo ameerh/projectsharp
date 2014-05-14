@@ -42,11 +42,11 @@ task :populate_pitchers_stats => :environment do
 		@BF      = data.css("#total_extra tbody tr")[0].css("td[24]").first.text.to_s
 		@WHIP    = data.css("#total_extra tbody tr")[0].css("td[25]").first.text.to_s
 		@SOp     = data.css("#total_extra tbody tr")[0].css("td[26]").first.text.to_s
-		@pitcherSeasonTotals = PitcherSeasonTotals.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
-		if @pitcherSeasonTotals.present?
-			result   = @pitcherSeasonTotals.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
+		@PitcherSeasonTotal = PitcherSeasonTotal.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
+		if @PitcherSeasonTotal.present?
+			result   = @PitcherSeasonTotal.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		else	
-			result   = PitcherSeasonTotals.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
+			result   = PitcherSeasonTotal.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		end	
 		#Seasons Total - Last 7 days
 		@split    = data.css("#total_extra tbody tr")[1].css("td[1]").first.text.to_s
@@ -74,11 +74,11 @@ task :populate_pitchers_stats => :environment do
 		@BF      = data.css("#total_extra tbody tr")[1].css("td[24]").first.text.to_s
 		@WHIP    = data.css("#total_extra tbody tr")[1].css("td[25]").first.text.to_s
 		@SOp     = data.css("#total_extra tbody tr")[1].css("td[26]").first.text.to_s
-		@pitcherSeasonTotals = PitcherSeasonTotals.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
-		if @pitcherSeasonTotals.present?
-			result   = @pitcherSeasonTotals.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
+		@PitcherSeasonTotal = PitcherSeasonTotal.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
+		if @PitcherSeasonTotal.present?
+			result   = @PitcherSeasonTotal.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		else	
-			result   = PitcherSeasonTotals.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
+			result   = PitcherSeasonTotal.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		end	
 
 		#Seasons Total - Last 28 days
@@ -107,31 +107,31 @@ task :populate_pitchers_stats => :environment do
 		@BF      = data.css("#total_extra tbody tr")[3].css("td[24]").first.text.to_s
 		@WHIP    = data.css("#total_extra tbody tr")[3].css("td[25]").first.text.to_s
 		@SOp     = data.css("#total_extra tbody tr")[3].css("td[26]").first.text.to_s
-		@pitcherSeasonTotals = PitcherSeasonTotals.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
-		if @pitcherSeasonTotals.present?
-			result   = @pitcherSeasonTotals.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
+		@PitcherSeasonTotal = PitcherSeasonTotal.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
+		if @PitcherSeasonTotal.present?
+			result   = @PitcherSeasonTotal.update(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		else	
-			result   = PitcherSeasonTotals.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
+			result   = PitcherSeasonTotal.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		end	
 		
 		#Ploatoon Splits - vs RHB
 		@split    = data.css("#plato tbody tr")[0].css("td[1]").first.text.to_s
 		@BA       = data.css("#plato tbody tr")[0].css("td[16]").first.text.to_s
-		@pitcherPlatoonSplits = PitcherPlatoonSplits.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
-		if @pitcherPlatoonSplits.present?
-			result    = @pitcherPlatoonSplits.update(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
+		@PitcherPlatoonSplit = PitcherPlatoonSplit.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
+		if @PitcherPlatoonSplit.present?
+			result    = @PitcherPlatoonSplit.update(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
 		else	
-			result    = PitcherPlatoonSplits.create(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
+			result    = PitcherPlatoonSplit.create(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
 		end	
 
 		#Ploatoon Splits - vs LHB
 		@split    = data.css("#plato tbody tr")[1].css("td[1]").first.text.to_s
 		@BA       = data.css("#plato tbody tr")[1].css("td[16]").first.text.to_s
-		@pitcherPlatoonSplits = PitcherPlatoonSplits.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
-		if @pitcherPlatoonSplits.present?
-			result    = @pitcherPlatoonSplits.update(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
+		@PitcherPlatoonSplit = PitcherPlatoonSplit.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
+		if @PitcherPlatoonSplit.present?
+			result    = @PitcherPlatoonSplit.update(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
 		else	
-			result    = PitcherPlatoonSplits.create(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
+			result    = PitcherPlatoonSplit.create(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
 		end	
 
 		#Home/Away Section Scraping - Home
