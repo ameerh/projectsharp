@@ -48,15 +48,22 @@
   </thead>
 
   <tbody>
+    <%if @pitcher_h.throws.include? "Right" %>
+      <% @split = 'vs LHP' %>
+    <%elsif @pitcher_h.throws.include? "Left" %>
+      <% @split = 'vs RHP' %>
+    <% end %>  
     <% 2.times do |count|%>
-      <tr>
-        <td><%= @team_h_stats[count+4].split %></td>
-        <td><%= @team_h_stats[count+4].GS %></td>
-        <td><%= @team_h_stats[count+4].R %></td>
-        <td><%= @team_h_stats[count+4].BA %></td>
-        <td><%= @team_h_stats[count+4].OBP %></td>
-        <td><%= @team_h_stats[count+4].SLG %></td>
-      </tr>
+      <%if @split == @team_h_stats[count+4].split %>  
+        <tr>
+          <td><%= @team_h_stats[count+4].split %></td>
+          <td><%= @team_h_stats[count+4].GS %></td>
+          <td><%= @team_h_stats[count+4].R %></td>
+          <td><%= @team_h_stats[count+4].BA %></td>
+          <td><%= @team_h_stats[count+4].OBP %></td>
+          <td><%= @team_h_stats[count+4].SLG %></td>
+        </tr>
+      <% end %>  
     <% end %>
   </tbody>
 </table>
@@ -133,15 +140,22 @@
   </thead>
 
   <tbody>
+    <%if @pitcher_a.throws.include? "Right" %>
+      <% @split = 'vs LHP' %>
+    <%elsif @pitcher_a.throws.include? "Left" %>
+      <% @split = 'vs RHP' %>
+    <% end %>  
     <% 2.times do |count|%>
-      <tr>
-        <td><%= @team_a_stats[count+4].split %></td>
-        <td><%= @team_a_stats[count+4].GS %></td>
-        <td><%= @team_a_stats[count+4].R %></td>
-        <td><%= @team_a_stats[count+4].BA %></td>
-        <td><%= @team_a_stats[count+4].OBP %></td>
-        <td><%= @team_a_stats[count+4].SLG %></td>
-      </tr>
+      <%if @split == @team_a_stats[count+4].split %>  
+        <tr>
+          <td><%= @team_a_stats[count+4].split %></td>
+          <td><%= @team_a_stats[count+4].GS %></td>
+          <td><%= @team_a_stats[count+4].R %></td>
+          <td><%= @team_a_stats[count+4].BA %></td>
+          <td><%= @team_a_stats[count+4].OBP %></td>
+          <td><%= @team_a_stats[count+4].SLG %></td>
+        </tr>
+      <% end %>  
     <% end %>
   </tbody>
 </table>
@@ -245,7 +259,11 @@
   </tbody>
 </table>
 
-<% @platoon_splits = @pitcher_a.pitcher_platoon_splits %>
+<%if @pitcher_a.throws.include? "Right" %>
+  <% @platoon_splits = @pitcher_a.pitcher_platoon_splits.where("split = 'vs RHB'") %>
+<%elsif @pitcher_a.throws.include? "Left" %>
+  <% @platoon_splits = @pitcher_a.pitcher_platoon_splits.where("split = 'vs LHB'") %>
+<% end %>  
 <h4><u>Platoon Splits</u></h4>
 <table class="table table-striped">
   <thead>
@@ -363,7 +381,11 @@
   </tbody>
 </table>
 
-<% @platoon_splits = @pitcher_h.pitcher_platoon_splits %>
+<%if @pitcher_h.throws.include? "Right" %>
+  <% @platoon_splits = @pitcher_h.pitcher_platoon_splits.where("split = 'vs RHB'") %>
+<%elsif @pitcher_h.throws.include? "Left" %>
+  <% @platoon_splits = @pitcher_h.pitcher_platoon_splits.where("split = 'vs LHB'") %>
+<% end %>  
 <h4><u>Platoon Splits</u></h4>
 <table class="table table-striped">
   <thead>
