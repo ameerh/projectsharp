@@ -49,9 +49,9 @@
 
   <tbody>
     <%if @pitcher_h.throws.include? "Right" %>
-      <% @split = 'vs LHP' %>
-    <%elsif @pitcher_h.throws.include? "Left" %>
       <% @split = 'vs RHP' %>
+    <%elsif @pitcher_h.throws.include? "Left" %>
+      <% @split = 'vs LHP' %>
     <% end %>  
     <% 2.times do |count|%>
       <%if @split == @team_h_stats[count+4].split %>  
@@ -141,9 +141,9 @@
 
   <tbody>
     <%if @pitcher_a.throws.include? "Right" %>
-      <% @split = 'vs LHP' %>
-    <%elsif @pitcher_a.throws.include? "Left" %>
       <% @split = 'vs RHP' %>
+    <%elsif @pitcher_a.throws.include? "Left" %>
+      <% @split = 'vs LHP' %>
     <% end %>  
     <% 2.times do |count|%>
       <%if @split == @team_a_stats[count+4].split %>  
