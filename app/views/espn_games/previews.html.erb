@@ -1,3 +1,4 @@
+<% @team_h_stats = @team_h.espn_team_stats %>
 <h2><%= @team_h.name %> (Home Team)</h2>
 <h4>Record & Position: <%= "#{@team_h_stats.first.record}, #{@team_h_stats.first.position}" %></h4><br/>
 
@@ -83,6 +84,7 @@
 </table>
 
 <h2><%= @team_a.name %> (Away Team)</h2>
+<% @team_a_stats = @team_a.espn_team_stats %>
 <h4>Record & Position: <%= "#{@team_a_stats.first.record}, #{@team_a_stats.first.position}" %></h4><br/>
 
 <h4><u>Season Totals</u></h4>
@@ -166,4 +168,241 @@
   </tbody>
 </table>
 
+
+<!--  Pitchers Section !-->
+<h2><%= @pitcher_a.name %> (Home Pitcher)</h2>
+<h4>Throws: <%= "#{@pitcher_a.throws}" %></h4>
+<h4>Age: <%= "#{@pitcher_a.age}" %></h4><br/>
+
+<% @season_totals = @pitcher_a.pitcher_season_totals %>
+<h4><u>Season Totals</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>W</th>
+      <th>L</th>
+      <th>W-L%</th>
+      <th>ERA</th>
+      <th>G</th>
+      <th>GS</th>
+      <th>GF</th>
+      <th>CG</th>
+      <th>SHO</th>
+      <th>SV</th>
+      <th>IP</th>
+      <th>H</th>
+      <th>R</th>
+      <th>ER</th>
+      <th>HR</th>
+      <th>BB</th>
+      <th>IBB</th>
+      <th>SO</th>
+      <th>HBP</th>
+      <th>BK</th>
+      <th>WP</th>
+      <th>BF</th>
+      <th>WHIP</th>
+      <th>SO9</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @season_totals.each do |season_total|%>
+      <tr>
+        <th><%= season_total.split %></th>
+        <th><%= season_total.W %></th>
+        <th><%= season_total.L %></th>
+        <th><%= season_total.W_L %></th>
+        <th><%= season_total.ERA %></th>
+        <th><%= season_total.G %></th>
+        <th><%= season_total.GS %></th>
+        <th><%= season_total.GF %></th>
+        <th><%= season_total.CG %></th>
+        <th><%= season_total.SHO %></th>
+        <th><%= season_total.SV %></th>
+        <th><%= season_total.IP %></th>
+        <th><%= season_total.H %></th>
+        <th><%= season_total.R %></th>
+        <th><%= season_total.ER %></th>
+        <th><%= season_total.HR %></th>
+        <th><%= season_total.BB %></th>
+        <th><%= season_total.IBB %></th>
+        <th><%= season_total.SO %></th>
+        <th><%= season_total.HBP %></th>
+        <th><%= season_total.BK %></th>
+        <th><%= season_total.WP %></th>
+        <th><%= season_total.BF %></th>
+        <th><%= season_total.WHIP %></th>
+        <th><%= season_total.SOp %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% @platoon_splits = @pitcher_a.pitcher_platoon_splits %>
+<h4><u>Platoon Splits</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>BA</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @platoon_splits.each do |platoon_split|%>
+      <tr>
+        <td><%= platoon_split.split %></td>
+        <td><%= platoon_split.BA %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% @pitchers_home_away = @pitcher_a.pitcher_home_away %>
+<h4><u>Home or Away</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>W</th>
+      <th>L</th>
+      <th>ERA</th>
+      <th>GS</th>
+      <th>WHIP</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pitchers_home_away.each do |pitcher_home_away|%>
+      <tr>
+        <td><%= pitcher_home_away.split %></td>
+        <td><%= pitcher_home_away.W %></td>
+        <td><%= pitcher_home_away.L %></td>
+        <td><%= pitcher_home_away.ERA %></td>
+        <td><%= pitcher_home_away.GS %></td>
+        <td><%= pitcher_home_away.WHIP %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2><%= @pitcher_h.name %> (Away Pitcher)</h2>
+<h4>Throws: <%= "#{@pitcher_h.throws}" %></h4>
+<h4>Age: <%= "#{@pitcher_h.age}" %></h4><br/>
+
+<% @season_totals = @pitcher_h.pitcher_season_totals %>
+<h4><u>Season Totals</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>W</th>
+      <th>L</th>
+      <th>W-L%</th>
+      <th>ERA</th>
+      <th>G</th>
+      <th>GS</th>
+      <th>GF</th>
+      <th>CG</th>
+      <th>SHO</th>
+      <th>SV</th>
+      <th>IP</th>
+      <th>H</th>
+      <th>R</th>
+      <th>ER</th>
+      <th>HR</th>
+      <th>BB</th>
+      <th>IBB</th>
+      <th>SO</th>
+      <th>HBP</th>
+      <th>BK</th>
+      <th>WP</th>
+      <th>BF</th>
+      <th>WHIP</th>
+      <th>SO9</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @season_totals.each do |season_total|%>
+      <tr>
+        <th><%= season_total.split %></th>
+        <th><%= season_total.W %></th>
+        <th><%= season_total.L %></th>
+        <th><%= season_total.W_L %></th>
+        <th><%= season_total.ERA %></th>
+        <th><%= season_total.G %></th>
+        <th><%= season_total.GS %></th>
+        <th><%= season_total.GF %></th>
+        <th><%= season_total.CG %></th>
+        <th><%= season_total.SHO %></th>
+        <th><%= season_total.SV %></th>
+        <th><%= season_total.IP %></th>
+        <th><%= season_total.H %></th>
+        <th><%= season_total.R %></th>
+        <th><%= season_total.ER %></th>
+        <th><%= season_total.HR %></th>
+        <th><%= season_total.BB %></th>
+        <th><%= season_total.IBB %></th>
+        <th><%= season_total.SO %></th>
+        <th><%= season_total.HBP %></th>
+        <th><%= season_total.BK %></th>
+        <th><%= season_total.WP %></th>
+        <th><%= season_total.BF %></th>
+        <th><%= season_total.WHIP %></th>
+        <th><%= season_total.SOp %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% @platoon_splits = @pitcher_h.pitcher_platoon_splits %>
+<h4><u>Platoon Splits</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>BA</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @platoon_splits.each do |platoon_split|%>
+      <tr>
+        <td><%= platoon_split.split %></td>
+        <td><%= platoon_split.BA %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% @pitchers_home_away = @pitcher_h.pitcher_home_away %>
+<h4><u>Home or Away</u></h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>W</th>
+      <th>L</th>
+      <th>ERA</th>
+      <th>GS</th>
+      <th>WHIP</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pitchers_home_away.each do |pitcher_home_away|%>
+      <tr>
+        <td><%= pitcher_home_away.split %></td>
+        <td><%= pitcher_home_away.W %></td>
+        <td><%= pitcher_home_away.L %></td>
+        <td><%= pitcher_home_away.ERA %></td>
+        <td><%= pitcher_home_away.GS %></td>
+        <td><%= pitcher_home_away.WHIP %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 

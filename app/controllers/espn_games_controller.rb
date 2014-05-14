@@ -67,11 +67,16 @@ class EspnGamesController < ApplicationController
   end
 
   def previews
-    if params[:team_a].present? && params[:team_h].present?
-      @team_a = EspnTeam.find(params[:team_a])
-      @team_a_stats = EspnTeamStats.where("espn_team_id=?",params[:team_a])
-      @team_h = EspnTeam.find(params[:team_h])
-      @team_h_stats = EspnTeamStats.where("espn_team_id=?",params[:team_h])
+    if params[:game].present?
+      @game   = EspnGame.find(params[:game])
+      #Teams Stats
+      @team_a = EspnTeam.find(@game.team_a)
+      @team_h = EspnTeam.find(@game.team_h)
+      #Pitchers Stats
+      @game.pitcher_a = 116
+      @game.pitcher_h = 116
+      @pitcher_a = Pitcher.find(@game.pitcher_a)
+      @pitcher_h = Pitcher.find(@game.pitcher_h)
     else
       redirect_to "/espn_games"
     end  
