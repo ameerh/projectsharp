@@ -16,7 +16,8 @@ task :populate_pitchers_stats => :environment do
 		result     = pitcher.update(:throws => @throws, :age => @age, :full_name => @full_name)
 
 		#Seasons Total - Current Year
-		@split    = data.css("#total_extra tbody tr")[0].css("td[1]").first.text.to_s
+		binding.pry
+		@split    = data.css("#total_extra tbody tr")[0].css("td[2]").first.text.to_s
 		@W       = data.css("#total_extra tbody tr")[0].css("td[3]").first.text.to_s
 		@L       = data.css("#total_extra tbody tr")[0].css("td[4]").first.text.to_s
 		@W_L     = data.css("#total_extra tbody tr")[0].css("td[5]").first.text.to_s
@@ -48,7 +49,7 @@ task :populate_pitchers_stats => :environment do
 			result   = PitcherSeasonTotal.create(:split => @split, :W => @W, :L => @L, :W_L => @W_L, :ERA => @ERA, :G => @G, :GS => @GS, :GF => @GF, :CG => @CG, :SHO => @SHO, :SV => @SV, :IP => @IP, :H => @H, :R => @R, :HR => @HR, :ER => @ER, :BB => @BB, :IBB => @IBB, :SO => @SO, :HBP => @HBP, :BK => @BK, :WP => @WP, :BF => @BF, :WHIP => @WHIP, :SOp => @SOp, :pitcher_id => @pitcher_id)
 		end	
 		#Seasons Total - Last 7 days
-		@split    = data.css("#total_extra tbody tr")[1].css("td[1]").first.text.to_s
+		@split    = data.css("#total_extra tbody tr")[1].css("td[2]").first.text.to_s
 		@W       = data.css("#total_extra tbody tr")[1].css("td[3]").first.text.to_s
 		@L       = data.css("#total_extra tbody tr")[1].css("td[4]").first.text.to_s
 		@W_L     = data.css("#total_extra tbody tr")[1].css("td[5]").first.text.to_s
@@ -81,7 +82,7 @@ task :populate_pitchers_stats => :environment do
 		end	
 
 		#Seasons Total - Last 28 days
-		@split    = data.css("#total_extra tbody tr")[3].css("td[1]").first.text.to_s
+		@split    = data.css("#total_extra tbody tr")[3].css("td[2]").first.text.to_s
 		@W       = data.css("#total_extra tbody tr")[3].css("td[3]").first.text.to_s
 		@L       = data.css("#total_extra tbody tr")[3].css("td[4]").first.text.to_s
 		@W_L     = data.css("#total_extra tbody tr")[3].css("td[5]").first.text.to_s
