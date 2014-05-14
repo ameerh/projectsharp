@@ -68,7 +68,7 @@
   </tbody>
 </table>
 
-<h4><u>Home or Away</u></h4>
+<h4><u>Home Stats</u></h4>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -83,14 +83,16 @@
 
   <tbody>
     <% 2.times do |count|%>
-      <tr>
-        <td><%= @team_h_stats[count+6].split %></td>
-        <td><%= @team_h_stats[count+6].GS %></td>
-        <td><%= @team_h_stats[count+6].R %></td>
-        <td><%= @team_h_stats[count+6].BA %></td>
-        <td><%= @team_h_stats[count+6].OBP %></td>
-        <td><%= @team_h_stats[count+6].SLG %></td>
-      </tr>
+      <%if @team_h_stats[count+6].split == "Home" %>  
+        <tr>
+          <td><%= @team_h_stats[count+6].split %></td>
+          <td><%= @team_h_stats[count+6].GS %></td>
+          <td><%= @team_h_stats[count+6].R %></td>
+          <td><%= @team_h_stats[count+6].BA %></td>
+          <td><%= @team_h_stats[count+6].OBP %></td>
+          <td><%= @team_h_stats[count+6].SLG %></td>
+        </tr>
+      <% end %>  
     <% end %>
   </tbody>
 </table>
@@ -160,7 +162,7 @@
   </tbody>
 </table>
 
-<h4><u>Home or Away</u></h4>
+<h4><u>Away Stats</u></h4>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -175,14 +177,16 @@
 
   <tbody>
     <% 2.times do |count|%>
-      <tr>
-        <td><%= @team_a_stats[count+6].split %></td>
-        <td><%= @team_a_stats[count+6].GS %></td>
-        <td><%= @team_a_stats[count+6].R %></td>
-        <td><%= @team_a_stats[count+6].BA %></td>
-        <td><%= @team_a_stats[count+6].OBP %></td>
-        <td><%= @team_a_stats[count+6].SLG %></td>
-      </tr>
+      <%if @team_a_stats[count+6].split == "Away" %>  
+        <tr>
+          <td><%= @team_a_stats[count+6].split %></td>
+          <td><%= @team_a_stats[count+6].GS %></td>
+          <td><%= @team_a_stats[count+6].R %></td>
+          <td><%= @team_a_stats[count+6].BA %></td>
+          <td><%= @team_a_stats[count+6].OBP %></td>
+          <td><%= @team_a_stats[count+6].SLG %></td>
+        </tr>
+      <% end %>  
     <% end %>
   </tbody>
 </table>
