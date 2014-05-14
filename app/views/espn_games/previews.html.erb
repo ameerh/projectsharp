@@ -9,6 +9,7 @@
       <th>Split</th>
       <th>GS</th>
       <th>R</th>
+      <th>R/GS</th>
       <th>BA</th>
       <th>OBP</th>
       <th>SLG</th>
@@ -21,6 +22,7 @@
         <td><%= @team_h_stats[count+1].split %></td>
         <td><%= @team_h_stats[count+1].GS %></td>
         <td><%= @team_h_stats[count+1].R %></td>
+        <td><%= (@team_h_stats[count+1].R.to_i / @team_h_stats[count+1].GS.to_f).round(2)%></td>
         <td><%= @team_h_stats[count+1].BA %></td>
         <td><%= @team_h_stats[count+1].OBP %></td>
         <td><%= @team_h_stats[count+1].SLG %></td>
@@ -42,6 +44,7 @@
       <th>G</th>
       <th>GS</th>
       <th>R</th>
+      <th>R/G</th>
       <th>BA</th>
       <th>OBP</th>
       <th>SLG</th>
@@ -61,6 +64,7 @@
           <td><%= @team_h_stats[count+4].G %></td>
           <td><%= @team_h_stats[count+4].GS %></td>
           <td><%= @team_h_stats[count+4].R %></td>
+          <td><%= (@team_h_stats[count+4].R.to_i / @team_h_stats[count+4].G.to_f).round(2)%></td>
           <td><%= @team_h_stats[count+4].BA %></td>
           <td><%= @team_h_stats[count+4].OBP %></td>
           <td><%= @team_h_stats[count+4].SLG %></td>
@@ -110,6 +114,7 @@
       <th>Split</th>
       <th>GS</th>
       <th>R</th>
+      <th>R/GS</th>
       <th>BA</th>
       <th>OBP</th>
       <th>SLG</th>
@@ -122,6 +127,7 @@
         <td><%= @team_a_stats[count+1].split %></td>
         <td><%= @team_a_stats[count+1].GS %></td>
         <td><%= @team_a_stats[count+1].R %></td>
+        <td><%= (@team_a_stats[count+1].R.to_i / @team_a_stats[count+1].GS.to_f).round(2)%></td>
         <td><%= @team_a_stats[count+1].BA %></td>
         <td><%= @team_a_stats[count+1].OBP %></td>
         <td><%= @team_a_stats[count+1].SLG %></td>
@@ -138,6 +144,7 @@
       <th>G</th>
       <th>GS</th>
       <th>R</th>
+      <th>R/G</th>
       <th>BA</th>
       <th>OBP</th>
       <th>SLG</th>
@@ -157,6 +164,7 @@
           <td><%= @team_a_stats[count+4].G %></td>
           <td><%= @team_a_stats[count+4].GS %></td>
           <td><%= @team_a_stats[count+4].R %></td>
+          <td><%= (@team_a_stats[count+4].R.to_i / @team_a_stats[count+4].G.to_f).round(2)%></td>
           <td><%= @team_a_stats[count+4].BA %></td>
           <td><%= @team_a_stats[count+4].OBP %></td>
           <td><%= @team_a_stats[count+4].SLG %></td>
