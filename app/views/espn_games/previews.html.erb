@@ -28,6 +28,11 @@
     <% end %>
   </tbody>
 </table>
+<h2><u>Guru Suggestions</u></h2>
+<% @last_7_days = @team_h.espn_team_stats.where("split='Last 7 days'").first %>
+<% if (@last_7_days.R.to_i < 20) %>
+  <h4>o This team scoring normal</h4>
+<% end %>
 
 <h4><u>Platoon Splits</u></h4>
 <table class="table table-striped">
@@ -210,32 +215,32 @@
   <tbody>
     <% @season_totals.each do |season_total|%>
       <tr>
-        <th><%= season_total.split %></th>
-        <th><%= season_total.W %></th>
-        <th><%= season_total.L %></th>
-        <th><%= season_total.W_L %></th>
-        <th><%= season_total.ERA %></th>
-        <th><%= season_total.G %></th>
-        <th><%= season_total.GS %></th>
-        <th><%= season_total.GF %></th>
-        <th><%= season_total.CG %></th>
-        <th><%= season_total.SHO %></th>
-        <th><%= season_total.SV %></th>
-        <th><%= season_total.IP %></th>
-        <th><%= season_total.H %></th>
-        <th><%= season_total.R %></th>
-        <th><%= season_total.ER %></th>
-        <th><%= season_total.HR %></th>
-        <th><%= season_total.BB %></th>
-        <th><%= season_total.IBB %></th>
-        <th><%= season_total.SO %></th>
-        <th><%= season_total.HBP %></th>
-        <th><%= season_total.BK %></th>
-        <th><%= season_total.WP %></th>
-        <th><%= season_total.BF %></th>
-        <th><%= season_total.WHIP %></th>
-        <th><%= season_total.SOp %></th>
-      </tr>
+        <td><%= season_total.split %></td>
+        <td><%= season_total.W %></td>
+        <td><%= season_total.L %></td>
+        <td><%= season_total.W_L %></td>
+        <td><%= season_total.ERA %></td>
+        <td><%= season_total.G %></td>
+        <td><%= season_total.GS %></td>
+        <td><%= season_total.GF %></td>
+        <td><%= season_total.CG %></td>
+        <td><%= season_total.SHO %></td>
+        <td><%= season_total.SV %></td>
+        <td><%= season_total.IP %></td>
+        <td><%= season_total.H %></td>
+        <td><%= season_total.R %></td>
+        <td><%= season_total.ER %></td>
+        <td><%= season_total.HR %></td>
+        <td><%= season_total.BB %></td>
+        <td><%= season_total.IBB %></td>
+        <td><%= season_total.SO %></td>
+        <td><%= season_total.HBP %></td>
+        <td><%= season_total.BK %></td>
+        <td><%= season_total.WP %></td>
+        <td><%= season_total.BF %></td>
+        <td><%= season_total.WHIP %></td>
+        <td><%= season_total.SOp %></td>
+       </tr>
     <% end %>
   </tbody>
 </table>
@@ -328,31 +333,31 @@
   <tbody>
     <% @season_totals.each do |season_total|%>
       <tr>
-        <th><%= season_total.split %></th>
-        <th><%= season_total.W %></th>
-        <th><%= season_total.L %></th>
-        <th><%= season_total.W_L %></th>
-        <th><%= season_total.ERA %></th>
-        <th><%= season_total.G %></th>
-        <th><%= season_total.GS %></th>
-        <th><%= season_total.GF %></th>
-        <th><%= season_total.CG %></th>
-        <th><%= season_total.SHO %></th>
-        <th><%= season_total.SV %></th>
-        <th><%= season_total.IP %></th>
-        <th><%= season_total.H %></th>
-        <th><%= season_total.R %></th>
-        <th><%= season_total.ER %></th>
-        <th><%= season_total.HR %></th>
-        <th><%= season_total.BB %></th>
-        <th><%= season_total.IBB %></th>
-        <th><%= season_total.SO %></th>
-        <th><%= season_total.HBP %></th>
-        <th><%= season_total.BK %></th>
-        <th><%= season_total.WP %></th>
-        <th><%= season_total.BF %></th>
-        <th><%= season_total.WHIP %></th>
-        <th><%= season_total.SOp %></th>
+        <td><%= season_total.split %></td>
+        <td><%= season_total.W %></td>
+        <td><%= season_total.L %></td>
+        <td><%= season_total.W_L %></td>
+        <td><%= season_total.ERA %></td>
+        <td><%= season_total.G %></td>
+        <td><%= season_total.GS %></td>
+        <td><%= season_total.GF %></td>
+        <td><%= season_total.CG %></td>
+        <td><%= season_total.SHO %></td>
+        <td><%= season_total.SV %></td>
+        <td><%= season_total.IP %></td>
+        <td><%= season_total.H %></td>
+        <td><%= season_total.R %></td>
+        <td><%= season_total.ER %></td>
+        <td><%= season_total.HR %></td>
+        <td><%= season_total.BB %></td>
+        <td><%= season_total.IBB %></td>
+        <td><%= season_total.SO %></td>
+        <td><%= season_total.HBP %></td>
+        <td><%= season_total.BK %></td>
+        <td><%= season_total.WP %></td>
+        <td><%= season_total.BF %></td>
+        <td><%= season_total.WHIP %></td>
+        <td><%= season_total.SOp %></td>
       </tr>
     <% end %>
   </tbody>
