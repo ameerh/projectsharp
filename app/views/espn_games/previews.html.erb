@@ -30,6 +30,37 @@
     <% end %>
   </tbody>
 </table>
+
+<h2><u>Previews Statements</u></h2>
+<% 
+  statement = ""
+  @previews_rules.each do |previews_rule|
+    @team_h_stats.each do |team_h_stat|
+      if(previews_rule.split == team_h_stat.split)
+        column_value = team_h_stat[previews_rule.column]
+        if previews_rule.operator == ">"
+          (column_value.to_i  > previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+        elsif previews_rule.operator == ">="
+          (column_value.to_i  >= previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+        elsif previews_rule.operator == "<"
+          (column_value.to_i  < previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+        elsif previews_rule.operator == "<="
+          (column_value.to_i  <= previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+        elsif previews_rule.operator == "=="
+          (column_value.to_i  == previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+        end  
+      end  
+    end  
+%>
+<% if(!statement.nil?) %>
+<%= statement %> 
+<% end %>
+<%    
+  end  
+%>
+
+
+
 <h2><u>Guru Suggestions</u></h2>
 <% @last_7_days = @team_h.espn_team_stats.where("split='Last 7 days'").first %>
 <% if (@last_7_days.R.to_i < 20) %>

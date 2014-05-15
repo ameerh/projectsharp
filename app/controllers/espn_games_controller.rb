@@ -77,6 +77,9 @@ class EspnGamesController < ApplicationController
       @game.pitcher_h = 116
       @pitcher_a = Pitcher.find(@game.pitcher_a)
       @pitcher_h = Pitcher.find(@game.pitcher_h)
+
+      #Previews Rules
+      @previews_rules = PreviewsRule.all
     else
       redirect_to "/espn_games"
     end  
