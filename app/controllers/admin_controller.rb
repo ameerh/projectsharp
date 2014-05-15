@@ -6,6 +6,10 @@ class AdminController < ApplicationController
 
   def pitchers
   	@pitchers = Pitcher.all
-  	binding.pry
   end
+
+  def previews_rules
+  	binding.pry  	
+  end	
+
 end

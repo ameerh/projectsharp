@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514163503) do
+ActiveRecord::Schema.define(version: 20140515115422) do
 
   create_table "espn_games", force: true do |t|
     t.integer  "team_a"
@@ -158,6 +158,16 @@ ActiveRecord::Schema.define(version: 20140514163503) do
     t.string   "throws"
     t.float    "age"
     t.string   "full_name"
+  end
+
+  create_table "previews_rules", force: true do |t|
+    t.string   "split"
+    t.string   "column"
+    t.string   "operator"
+    t.integer  "value"
+    t.text     "statement"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stat_ranks", force: true do |t|

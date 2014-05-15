@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  split: MyString
+  column: MyString
+  operator: MyString
+  value: 1
+  statement: MyText
+
+two:
+  split: MyString
+  column: MyString
+  operator: MyString
+  value: 1
+  statement: MyText

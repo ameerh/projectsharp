@@ -1,0 +1,2 @@
+module PreviewsRuleHelper
+end

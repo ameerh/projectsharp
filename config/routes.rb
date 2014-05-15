@@ -28,10 +28,11 @@ SportsOdds::Application.routes.draw do
 
   resources :admin do
     collection do
-      get :pitchers
+      get :previews_rules
     end
   end
   resources :pitchers 
+  resources :previews_rules
 
   # Example resource route with options:
   #   resources :products do
