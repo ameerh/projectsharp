@@ -33,36 +33,46 @@
 
 <h2><u>Previews Statements</u></h2>
 <% 
-  statement = ""
+  statements = Hash.new
   column_value = 0
   @previews_rules.each do |previews_rule|
     @team_h_stats.each do |team_h_stat|
+      if statements[previews_rule.column].blank?
+        statements[previews_rule.column] = Array.new
+      end 
       if(previews_rule.split == team_h_stat.split)
         column_value = team_h_stat[previews_rule.column]
         if previews_rule.operator == ">"
-          (column_value.to_i  > previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          (column_value.to_i  > previews_rule.value.to_i) ? statements[previews_rule.column].push(previews_rule.statement.gsub!("<X>",column_value)) :  nil
           break
         elsif previews_rule.operator == ">="
-          (column_value.to_i  >= previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          (column_value.to_i  >= previews_rule.value.to_i) ? statements[previews_rule.column].push(previews_rule.statement.gsub!("<X>",column_value)) :  nil
           break
         elsif previews_rule.operator == "<"
-          (column_value.to_i  < previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          (column_value.to_i  < previews_rule.value.to_i) ? statements[previews_rule.column].push(previews_rule.statement.gsub!("<X>",column_value)) :  nil
           break
         elsif previews_rule.operator == "<="
-          (column_value.to_i  <= previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          (column_value.to_i  <= previews_rule.value.to_i) ? statements[previews_rule.column].push(previews_rule.statement.gsub!("<X>",column_value)) :  nil
           break
         elsif previews_rule.operator == "=="
-          (column_value.to_i  == previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          (column_value.to_i  == previews_rule.value.to_i) ? statements[previews_rule.column].push(previews_rule.statement.gsub!("<X>",column_value)) :  nil
           break
         end  
       end  
     end  
-%>
-<% if(!statement.nil?) %>
-<%= statement.gsub!("<X>",column_value) %> 
-<% end %>
-<%    
   end  
+%>
+
+
+<% 
+if statements.present?
+  statements.each do |statement|
+    statement.shift
+%>
+  <%= statement[0].sample %> <br/>
+<%    
+  end
+end
 %>
 
 
