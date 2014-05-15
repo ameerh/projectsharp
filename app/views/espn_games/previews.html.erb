@@ -34,26 +34,32 @@
 <h2><u>Previews Statements</u></h2>
 <% 
   statement = ""
+  column_value = 0
   @previews_rules.each do |previews_rule|
     @team_h_stats.each do |team_h_stat|
       if(previews_rule.split == team_h_stat.split)
         column_value = team_h_stat[previews_rule.column]
         if previews_rule.operator == ">"
           (column_value.to_i  > previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          break
         elsif previews_rule.operator == ">="
           (column_value.to_i  >= previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          break
         elsif previews_rule.operator == "<"
           (column_value.to_i  < previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          break
         elsif previews_rule.operator == "<="
           (column_value.to_i  <= previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          break
         elsif previews_rule.operator == "=="
           (column_value.to_i  == previews_rule.value.to_i) ? statement = previews_rule.statement : statement = nil
+          break
         end  
       end  
     end  
 %>
 <% if(!statement.nil?) %>
-<%= statement %> 
+<%= statement.gsub!("<X>",column_value) %> 
 <% end %>
 <%    
   end  

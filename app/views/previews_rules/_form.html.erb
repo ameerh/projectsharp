@@ -2,19 +2,19 @@
   <div class="control-group">
     <%= f.label :split, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :split, @split_list, :first, :last %>
+      <%= f.select(:split, @split_list) %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :column, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :column, @column, :first, :last %>
+      <%= f.select(:column, @column) %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :operator, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :operator, @operators, :first, :last %>
+      <%= f.select(:operator, @operators) %>
     </div>
   </div>
   <div class="control-group">

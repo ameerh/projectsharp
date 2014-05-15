@@ -35,6 +35,20 @@ class PreviewsRulesController < ApplicationController
 
   # GET /previews_rules/1/edit
   def edit
+    #Splits for Dropdown
+    @splits = EspnTeamStat.select("split").where("split != 'record-position'").group("split")
+    @split_list = Hash.new
+    @splits.each do |split|
+      @split_list[split.split] = split.split
+    end
+    #Column for Dropdown
+    @column = {
+      'GS'  => 'GS', 'R'   => 'R', 'BA'  => 'BA', 'OBP' => 'OBP', 'SLG' => 'SLG'
+    }
+    #Operators for Dropdown
+    @operators = {
+      '<'  => '<', '<='   => '<=', '>'  => '>', '>=' => '>=', '=' => '='
+    }
   end
 
   # POST /previews_rules
