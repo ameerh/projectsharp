@@ -12,15 +12,27 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :operator, :class => 'control-label' %>
+    <%= f.label :value1, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select(:operator, @operators) %>
+      <%= f.text_field :value1, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :value, :class => 'control-label' %>
+    <%= f.label :operator1, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :value, :class => 'text_field' %>
+      <%= f.select(:operator1, @operators) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :operator2, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:operator2, @operators) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :value2, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :value2, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">

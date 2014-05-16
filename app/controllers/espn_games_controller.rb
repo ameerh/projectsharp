@@ -1,5 +1,6 @@
 class EspnGamesController < ApplicationController
   before_action :set_espn_game, only: [:show, :edit, :update, :destroy]
+  helper_method :check_condition
 
   # GET /espn_games
   # GET /espn_games.json
@@ -94,5 +95,19 @@ class EspnGamesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def espn_game_params
       params[:espn_game]
+    end
+    
+    def check_condition(operator, value1, value2)
+      if operator == ">"
+        return value1 > value2
+      elsif operator == ">="
+        return value1 >= value2
+      elsif operator == "<"
+        return value1 < value2
+      elsif operator == "<="
+        return value1 <= value2
+      elsif operator == "=="
+        return value1 == value2
+      end  
     end
 end
