@@ -80,7 +80,8 @@ class EspnGamesController < ApplicationController
       @pitcher_h = Pitcher.find(@game.pitcher_h)
 
       #Previews Rules
-      @previews_rules = PreviewsRule.all
+      @team_previews_rules    = PreviewsRule.all.where("rule_for='Team'")
+      @pitcher_previews_rules = PreviewsRule.all.where("rule_for='Pitcher'")
     else
       redirect_to "/espn_games"
     end  

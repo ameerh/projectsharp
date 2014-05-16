@@ -31,50 +31,6 @@
   </tbody>
 </table>
 
-<h2><u>Previews Statements</u></h2>
-<% 
-  statements = Hash.new
-  column_value = 0
-  @previews_rules.each do |previews_rule|
-    @team_h_stats.each do |team_h_stat|
-      if statements[previews_rule.column].blank?
-        statements[previews_rule.column] = Array.new
-      end 
-      if(previews_rule.split == team_h_stat.split)
-        column_value = team_h_stat[previews_rule.column]
-        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
-          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
-            statements[previews_rule.column].push(previews_rule.statement.gsub!("<X>",column_value))
-          elsif previews_rule.value2.blank?
-            statements[previews_rule.column].push(previews_rule.statement.gsub!("<X>",column_value))
-          end  
-          break
-        end  
-      end  
-    end  
-  end  
-%>
-
-
-<% 
-if statements.present?
-  statements.each do |statement|
-    statement.shift
-%>
-  <%= statement[0].sample %> <br/>
-<%    
-  end
-end
-%>
-
-
-
-<h2><u>Guru Suggestions</u></h2>
-<% @last_7_days = @team_h.espn_team_stats.where("split='Last 7 days'").first %>
-<% if (@last_7_days.R.to_i < 20) %>
-  <h4>o This team scoring normal</h4>
-<% end %>
-
 <h4><u>Platoon Splits</u></h4>
 <table class="table table-striped">
   <thead>
@@ -141,6 +97,38 @@ end
     <% end %>
   </tbody>
 </table>
+
+<h2><u>Team Previews Statements</u></h2>
+<% 
+  statements = Hash.new
+  @team_previews_rules.each do |previews_rule|
+    @team_h_stats.each do |team_h_stat|
+      column_value = 0
+      if statements[previews_rule.column].blank?
+        statements[previews_rule.column] = Array.new
+      end 
+      if(previews_rule.split == team_h_stat.split)
+        column_value = team_h_stat[previews_rule.column]
+        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+          elsif previews_rule.value2.blank?
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+          end  
+          break
+        end  
+      end  
+    end  
+  end  
+if statements.present?
+  statements.each do |statement|
+    statement.shift
+%>
+  <%= statement[0].sample %> <br/>
+<%    
+  end
+end
+%>
 
 <h2><%= @team_a.name %> (Away Team)</h2>
 <% @team_a_stats = @team_a.espn_team_stats %>
@@ -242,6 +230,37 @@ end
   </tbody>
 </table>
 
+<h2><u>Team Previews Statements</u></h2>
+<% 
+  statements = Hash.new
+  @team_previews_rules.each do |previews_rule|
+    @team_a_stats.each do |team_a_stat|
+      column_value = 0
+      if statements[previews_rule.column].blank?
+        statements[previews_rule.column] = Array.new
+      end 
+      if(previews_rule.split == team_a_stat.split)
+        column_value = team_a_stat[previews_rule.column]
+        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+          elsif previews_rule.value2.blank?
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+          end  
+          break
+        end  
+      end  
+    end  
+  end  
+if statements.present?
+  statements.each do |statement|
+    statement.shift
+%>
+  <%= statement[0].sample %> <br/>
+<%    
+  end
+end
+%>
 
 <!--  Pitchers Section !-->
 <h2><%= @pitcher_a.name %> (Home Pitcher)</h2>
@@ -366,6 +385,45 @@ end
   </tbody>
 </table>
 
+<h2><u>Pitcher Previews Statements</u></h2>
+<% 
+  statements = Hash.new
+
+  stats = Array.new
+
+  @season_totals.each { |obj| stats << obj}
+  @platoon_splits.each { |obj| stats << obj}
+  @pitchers_home_away.each { |obj| stats << obj}
+
+  @pitcher_previews_rules.each do |previews_rule|
+    stats.each do |stat|
+      column_value = 0
+      if statements[previews_rule.column].blank?
+        statements[previews_rule.column] = Array.new
+      end 
+      if(previews_rule.split == stat.split)
+        column_value = stat[previews_rule.column]
+        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+          elsif previews_rule.value2.blank?
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+          end  
+          break
+        end  
+      end  
+    end  
+  end  
+if statements.present?
+  statements.each do |statement|
+    statement.shift
+%>
+  <%= statement[0].sample %> <br/>
+<%    
+  end
+end
+%>
+
 <h2><%= @pitcher_h.name %> (Away Pitcher)</h2>
 <h4>Throws: <%= "#{@pitcher_h.throws}" %></h4>
 <h4>Age: <%= "#{@pitcher_h.age}" %></h4><br/>
@@ -488,3 +546,41 @@ end
   </tbody>
 </table>
 
+<h2><u>Pitcher Previews Statements</u></h2>
+<% 
+  statements = Hash.new
+
+  stats = Array.new
+
+  @season_totals.each { |obj| stats << obj}
+  @platoon_splits.each { |obj| stats << obj}
+  @pitchers_home_away.each { |obj| stats << obj}
+
+  @pitcher_previews_rules.each do |previews_rule|
+    stats.each do |stat|
+      column_value = 0
+      if statements[previews_rule.column].blank?
+        statements[previews_rule.column] = Array.new
+      end 
+      if(previews_rule.split == stat.split)
+        column_value = stat[previews_rule.column]
+        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+          elsif previews_rule.value2.blank?
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+          end  
+          break
+        end  
+      end  
+    end  
+  end  
+if statements.present?
+  statements.each do |statement|
+    statement.shift
+%>
+  <%= statement[0].sample %> <br/>
+<%    
+  end
+end
+%>

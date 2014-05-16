@@ -17,15 +17,23 @@ class PreviewsRulesController < ApplicationController
   # GET /previews_rules/new
   def new
     @previews_rule = PreviewsRule.new
+    #Rules For
+    @rules_for = {
+      'Team'  => 'Team', 'Pitcher'   => 'Pitcher'
+    }
     #Splits for Dropdown
     @splits = EspnTeamStat.select("split").where("split != 'record-position'").group("split")
     @split_list = Hash.new
     @splits.each do |split|
       @split_list[split.split] = split.split
     end
+    @split_list['vs RHB'] = 'vs RHB'
+    @split_list['vs LHB'] = 'vs LHB'
     #Column for Dropdown
     @column = {
-      'GS'  => 'GS', 'R'   => 'R', 'BA'  => 'BA', 'OBP' => 'OBP', 'SLG' => 'SLG'
+      'G' => 'G', 'GS'  => 'GS', 'R'   => 'R', 'BA'  => 'BA', 'OBP' => 'OBP', 'SLG' => 'SLG',
+      'W' => 'W', 'L' => 'L', 'W_L' => 'W_L', 'ERA' => 'ERA', 'GF' => 'GF', 'CG' => 'CG', 'SHO' => 'SHO', 'SV' => 'SV', 'IP' => 'IP', 'H' => 'H', 'ER' => 'ER', 'HR' => 'HR', 'BB' => 'BB', 'IBB' => 'IBB', 'SO' => 'SO', 'HBP' => 'HBP', 'BK' => 'BK', 'WP' => 'WP', 'BF' => 'BF', 'WHIP' => 'WHIP', 'SOp' => 'SO9', 
+      'BA' => 'BA',
     }
     #Operators for Dropdown
     @operators = {
@@ -35,15 +43,23 @@ class PreviewsRulesController < ApplicationController
 
   # GET /previews_rules/1/edit
   def edit
+    #Rules For
+    @rules_for = {
+      'Team'  => 'Team', 'Pitcher'   => 'Pitcher'
+    }
     #Splits for Dropdown
     @splits = EspnTeamStat.select("split").where("split != 'record-position'").group("split")
     @split_list = Hash.new
     @splits.each do |split|
       @split_list[split.split] = split.split
     end
+    @split_list['vs RHB'] = 'vs RHB'
+    @split_list['vs LHB'] = 'vs LHB'
     #Column for Dropdown
     @column = {
-      'GS'  => 'GS', 'R'   => 'R', 'BA'  => 'BA', 'OBP' => 'OBP', 'SLG' => 'SLG'
+      'G' => 'G', 'GS'  => 'GS', 'R'   => 'R', 'BA'  => 'BA', 'OBP' => 'OBP', 'SLG' => 'SLG',
+      'W' => 'W', 'L' => 'L', 'W_L' => 'W_L', 'ERA' => 'ERA', 'GF' => 'GF', 'CG' => 'CG', 'SHO' => 'SHO', 'SV' => 'SV', 'IP' => 'IP', 'H' => 'H', 'ER' => 'ER', 'HR' => 'HR', 'BB' => 'BB', 'IBB' => 'IBB', 'SO' => 'SO', 'HBP' => 'HBP', 'BK' => 'BK', 'WP' => 'WP', 'BF' => 'BF', 'WHIP' => 'WHIP', 'SOp' => 'SOp', 
+      'BA' => 'BA'
     }
     #Operators for Dropdown
     @operators = {

@@ -1,5 +1,12 @@
 <%= form_for @previews_rule, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
+    <%= f.label :rule_for, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:rule_for, @rules_for) %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :split, :class => 'control-label' %>
     <div class="controls">
       <%= f.select(:split, @split_list) %>
