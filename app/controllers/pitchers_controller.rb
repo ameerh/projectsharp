@@ -37,6 +37,7 @@ class PitchersController < ApplicationController
         format.json { render json: @pitcher.errors, status: :unprocessable_entity }
       end
     end
+    %x[rake populate_pitchers_stats]
   end
 
   # PATCH/PUT /pitchers/1
@@ -51,6 +52,7 @@ class PitchersController < ApplicationController
         format.json { render json: @pitcher.errors, status: :unprocessable_entity }
       end
     end
+    %x[rake populate_pitchers_stats]
   end
 
   # DELETE /pitchers/1
