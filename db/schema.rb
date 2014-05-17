@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516143506) do
+ActiveRecord::Schema.define(version: 20140517142538) do
 
   create_table "espn_games", force: true do |t|
     t.integer  "team_a"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20140516143506) do
     t.string   "split"
     t.string   "column"
     t.string   "operator1"
-    t.integer  "value1"
+    t.string   "value1"
     t.text     "statement"
     t.datetime "created_at"
     t.datetime "updated_at"
