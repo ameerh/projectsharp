@@ -21,27 +21,27 @@
     <div class="controls" style="margin-left: 100px;">
       <h4>Condition 1</h4>
     </div>  
-    <div class="controls" style="float:left">
-      <p>Operator</p>
-      <%= f.select(:operator1, @operators) %>
-    </div>  
     <div class="controls" style="float:left; margin-left: 25px;">
       <p>Value</p>
       <%= f.text_field :value1, :class => 'text_field' %>
     </div>
+    <div class="controls" style="float:left">
+      <p>Operator</p>
+      <%= f.select(:operator1, @operators) %>
+    </div>  
   </div>
   <div class="control-group">
     <div class="controls" style="margin-left: 100px;">
       <h4>Condition 2 (And)</h4>
     </div>  
-    <div class="controls" style="float:left">
-      <p>Operator</p>
-      <%= f.select(:operator2, @operators) %>
-    </div>  
     <div class="controls" style="float:left; margin-left: 25px;">
       <p>Value</p>
       <%= f.text_field :value2, :class => 'text_field' %>
     </div>
+    <div class="controls" style="float:left">
+      <p>Operator</p>
+      <%= f.select(:operator2, @operators) %>
+    </div>  
   </div>
   <div class="control-group">
     <%= f.label :statement, :class => 'control-label' %>
