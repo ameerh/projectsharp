@@ -34,6 +34,7 @@ class PreviewsRulesController < ApplicationController
       'G' => 'G', 'GS'  => 'GS', 'R'   => 'R', 'BA'  => 'BA', 'OBP' => 'OBP', 'SLG' => 'SLG',
       'W' => 'W', 'L' => 'L', 'W_L' => 'W_L', 'ERA' => 'ERA', 'GF' => 'GF', 'CG' => 'CG', 'SHO' => 'SHO', 'SV' => 'SV', 'IP' => 'IP', 'H' => 'H', 'ER' => 'ER', 'HR' => 'HR', 'BB' => 'BB', 'IBB' => 'IBB', 'SO' => 'SO', 'HBP' => 'HBP', 'BK' => 'BK', 'WP' => 'WP', 'BF' => 'BF', 'WHIP' => 'WHIP', 'SOp' => 'SO9', 
       'BA' => 'BA',
+      'R/GS' => 'R/GS'
     }
     #Operators for Dropdown
     @operators = {
@@ -59,7 +60,8 @@ class PreviewsRulesController < ApplicationController
     @column = {
       'G' => 'G', 'GS'  => 'GS', 'R'   => 'R', 'BA'  => 'BA', 'OBP' => 'OBP', 'SLG' => 'SLG',
       'W' => 'W', 'L' => 'L', 'W_L' => 'W_L', 'ERA' => 'ERA', 'GF' => 'GF', 'CG' => 'CG', 'SHO' => 'SHO', 'SV' => 'SV', 'IP' => 'IP', 'H' => 'H', 'ER' => 'ER', 'HR' => 'HR', 'BB' => 'BB', 'IBB' => 'IBB', 'SO' => 'SO', 'HBP' => 'HBP', 'BK' => 'BK', 'WP' => 'WP', 'BF' => 'BF', 'WHIP' => 'WHIP', 'SOp' => 'SOp', 
-      'BA' => 'BA'
+      'BA' => 'BA',
+      'R/GS' => 'R/GS'
     }
     #Operators for Dropdown
     @operators = {

@@ -107,13 +107,18 @@
       if statements[previews_rule.column].blank?
         statements[previews_rule.column] = Array.new
       end 
+
       if(previews_rule.split == team_h_stat.split)
-        column_value = team_h_stat[previews_rule.column]
-        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
-          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
-            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+        if previews_rule.column.include? "/"
+          column_value = (team_h_stat[previews_rule.column.split("/").first].to_f / team_h_stat[previews_rule.column.split("/").last].to_f).round(2)
+        else  
+          column_value = (team_h_stat[previews_rule.column].to_f).round(2)
+        end    
+        if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
           elsif previews_rule.value2.blank?
-            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
           end  
           break
         end  
@@ -239,13 +244,18 @@ end
       if statements[previews_rule.column].blank?
         statements[previews_rule.column] = Array.new
       end 
+
       if(previews_rule.split == team_a_stat.split)
-        column_value = team_a_stat[previews_rule.column]
-        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
-          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
-            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+        if previews_rule.column.include? "/"
+          column_value = (team_a_stat[previews_rule.column.split("/").first].to_f / team_a_stat[previews_rule.column.split("/").last].to_f).round(2)
+        else  
+          column_value = team_a_stat[previews_rule.column].to_f.round(2)
+        end    
+        if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
           elsif previews_rule.value2.blank?
-            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value))
+            statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
           end  
           break
         end  
@@ -402,9 +412,13 @@ end
         statements[previews_rule.column] = Array.new
       end 
       if(previews_rule.split == stat.split)
-        column_value = stat[previews_rule.column]
-        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
-          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
+        if previews_rule.column.include? "/"
+          column_value = (stat[previews_rule.column.split("/").first].to_f / stat[previews_rule.column.split("/").last].to_f).round(2)
+        else  
+          column_value = (stat[previews_rule.column].to_f).round(2)
+        end    
+        if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
             statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
           elsif previews_rule.value2.blank?
             statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
@@ -563,9 +577,13 @@ end
         statements[previews_rule.column] = Array.new
       end 
       if(previews_rule.split == stat.split)
-        column_value = stat[previews_rule.column]
-        if check_condition(previews_rule.operator1, column_value.to_i, previews_rule.value1.to_i)
-          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_i, previews_rule.value2.to_i)
+        if previews_rule.column.include? "/"
+          column_value = (stat[previews_rule.column.split("/").first].to_f / stat[previews_rule.column.split("/").last].to_f).round(2)
+        else  
+          column_value = (stat[previews_rule.column].to_f).round(2)
+        end    
+        if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+          if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
             statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
           elsif previews_rule.value2.blank?
             statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
