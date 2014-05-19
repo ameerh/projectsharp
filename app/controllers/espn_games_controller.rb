@@ -82,7 +82,9 @@ class EspnGamesController < ApplicationController
       #Previews Rules
       @team_previews_rules    = PreviewsRule.all.where("rule_for='Team'")
       @pitcher_previews_rules = PreviewsRule.all.where("rule_for='Pitcher'")
-      @date = params[:date]
+
+      @title  = "#{@team_h.name} VS #{@team_a.name} Perdiction - #{params[:date]}"
+      set_meta_tags :title => @title
       set_meta_tags :description => "100% Free Betting Advice. #{@team_a.name} vs #{@team_h.name} Prediction Against The Spread, Totals and Moneyline plays."
     else
       redirect_to "/espn_games"
