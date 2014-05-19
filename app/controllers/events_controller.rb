@@ -78,6 +78,7 @@ class EventsController < ApplicationController
 
       @team_a = EspnTeam.where("name like ?", "%#{team_a}%").first
       @team_h = EspnTeam.where("name like ?", "%#{team_h}%").first
+      set_meta_tags :description => "100% Free Betting Advice. #{@team_a.name} vs #{@team_h.name} Prediction Against The Spread, Totals and Moneyline plays."
     end  
     if params[:pitcher_a].present? && params[:pitcher_b].present?
       #Pitchers Stats

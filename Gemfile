@@ -13,6 +13,8 @@ gem 'seed_dump', :group => :development
 
 gem 'nokogiri'
 
+gem 'meta-tags'
+
 gem 'protected_attributes'
 
 gem 'whenever', :require => false
