@@ -25,7 +25,8 @@
         <%
         if(game.date >= Date.today)
         %>
-        <td><a href="espn_games/previews?game=<%= game.id %>">Previews</a></td>
+        <%= date = (game.date - 1.hours).strftime("%d %b, %Y") %>
+        <td><a href="espn_games/previews?game=<%= game.id %>&date=<%= date %>">Previews</a></td>
         <%
         else
           "<td></td>"

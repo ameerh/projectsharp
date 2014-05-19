@@ -92,6 +92,7 @@ class EventsController < ApplicationController
       @pitcher_a = Pitcher.find(pitcher_a)
       @pitcher_h = Pitcher.find(pitcher_h)
     end  
+    @date = params[:date]
     #Previews Rules
     @team_previews_rules    = PreviewsRule.all.where("rule_for='Team'")
     @pitcher_previews_rules = PreviewsRule.all.where("rule_for='Pitcher'")

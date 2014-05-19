@@ -1,6 +1,10 @@
+<% if !@team_h.nil? && !@team_a.nil? %>
+<h1><%= "#{@team_h.name} VS #{@team_a.name} - #{@date} Perdiction" %></h1>
+<% end %>
+
 <% if !@team_h.nil? %>
   <% @team_h_stats = @team_h.espn_team_stats %>
-  <h2><%= @team_h.name %> (Home Team)</h2>
+  <h3><%= @team_h.name %> (Home Team)</h3>
   <h4>Record & Position: <%= "#{@team_h_stats.first.record}, #{@team_h_stats.first.position}" %></h4><br/>
 
   <h4><u>Season Totals</u></h4>
@@ -99,7 +103,7 @@
     </tbody>
   </table>
 
-  <h2><u>Team Previews Statements</u></h2>
+  <h3><u>Team Previews Statements</u></h3>
   <% 
     statements = Hash.new
     @team_previews_rules.each do |previews_rule|
@@ -138,7 +142,7 @@
 <% end %>
 
 <% if !@team_a.nil? %>
-  <h2><%= @team_a.name %> (Away Team)</h2>
+  <h3><%= @team_a.name %> (Away Team)</h3>
   <% @team_a_stats = @team_a.espn_team_stats %>
   <h4>Record & Position: <%= "#{@team_a_stats.first.record}, #{@team_a_stats.first.position}" %></h4><br/>
 
@@ -238,7 +242,7 @@
     </tbody>
   </table>
 
-  <h2><u>Team Previews Statements</u></h2>
+  <h3><u>Team Previews Statements</u></h3>
   <% 
     statements = Hash.new
     @team_previews_rules.each do |previews_rule|
@@ -278,7 +282,7 @@
 
 <% if !@pitcher_a.nil? %>
   <!--  Pitchers Section !-->
-  <h2><%= @pitcher_a.name %> (Home Pitcher)</h2>
+  <h3><%= @pitcher_a.name %> (Home Pitcher)</h3>
   <h4>Throws: <%= "#{@pitcher_a.throws}" %></h4>
   <h4>Age: <%= "#{@pitcher_a.age}" %></h4><br/>
 
@@ -400,7 +404,7 @@
     </tbody>
   </table>
 
-  <h2><u>Pitcher Previews Statements</u></h2>
+  <h3><u>Pitcher Previews Statements</u></h3>
   <% 
     statements = Hash.new
 
@@ -446,7 +450,7 @@
 
 
 <% if !@pitcher_h.nil? %>
-  <h2><%= @pitcher_h.name %> (Away Pitcher)</h2>
+  <h3><%= @pitcher_h.name %> (Away Pitcher)</h3>
   <h4>Throws: <%= "#{@pitcher_h.throws}" %></h4>
   <h4>Age: <%= "#{@pitcher_h.age}" %></h4><br/>
 
@@ -568,7 +572,7 @@
     </tbody>
   </table>
 
-  <h2><u>Pitcher Previews Statements</u></h2>
+  <h3><u>Pitcher Previews Statements</u></h3>
   <% 
     statements = Hash.new
 

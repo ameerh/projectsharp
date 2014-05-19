@@ -82,6 +82,7 @@ class EspnGamesController < ApplicationController
       #Previews Rules
       @team_previews_rules    = PreviewsRule.all.where("rule_for='Team'")
       @pitcher_previews_rules = PreviewsRule.all.where("rule_for='Pitcher'")
+      @date = params[:date]
     else
       redirect_to "/espn_games"
     end  
