@@ -11,6 +11,7 @@
       <th>Odds</th>
       <th>Total Points</th>
       <th>Start Time</th>
+      <th>Previews</th>
     </tr>
   </thead>
 
@@ -58,7 +59,8 @@
           <%end%>
          <td>
           <%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %>
-            </td>
+         </td>
+          <td><a href="../events/previews?team_a=<%= event.participants[(i*2)].participant_name %>&pitcher_a=<%= event.participants[(i*2)].pitcher %>&team_b=<%= event.participants[(i*2)+1].participant_name %>&pitcher_b=<%= event.participants[(i*2)+1].pitcher %>">Previews</a></td>
             <% i = i+1 %>
           </tr>
           <%end%>

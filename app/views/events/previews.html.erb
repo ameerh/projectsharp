@@ -1,0 +1,613 @@
+<% if !@team_h.nil? %>
+  <% @team_h_stats = @team_h.espn_team_stats %>
+  <h2><%= @team_h.name %> (Home Team)</h2>
+  <h4>Record & Position: <%= "#{@team_h_stats.first.record}, #{@team_h_stats.first.position}" %></h4><br/>
+
+  <h4><u>Season Totals</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>GS</th>
+        <th>R</th>
+        <th>R/GS</th>
+        <th>BA</th>
+        <th>OBP</th>
+        <th>SLG</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% 3.times do |count|%>
+        <tr>
+          <td><%= @team_h_stats[count+1].split %></td>
+          <td><%= @team_h_stats[count+1].GS %></td>
+          <td><%= @team_h_stats[count+1].R %></td>
+          <td><%= (@team_h_stats[count+1].R.to_i / @team_h_stats[count+1].GS.to_f).round(2)%></td>
+          <td><%= @team_h_stats[count+1].BA %></td>
+          <td><%= @team_h_stats[count+1].OBP %></td>
+          <td><%= @team_h_stats[count+1].SLG %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h4><u>Platoon Splits</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>G</th>
+        <th>GS</th>
+        <th>R</th>
+        <th>R/G</th>
+        <th>BA</th>
+        <th>OBP</th>
+        <th>SLG</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%if @pitcher_h.throws.include? "Right" %>
+        <% @split = 'vs RHP' %>
+      <%elsif @pitcher_h.throws.include? "Left" %>
+        <% @split = 'vs LHP' %>
+      <% end %>  
+      <% 2.times do |count|%>
+        <%if @split == @team_h_stats[count+4].split %>  
+          <tr>
+            <td><%= @team_h_stats[count+4].split %></td>
+            <td><%= @team_h_stats[count+4].G %></td>
+            <td><%= @team_h_stats[count+4].GS %></td>
+            <td><%= @team_h_stats[count+4].R %></td>
+            <td><%= (@team_h_stats[count+4].R.to_i / @team_h_stats[count+4].G.to_f).round(2)%></td>
+            <td><%= @team_h_stats[count+4].BA %></td>
+            <td><%= @team_h_stats[count+4].OBP %></td>
+            <td><%= @team_h_stats[count+4].SLG %></td>
+          </tr>
+        <% end %>  
+      <% end %>
+    </tbody>
+  </table>
+
+  <h4><u>Home Stats</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>GS</th>
+        <th>R</th>
+        <th>BA</th>
+        <th>OBP</th>
+        <th>SLG</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% 2.times do |count|%>
+        <%if @team_h_stats[count+6].split == "Home" %>  
+          <tr>
+            <td><%= @team_h_stats[count+6].split %></td>
+            <td><%= @team_h_stats[count+6].GS %></td>
+            <td><%= @team_h_stats[count+6].R %></td>
+            <td><%= @team_h_stats[count+6].BA %></td>
+            <td><%= @team_h_stats[count+6].OBP %></td>
+            <td><%= @team_h_stats[count+6].SLG %></td>
+          </tr>
+        <% end %>  
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2><u>Team Previews Statements</u></h2>
+  <% 
+    statements = Hash.new
+    @team_previews_rules.each do |previews_rule|
+      @team_h_stats.each do |team_h_stat|
+        column_value = 0
+        if statements[previews_rule.column].blank?
+          statements[previews_rule.column] = Array.new
+        end 
+
+        if(previews_rule.split == team_h_stat.split)
+          if previews_rule.column.include? "/"
+            column_value = (team_h_stat[previews_rule.column.split("/").first].to_f / team_h_stat[previews_rule.column.split("/").last].to_f).round(2)
+          else  
+            column_value = (team_h_stat[previews_rule.column].to_f).round(2)
+          end    
+          if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+            if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            elsif previews_rule.value2.blank?
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            end  
+            break
+          end  
+        end  
+      end  
+    end  
+  if statements.present?
+    statements.each do |statement|
+      statement.shift
+  %>
+    <%= statement[0].sample %> <br/>
+  <%    
+    end
+  end
+  %>
+<% end %>
+
+<% if !@team_a.nil? %>
+  <h2><%= @team_a.name %> (Away Team)</h2>
+  <% @team_a_stats = @team_a.espn_team_stats %>
+  <h4>Record & Position: <%= "#{@team_a_stats.first.record}, #{@team_a_stats.first.position}" %></h4><br/>
+
+  <h4><u>Season Totals</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>GS</th>
+        <th>R</th>
+        <th>R/GS</th>
+        <th>BA</th>
+        <th>OBP</th>
+        <th>SLG</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% 3.times do |count|%>
+        <tr>
+          <td><%= @team_a_stats[count+1].split %></td>
+          <td><%= @team_a_stats[count+1].GS %></td>
+          <td><%= @team_a_stats[count+1].R %></td>
+          <td><%= (@team_a_stats[count+1].R.to_i / @team_a_stats[count+1].GS.to_f).round(2)%></td>
+          <td><%= @team_a_stats[count+1].BA %></td>
+          <td><%= @team_a_stats[count+1].OBP %></td>
+          <td><%= @team_a_stats[count+1].SLG %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h4><u>Platoon Splits</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>G</th>
+        <th>GS</th>
+        <th>R</th>
+        <th>R/G</th>
+        <th>BA</th>
+        <th>OBP</th>
+        <th>SLG</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%if @pitcher_a.throws.include? "Right" %>
+        <% @split = 'vs RHP' %>
+      <%elsif @pitcher_a.throws.include? "Left" %>
+        <% @split = 'vs LHP' %>
+      <% end %>  
+      <% 2.times do |count|%>
+        <%if @split == @team_a_stats[count+4].split %>  
+          <tr>
+            <td><%= @team_a_stats[count+4].split %></td>
+            <td><%= @team_a_stats[count+4].G %></td>
+            <td><%= @team_a_stats[count+4].GS %></td>
+            <td><%= @team_a_stats[count+4].R %></td>
+            <td><%= (@team_a_stats[count+4].R.to_i / @team_a_stats[count+4].G.to_f).round(2)%></td>
+            <td><%= @team_a_stats[count+4].BA %></td>
+            <td><%= @team_a_stats[count+4].OBP %></td>
+            <td><%= @team_a_stats[count+4].SLG %></td>
+          </tr>
+        <% end %>  
+      <% end %>
+    </tbody>
+  </table>
+
+  <h4><u>Away Stats</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>GS</th>
+        <th>R</th>
+        <th>BA</th>
+        <th>OBP</th>
+        <th>SLG</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% 2.times do |count|%>
+        <%if @team_a_stats[count+6].split == "Away" %>  
+          <tr>
+            <td><%= @team_a_stats[count+6].split %></td>
+            <td><%= @team_a_stats[count+6].GS %></td>
+            <td><%= @team_a_stats[count+6].R %></td>
+            <td><%= @team_a_stats[count+6].BA %></td>
+            <td><%= @team_a_stats[count+6].OBP %></td>
+            <td><%= @team_a_stats[count+6].SLG %></td>
+          </tr>
+        <% end %>  
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2><u>Team Previews Statements</u></h2>
+  <% 
+    statements = Hash.new
+    @team_previews_rules.each do |previews_rule|
+      @team_a_stats.each do |team_a_stat|
+        column_value = 0
+        if statements[previews_rule.column].blank?
+          statements[previews_rule.column] = Array.new
+        end 
+
+        if(previews_rule.split == team_a_stat.split)
+          if previews_rule.column.include? "/"
+            column_value = (team_a_stat[previews_rule.column.split("/").first].to_f / team_a_stat[previews_rule.column.split("/").last].to_f).round(2)
+          else  
+            column_value = team_a_stat[previews_rule.column].to_f.round(2)
+          end    
+          if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+            if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            elsif previews_rule.value2.blank?
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            end  
+            break
+          end  
+        end  
+      end  
+    end  
+  if statements.present?
+    statements.each do |statement|
+      statement.shift
+  %>
+    <%= statement[0].sample %> <br/>
+  <%    
+    end
+  end
+  %>
+<% end %>
+
+<% if !@pitcher_a.nil? %>
+  <!--  Pitchers Section !-->
+  <h2><%= @pitcher_a.name %> (Home Pitcher)</h2>
+  <h4>Throws: <%= "#{@pitcher_a.throws}" %></h4>
+  <h4>Age: <%= "#{@pitcher_a.age}" %></h4><br/>
+
+  <% @season_totals = @pitcher_a.pitcher_season_totals %>
+  <h4><u>Season Totals</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>W</th>
+        <th>L</th>
+        <th>W-L%</th>
+        <th>ERA</th>
+        <th>G</th>
+        <th>GS</th>
+        <th>GF</th>
+        <th>CG</th>
+        <th>SHO</th>
+        <th>SV</th>
+        <th>IP</th>
+        <th>H</th>
+        <th>R</th>
+        <th>ER</th>
+        <th>HR</th>
+        <th>BB</th>
+        <th>IBB</th>
+        <th>SO</th>
+        <th>HBP</th>
+        <th>BK</th>
+        <th>WP</th>
+        <th>BF</th>
+        <th>WHIP</th>
+        <th>SO9</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @season_totals.each do |season_total|%>
+        <tr>
+          <td><%= season_total.split %></td>
+          <td><%= season_total.W %></td>
+          <td><%= season_total.L %></td>
+          <td><%= season_total.W_L %></td>
+          <td><%= season_total.ERA %></td>
+          <td><%= season_total.G %></td>
+          <td><%= season_total.GS %></td>
+          <td><%= season_total.GF %></td>
+          <td><%= season_total.CG %></td>
+          <td><%= season_total.SHO %></td>
+          <td><%= season_total.SV %></td>
+          <td><%= season_total.IP %></td>
+          <td><%= season_total.H %></td>
+          <td><%= season_total.R %></td>
+          <td><%= season_total.ER %></td>
+          <td><%= season_total.HR %></td>
+          <td><%= season_total.BB %></td>
+          <td><%= season_total.IBB %></td>
+          <td><%= season_total.SO %></td>
+          <td><%= season_total.HBP %></td>
+          <td><%= season_total.BK %></td>
+          <td><%= season_total.WP %></td>
+          <td><%= season_total.BF %></td>
+          <td><%= season_total.WHIP %></td>
+          <td><%= season_total.SOp %></td>
+         </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%if @pitcher_a.throws.include? "Right" %>
+    <% @platoon_splits = @pitcher_a.pitcher_platoon_splits.where("split = 'vs RHB'") %>
+  <%elsif @pitcher_a.throws.include? "Left" %>
+    <% @platoon_splits = @pitcher_a.pitcher_platoon_splits.where("split = 'vs LHB'") %>
+  <% end %>  
+  <h4><u>Platoon Splits</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>BA</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @platoon_splits.each do |platoon_split|%>
+        <tr>
+          <td><%= platoon_split.split %></td>
+          <td><%= platoon_split.BA %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% @pitchers_home_away = @pitcher_a.pitcher_home_away %>
+  <h4><u>Home or Away</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>W</th>
+        <th>L</th>
+        <th>ERA</th>
+        <th>GS</th>
+        <th>WHIP</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pitchers_home_away.each do |pitcher_home_away|%>
+        <tr>
+          <td><%= pitcher_home_away.split %></td>
+          <td><%= pitcher_home_away.W %></td>
+          <td><%= pitcher_home_away.L %></td>
+          <td><%= pitcher_home_away.ERA %></td>
+          <td><%= pitcher_home_away.GS %></td>
+          <td><%= pitcher_home_away.WHIP %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2><u>Pitcher Previews Statements</u></h2>
+  <% 
+    statements = Hash.new
+
+    stats = Array.new
+
+    @season_totals.each { |obj| stats << obj}
+    @platoon_splits.each { |obj| stats << obj}
+    @pitchers_home_away.each { |obj| stats << obj}
+
+    @pitcher_previews_rules.each do |previews_rule|
+      stats.each do |stat|
+        column_value = 0
+        if statements[previews_rule.column].blank?
+          statements[previews_rule.column] = Array.new
+        end 
+        if(previews_rule.split == stat.split)
+          if previews_rule.column.include? "/"
+            column_value = (stat[previews_rule.column.split("/").first].to_f / stat[previews_rule.column.split("/").last].to_f).round(2)
+          else  
+            column_value = (stat[previews_rule.column].to_f).round(2)
+          end    
+          if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+            if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            elsif previews_rule.value2.blank?
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            end  
+            break
+          end  
+        end  
+      end  
+    end  
+  if statements.present?
+    statements.each do |statement|
+      statement.shift
+  %>
+    <%= statement[0].sample %> <br/>
+  <%    
+    end
+  end
+  %>
+<% end %>
+
+
+<% if !@pitcher_h.nil? %>
+  <h2><%= @pitcher_h.name %> (Away Pitcher)</h2>
+  <h4>Throws: <%= "#{@pitcher_h.throws}" %></h4>
+  <h4>Age: <%= "#{@pitcher_h.age}" %></h4><br/>
+
+  <% @season_totals = @pitcher_h.pitcher_season_totals %>
+  <h4><u>Season Totals</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>W</th>
+        <th>L</th>
+        <th>W-L%</th>
+        <th>ERA</th>
+        <th>G</th>
+        <th>GS</th>
+        <th>GF</th>
+        <th>CG</th>
+        <th>SHO</th>
+        <th>SV</th>
+        <th>IP</th>
+        <th>H</th>
+        <th>R</th>
+        <th>ER</th>
+        <th>HR</th>
+        <th>BB</th>
+        <th>IBB</th>
+        <th>SO</th>
+        <th>HBP</th>
+        <th>BK</th>
+        <th>WP</th>
+        <th>BF</th>
+        <th>WHIP</th>
+        <th>SO9</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @season_totals.each do |season_total|%>
+        <tr>
+          <td><%= season_total.split %></td>
+          <td><%= season_total.W %></td>
+          <td><%= season_total.L %></td>
+          <td><%= season_total.W_L %></td>
+          <td><%= season_total.ERA %></td>
+          <td><%= season_total.G %></td>
+          <td><%= season_total.GS %></td>
+          <td><%= season_total.GF %></td>
+          <td><%= season_total.CG %></td>
+          <td><%= season_total.SHO %></td>
+          <td><%= season_total.SV %></td>
+          <td><%= season_total.IP %></td>
+          <td><%= season_total.H %></td>
+          <td><%= season_total.R %></td>
+          <td><%= season_total.ER %></td>
+          <td><%= season_total.HR %></td>
+          <td><%= season_total.BB %></td>
+          <td><%= season_total.IBB %></td>
+          <td><%= season_total.SO %></td>
+          <td><%= season_total.HBP %></td>
+          <td><%= season_total.BK %></td>
+          <td><%= season_total.WP %></td>
+          <td><%= season_total.BF %></td>
+          <td><%= season_total.WHIP %></td>
+          <td><%= season_total.SOp %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%if @pitcher_h.throws.include? "Right" %>
+    <% @platoon_splits = @pitcher_h.pitcher_platoon_splits.where("split = 'vs RHB'") %>
+  <%elsif @pitcher_h.throws.include? "Left" %>
+    <% @platoon_splits = @pitcher_h.pitcher_platoon_splits.where("split = 'vs LHB'") %>
+  <% end %>  
+  <h4><u>Platoon Splits</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>BA</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @platoon_splits.each do |platoon_split|%>
+        <tr>
+          <td><%= platoon_split.split %></td>
+          <td><%= platoon_split.BA %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% @pitchers_home_away = @pitcher_h.pitcher_home_away %>
+  <h4><u>Home or Away</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Split</th>
+        <th>W</th>
+        <th>L</th>
+        <th>ERA</th>
+        <th>GS</th>
+        <th>WHIP</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pitchers_home_away.each do |pitcher_home_away|%>
+        <tr>
+          <td><%= pitcher_home_away.split %></td>
+          <td><%= pitcher_home_away.W %></td>
+          <td><%= pitcher_home_away.L %></td>
+          <td><%= pitcher_home_away.ERA %></td>
+          <td><%= pitcher_home_away.GS %></td>
+          <td><%= pitcher_home_away.WHIP %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2><u>Pitcher Previews Statements</u></h2>
+  <% 
+    statements = Hash.new
+
+    stats = Array.new
+
+    @season_totals.each { |obj| stats << obj}
+    @platoon_splits.each { |obj| stats << obj}
+    @pitchers_home_away.each { |obj| stats << obj}
+
+    @pitcher_previews_rules.each do |previews_rule|
+      stats.each do |stat|
+        column_value = 0
+        if statements[previews_rule.column].blank?
+          statements[previews_rule.column] = Array.new
+        end 
+        if(previews_rule.split == stat.split)
+          if previews_rule.column.include? "/"
+            column_value = (stat[previews_rule.column.split("/").first].to_f / stat[previews_rule.column.split("/").last].to_f).round(2)
+          else  
+            column_value = (stat[previews_rule.column].to_f).round(2)
+          end    
+          if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+            if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            elsif previews_rule.value2.blank?
+              statements[previews_rule.column].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+            end  
+            break
+          end  
+        end  
+      end  
+    end  
+  if statements.present?
+    statements.each do |statement|
+      statement.shift
+  %>
+    <%= statement[0].sample %> <br/>
+  <%    
+    end
+  end
+  %>
+<% end %>  

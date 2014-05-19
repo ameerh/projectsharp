@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  helper_method :check_condition
 
   # GET /events
   # GET /events.json
@@ -69,6 +70,33 @@ class EventsController < ApplicationController
     @events = Event.where("league = ? AND event_datetime >= ?", "MLB", Time.now.to_datetime).order('event_datetime ASC').paginate(:page => params[:page], :per_page => 20)
   end
 
+  def previews
+    if params[:team_a].present? && params[:team_b].present?
+      #Teams Stats
+      team_a  = params[:team_a].split(" ").last 
+      team_h  = params[:team_b].split(" ").last 
+
+      @team_a = EspnTeam.where("name like ?", "%#{team_a}%").first
+      @team_h = EspnTeam.where("name like ?", "%#{team_h}%").first
+    end  
+    if params[:pitcher_a].present? && params[:pitcher_b].present?
+      #Pitchers Stats
+      pitcher_a  = params[:pitcher_a].split(" ").last 
+      pitcher_h  = params[:pitcher_b].split(" ").last 
+
+      @pitcher_a = EspnTeam.where("name like ?", "%#{pitcher_a}%").first
+      @pitcher_h = EspnTeam.where("name like ?", "%#{pitcher_h}%").first
+
+      pitcher_a = 116
+      pitcher_h = 116
+      @pitcher_a = Pitcher.find(pitcher_a)
+      @pitcher_h = Pitcher.find(pitcher_h)
+    end  
+    #Previews Rules
+    @team_previews_rules    = PreviewsRule.all.where("rule_for='Team'")
+    @pitcher_previews_rules = PreviewsRule.all.where("rule_for='Pitcher'")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -78,5 +106,18 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params[:event]
+    end
+    def check_condition(operator, value1, value2)
+      if operator == ">"
+        return value1 > value2
+      elsif operator == ">="
+        return value1 >= value2
+      elsif operator == "<"
+        return value1 < value2
+      elsif operator == "<="
+        return value1 <= value2
+      elsif operator == "=="
+        return value1 == value2
+      end  
     end
 end

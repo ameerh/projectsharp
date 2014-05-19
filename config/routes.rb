@@ -23,6 +23,7 @@ SportsOdds::Application.routes.draw do
     collection do
       get :nba
       get :mlb
+      get :previews
     end
   end
 

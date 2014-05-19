@@ -11,6 +11,7 @@
       <th>Moneyline Home</th>
       <th>Spread Home</th>
       <th>Total Points</th>
+      <th>Previews</th>
     </tr>
   </thead>
 
@@ -57,6 +58,7 @@
           <%else%>
             <td>0</td>
           <%end%>
+          <td><a href="../events/previews?team_a=<%= event.participants[(i*2)].participant_name %>&team_b=<%= event.participants[(i*2)+1].participant_name %>">Previews</a></td>
             <% i = i+1 %>
           </tr>
           <%end%>
