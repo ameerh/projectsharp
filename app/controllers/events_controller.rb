@@ -79,9 +79,11 @@ class EventsController < ApplicationController
       @team_a = EspnTeam.where("name like ?", "%#{team_a}%").first
       @team_h = EspnTeam.where("name like ?", "%#{team_h}%").first
 
-      @title  = "#{@team_h.name} VS #{@team_a.name} Perdiction - #{params[:date]}"
-      set_meta_tags :title => @title
-      set_meta_tags :description => "100% Free Betting Advice. #{@team_a.name} vs #{@team_h.name} Prediction Against The Spread, Totals and Moneyline plays."
+      if(@team_a.present? && @team_h.present?)
+        @title  = "#{@team_h.name} VS #{@team_a.name} Perdiction - #{params[:date]}"
+        set_meta_tags :title => @title
+        set_meta_tags :description => "100% Free Betting Advice. #{@team_a.name} vs #{@team_h.name} Prediction Against The Spread, Totals and Moneyline plays."
+      end  
     end  
     if params[:pitcher_a].present? && params[:pitcher_b].present?
       #Pitchers Stats
@@ -95,6 +97,9 @@ class EventsController < ApplicationController
       # pitcher_h = 116
       # @pitcher_a = Pitcher.find(pitcher_a)
       # @pitcher_h = Pitcher.find(pitcher_h)
+    end  
+    if params[:event].present? 
+      @event = Event.find(params[:event])
     end  
     #Previews Rules
     @team_previews_rules    = PreviewsRule.all.where("rule_for='Team'")

@@ -2,6 +2,28 @@
 <h1><%= @title %></h1>
 <% end %>
 
+<% if @event.present? && @event.periods.present? %>
+  <h4><u>Game Odds</u></h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= @team_h.name %></th>
+        <th><%= @team_a.name %></th>
+        <th>Total Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @event.periods[0].moneyline_visiting %></td>
+        <td><%= @event.periods[0].moneyline_home %></td>
+        <td><span>Over</span><%=@event.periods[0].tootal_point.to_s %> <br/><span>Under</span><%=@event.periods[0].tootal_point.to_s %></td>      
+      </tr>
+    </tbody>
+  </table>  
+<% end %>
+
+
+
 <% if !@team_h.nil? %>
   <% @team_h_stats = @team_h.espn_team_stats %>
   <h3><%= @team_h.name %> (Home Team)</h3>

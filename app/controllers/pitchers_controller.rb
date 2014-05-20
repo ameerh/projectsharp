@@ -76,9 +76,10 @@ class PitchersController < ApplicationController
 
   def update_stats
     %x[rake populate_pitchers_stats]
+    flash[:notice] = 'Pitchers statistics have been updated succesfully'
     redirect_to "/pitchers"
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pitcher
