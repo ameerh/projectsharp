@@ -9,11 +9,15 @@ task :populate_pitchers_stats => :environment do
 		@pitcher_id = pitcher.id
 
 		#Updating Basic Details
-		@full_name = data.css("#info_box span.xx_large_text").text.to_s		
-		@throws    = data.css("#info_box p")[1].children[7].text.gsub(/\n/,'')
-		@dob       = data.css("#necro-birth").first.attributes['data-birth'].value
-		@age       = (DateTime.now.mjd - DateTime.parse(@dob).mjd) / 365
-		result     = pitcher.update(:throws => @throws, :age => @age, :full_name => @full_name)
+		if(data.css("#info_box span.xx_large_text").present? && data.css("#info_box p")[1].children[7].present? && data.css("#necro-birth").present?)
+			@full_name = data.css("#info_box span.xx_large_text").text.to_s		
+			@throws    = data.css("#info_box p")[1].children[7].text.gsub(/\n/,'')
+			@dob       = data.css("#necro-birth").first.attributes['data-birth'].value
+			@age       = (DateTime.now.mjd - DateTime.parse(@dob).mjd) / 365
+			result     = pitcher.update(:throws => @throws, :age => @age, :full_name => @full_name)
+		else
+			next
+		end	
 
 		#Seasons Total - Current Year
 		@split    = data.css("#total_extra tbody tr")[0].css("td[2]").first.text.to_s
