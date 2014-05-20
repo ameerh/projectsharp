@@ -35,6 +35,7 @@ SportsOdds::Application.routes.draw do
   resources :pitchers do
     collection do
       get :today_games_pitchers
+      get :update_stats
     end
   end
   resources :previews_rules

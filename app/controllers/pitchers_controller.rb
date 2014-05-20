@@ -37,7 +37,6 @@ class PitchersController < ApplicationController
         format.json { render json: @pitcher.errors, status: :unprocessable_entity }
       end
     end
-    %x[rake populate_pitchers_stats]
   end
 
   # PATCH/PUT /pitchers/1
@@ -52,7 +51,6 @@ class PitchersController < ApplicationController
         format.json { render json: @pitcher.errors, status: :unprocessable_entity }
       end
     end
-    %x[rake populate_pitchers_stats]
   end
 
   # DELETE /pitchers/1
@@ -76,6 +74,11 @@ class PitchersController < ApplicationController
     @pitchers = Pitcher.where("id in (?)", @pitcher_ids).paginate(:page => params[:page], :per_page => 10)
   end  
 
+  def update_stats
+    %x[rake populate_pitchers_stats]
+    redirect_to "/pitchers"
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pitcher
