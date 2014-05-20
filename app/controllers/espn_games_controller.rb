@@ -83,6 +83,14 @@ class EspnGamesController < ApplicationController
       @team_previews_rules    = PreviewsRule.all.where("rule_for='Team'")
       @pitcher_previews_rules = PreviewsRule.all.where("rule_for='Pitcher'")
 
+      #Odds
+      events = Event.where("DATE(event_datetime) = ? AND league = 'MLB'",@game.date)
+      events.each do |event|
+        if(event.participants.first.participant_name.include? @team_a.name) || (event.participants.last.participant_name.include? @team_h.name)
+          @event = event
+        end  
+      end
+
       @title  = "#{@team_h.name} VS #{@team_a.name} Perdiction - #{params[:date]}"
       set_meta_tags :title => @title
       set_meta_tags :description => "100% Free Betting Advice. #{@team_a.name} vs #{@team_h.name} Prediction Against The Spread, Totals and Moneyline plays."
