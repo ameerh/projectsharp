@@ -74,8 +74,8 @@ class EspnGamesController < ApplicationController
       @team_a = EspnTeam.find(@game.team_a)
       @team_h = EspnTeam.find(@game.team_h)
       #Pitchers Stats
-      @game.pitcher_a = 116
-      @game.pitcher_h = 116
+      # @game.pitcher_a = 116
+      # @game.pitcher_h = 116
       @pitcher_a = Pitcher.find(@game.pitcher_a)
       @pitcher_h = Pitcher.find(@game.pitcher_h)
 
