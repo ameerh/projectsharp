@@ -5,7 +5,7 @@
       <th>Type</th>
       <th>Teams</th>
       <th>Odds</th>
-      <th>Spreads</th>
+<!--       <th>Spreads</th> -->
       <th>Total</th>
       <th>&nbsp;</th>
       <th>Perdictions</th>
@@ -37,20 +37,20 @@
           <%end%>
           <%if event.participants[(i*2)].present?%>
             <td>
-              <%= event.periods[0].moneyline_visiting %><br/>
+              <%= event.periods[0].moneyline_visiting.to_i > 0 ? "+#{event.periods[0].moneyline_visiting}" : "" %><br/>
               <%= event.periods[0].moneyline_home %>
             </td>
           <%else%>
             <td></td>
           <%end%>
-          <%if event.participants[(i*2)].present?%>
+<!--           <%if event.participants[(i*2)].present?%>
             <td>
               <%= event.periods[0].spread_visiting %><br/>
               <%= event.periods[0].spread_home %>
             </td>
           <%else%>
             <td></td>
-          <%end%>
+          <%end%> -->
           <%if event.periods[0].present?%>
             <td><span>Over</span><%=event.periods[0].tootal_point.to_s %> <br/><span>Under</span><%= event.periods[0].tootal_point.to_s %></td>
           <%else%>

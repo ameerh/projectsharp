@@ -3,8 +3,8 @@
     <tr>
       <th>Date/Time</th>
       <th>Teams</th>
-      <th>Moneyline</th>
-      <th>Spreads</th>
+<!--       <th>Moneyline</th> -->
+      <th>Odds</th>
       <th>Total</th>
     </tr>
   </thead>
@@ -25,14 +25,14 @@
           <%else%>
             <td></td>
           <%end%>
-          <%if event.periods[0].present? %>
+<!--           <%if event.periods[0].present? %>
             <td>
               <%= event.periods[0].moneyline_visiting %><br/>
               <%= event.periods[0].moneyline_home %>
             </td>
           <%else%>
             <td></td>
-          <%end%>
+          <%end%> -->
           <%if event.periods[0].present? %>
             <td>
               <%= event.periods[0].spread_visiting %><br/>
