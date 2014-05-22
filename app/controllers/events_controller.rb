@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   helper_method :check_condition
+  layout "wp_application"
+
 
   # GET /events
   # GET /events.json

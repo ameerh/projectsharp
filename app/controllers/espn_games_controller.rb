@@ -1,6 +1,7 @@
 class EspnGamesController < ApplicationController
   before_action :set_espn_game, only: [:show, :edit, :update, :destroy]
   helper_method :check_condition
+  layout "wp_application"
 
   # GET /espn_games
   # GET /espn_games.json
