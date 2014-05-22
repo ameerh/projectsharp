@@ -57,7 +57,7 @@
             <td></td>
           <%end%>
           <td id="count">
-            <div id="time_<%="#{j}"%>" data-date="<%= "#{(event.event_datetime - 1.hours)}" %>" style="width: 400px; height: 90px; padding: 0px; box-sizing: border-box;">
+            <div id="time_<%="#{j}"%>" data-date="<%= "#{(event.event_datetime)}" %>" style="width: 400px; height: 90px; padding: 0px; box-sizing: border-box;">
             </div>
           </td>
           <% date = (event.event_datetime).strftime("%d %b, %Y") %>
