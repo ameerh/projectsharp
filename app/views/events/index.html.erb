@@ -1,19 +1,14 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Sport Type</th>
-      <th>Team A</th>
+      <th>Date/Time</th>
+      <th>Type</th>
+      <th>Teams</th>
       <th>Odds</th>
-      <th>Spread Visiting</th>
-      <th>Pitcher</th>
-      <th>Team B</th>
-      <th>Odds</th>
-      <th>Spread Home</th>
-      <th>Pitcher</th>
-      <th>Total Point</th>
-      <th>Start Time</th>
-      <th>Countdown</th>
-      <th>Previews</th>
+      <th>Spreads</th>
+      <th>Total</th>
+      <th>&nbsp;</th>
+      <th>Perdictions</th>
     </tr>
   </thead>
 
@@ -24,48 +19,35 @@
         <tr>
         <%(event.participants.count/2).times do%>
         <% if event.participants[(i*2)].participant_name != "Away Runs" %>
+          <td>
+            <%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %>
+          </td>
           <%if event.league.present?%>
             <td><%= event.league %></td>
           <%else%>
             <td></td>
           <%end%>
+          <%if event.participants[(i*2)].present? && event.participants[(i*2)+1].present?%>
+            <td>
+              <%= event.participants[(i*2)].participant_name %><br/>
+              <%= event.participants[(i*2)+1].participant_name %>
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
           <%if event.participants[(i*2)].present?%>
-            <td><%= event.participants[(i*2)].participant_name %></td>
+            <td>
+              <%= event.periods[0].moneyline_visiting %><br/>
+              <%= event.periods[0].moneyline_home %>
+            </td>
           <%else%>
             <td></td>
           <%end%>
-          <%if event.periods[0].present? %>
-            <td><%= event.periods[0].moneyline_visiting %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.periods[0].present? && event.league == "NBA"%>
-            <td><%= event.periods[0].spread_visiting %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.participants[(i*2)].present? && event.league == "MLB"%>
-            <td><%= event.participants[(i*2)].pitcher %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.participants[(i*2)+1].present?%>
-            <td><%= event.participants[(i*2)+1].participant_name %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.periods[0].present?%>
-            <td><%= event.periods[0].moneyline_home %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.periods[0].present? && event.league == "NBA"%>
-            <td><%= event.periods[0].spread_home %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.participants[(i*2)+1].present? && event.league == "MLB"%>
-            <td><%= event.participants[(i*2)+1].pitcher %></td>
+          <%if event.participants[(i*2)].present?%>
+            <td>
+              <%= event.periods[0].spread_visiting %><br/>
+              <%= event.periods[0].spread_home %>
+            </td>
           <%else%>
             <td></td>
           <%end%>
@@ -74,15 +56,12 @@
           <%else%>
             <td></td>
           <%end%>
-          <td>
-            <%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %>
-          </td>
           <td id="count">
             <div id="time_<%="#{j}"%>" data-date="<%= "#{(event.event_datetime - 1.hours)}" %>" style="width: 400px; height: 90px; padding: 0px; box-sizing: border-box;">
             </div>
           </td>
           <% date = (event.event_datetime - 1.hours).strftime("%d %b, %Y") %>
-          <td><a href="events/previews?team_a=<%= event.participants[(i*2)].participant_name %>&pitcher_a=<%= event.participants[(i*2)].pitcher %>&team_b=<%= event.participants[(i*2)+1].participant_name %>&pitcher_b=<%= event.participants[(i*2)+1].pitcher %>&date=<%= date %>&event=<%= event.id %>">Previews</a></td>
+          <td><a href="events/previews?team_a=<%= event.participants[(i*2)].participant_name %>&pitcher_a=<%= event.participants[(i*2)].pitcher %>&team_b=<%= event.participants[(i*2)+1].participant_name %>&pitcher_b=<%= event.participants[(i*2)+1].pitcher %>&date=<%= date %>&event=<%= event.id %>">Perdictions</a></td>
             <% i = i+1 %>
             <% j = j+1 %>
           </tr>
@@ -91,8 +70,6 @@
     <% end %>
   </tbody>
 </table>
-<br>
-
 <style>
   th {
     text-align: center!important;
@@ -102,8 +79,10 @@
   }
   #count
   {
-    width: 200px !important;
     text-align: right !important;
+  }
+  #count div
+  {
   }
 </style>
 <script type="text/javascript">

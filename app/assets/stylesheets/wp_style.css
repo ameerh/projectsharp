@@ -1880,5 +1880,7 @@ body.custom-background { background-color: #eeeeee; }
 .table
 {
 	width: 1000px !important;
+	font-size: 14px;
 }
+
 

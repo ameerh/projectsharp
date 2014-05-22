@@ -1,27 +1,26 @@
-<h1>Listing Espn Games</h1>
-
 <p>Date: <input type="text" id="datepicker"></p>
-
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Home Team</th>
-      <th>Pitcher</th>
-      <th>Visiitng Team</th>
-      <th>Pitcher</th>
-      <th>Time</th>
-      <th>Team Previews</th>
+      <th>Date/Time</th>
+      <th>Teams</th>
+      <th>Pitchers</th>
+      <th>Perdictions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @espn_games.each do |game| %>
       <tr>
-        <td><%= EspnTeam.find(game.team_h).name %></td>
-        <td><%= Pitcher.find(game.pitcher_h).name %></td>
-        <td><%= EspnTeam.find(game.team_a).name %></td>
-        <td><%= Pitcher.find(game.pitcher_a).name %></td>
         <td><%= game.time %></td>
+        <td>
+          <%= EspnTeam.find(game.team_h).name %><br/>
+          <%= EspnTeam.find(game.team_a).name %>
+        </td>
+        <td>
+          <%= Pitcher.find(game.pitcher_h).name %><br/>
+          <%= Pitcher.find(game.pitcher_a).name %>
+        </td>
         <%
         if(game.date >= Date.today)
         %>

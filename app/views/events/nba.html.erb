@@ -1,17 +1,11 @@
-<h1>NBA Events</h1>
-
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Team A</th>
-      <th>Team B</th>
-      <th>Start Time</th>
-      <th>Moneyline Visiting</th>
-      <th>Spread Visiting</th>
-      <th>Moneyline Home</th>
-      <th>Spread Home</th>
-      <th>Total Points</th>
-<!--       <th>Previews</th> -->
+      <th>Date/Time</th>
+      <th>Teams</th>
+      <th>Moneyline</th>
+      <th>Spreads</th>
+      <th>Total</th>
     </tr>
   </thead>
 
@@ -22,34 +16,28 @@
         <tr>
         <%(event.participants.count/2).times do%>
         <% if event.participants[(i*2)].participant_name != "2nd Half Wagering" %>
-          <%if event.participants[(i*2)].present?%>
-            <td><%= event.participants[(i*2)].participant_name %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.participants[(i*2)+1].present?%>
-            <td><%= event.participants[(i*2)+1].participant_name %></td>
-          <%else%>
-            <td></td>
-          <%end%>
           <td><%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %></td>
-          <%if event.periods[0].present? %>
-            <td><%= event.periods[0].moneyline_visiting %></td>
+          <%if event.participants[(i*2)].present? && event.participants[(i*2)+1].present? %>
+            <td>
+              <%= event.participants[(i*2)].participant_name %><br/>
+              <%= event.participants[(i*2)+1].participant_name %>
+            </td>
           <%else%>
             <td></td>
           <%end%>
           <%if event.periods[0].present? %>
-            <td><%= event.periods[0].spread_visiting %></td>
-          <%else%>
-            <td>0</td>
-          <%end%>
-          <%if event.periods[0].present? %>
-            <td><%= event.periods[0].moneyline_home %></td>
+            <td>
+              <%= event.periods[0].moneyline_visiting %><br/>
+              <%= event.periods[0].moneyline_home %>
+            </td>
           <%else%>
             <td></td>
           <%end%>
           <%if event.periods[0].present? %>
-            <td><%= event.periods[0].spread_home %></td>
+            <td>
+              <%= event.periods[0].spread_visiting %><br/>
+              <%= event.periods[0].spread_home %>
+            </td>
           <%else%>
             <td></td>
           <%end%>
