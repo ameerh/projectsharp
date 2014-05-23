@@ -1,13 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   helper_method :check_condition
-  layout "wp_application"
+  layout "new_design"
 
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where("(league = ? OR league = ?) AND event_datetime >= ?", "NBA", "MLB",  Time.now.to_datetime).order('event_datetime ASC').limit(5)
+    # @events = Event.where("(league = ? OR league = ?) AND event_datetime >= ?", "NBA", "MLB",  Time.now.to_datetime).order('event_datetime ASC').limit(5)
+    @all_games = Event.where("(league = ? OR league = ?) AND event_datetime >= ?", "NBA", "MLB",  Time.now.to_datetime).order('event_datetime ASC').limit(5)
+    @all_nba = Event.where("league = ? AND event_datetime >= ?", "NBA", Time.now.to_datetime).order('event_datetime ASC').paginate(:page => params[:page], :per_page => 20)
+    @all_mlb = Event.where("league = ? AND event_datetime >= ?", "MLB", Time.now.to_datetime).order('event_datetime ASC').paginate(:page => params[:page], :per_page => 20)
   end
 
   # GET /events/1
