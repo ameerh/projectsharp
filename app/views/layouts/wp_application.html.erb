@@ -79,7 +79,7 @@
           </div><!--top-header-wrapper-->
           
           <div id="logo-wrapper" itemscope="" itemtype="http://schema.org/Organization">
-            <a itemprop="url" href="./assets/Free Sports Picks -.html"><img itemprop="logo" src="./assets/sharpnation.png" alt="Free Sports Picks"></a>
+            <a itemprop="url" href="assets/Free Sports Picks -.html"><img itemprop="logo" src="<%= asset_path('sharpnation.png')%>" alt="Free Sports Picks"></a>
           </div><!--logo-wrapper-->
         </div><!--header-wrapper-->
         
@@ -87,25 +87,18 @@
           <ul class="main-nav">
             <div class="menu-menu-1-container">
               <ul id="menu-menu-1" class="menu">
-                <li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-24"><a href="./assets/Free Sports Picks -.html">Home</a></li>
-                <li id="menu-item-26" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-26"><a href="http://www.sharpnation.com/nba/">NBA</a>
-                  <ul class="sub-menu">
-                    <li id="menu-item-1964" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1964"><a href="http://www.sharpnation.com/nba/nba-2014-playoffs/">NBA 2014 Playoffs</a></li>
-                  </ul>
-                </li>
-                <li id="menu-item-27" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-27"><a href="http://www.sharpnation.com/mlb/">MLB</a></li>
-                <li id="menu-item-28" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-28"><a href="http://www.sharpnation.com/nfl/">NFL</a>
-                  <ul class="sub-menu">
-                    <li id="menu-item-577" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-577"><a href="http://www.sharpnation.com/free-nfl-picks-against-the-spread">Free NFL Picks</a></li>
-                  </ul>
-                </li>
-                <li id="menu-item-773" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-773"><a href="http://www.sharpnation.com/ncaa-football-picks/">NCAA</a>
+                <li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-24"><a href="/">Home</a></li>
+                <li id="menu-item-26" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-26"><a href="/events/nba/">NBA</a></li>
+                <li id="menu-item-27" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-27"><a href="/events/mlb/">MLB</a></li>
+                <li id="menu-item-28" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-28"><a href="/espn_games">Espn Games</a></li>
+<!--                 <li id="menu-item-773" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-773"><a href="http://www.sharpnation.com/ncaa-football-picks/">NCAA</a>
                 <ul class="sub-menu">
                   <li id="menu-item-1744" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1744"><a href="http://www.sharpnation.com/college-basketball/">College Basketball</a></li>
                 </ul>
                 </li>
-                <li id="menu-item-1846" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1846"><a href="http://sharpnation.com/premium-pick.html">Premium Picks</a></li>
-                <li id="menu-item-1114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1114"><a href="http://www.sharpnation.com/become-writer/">Write For Us</a></li>
+ -->                
+                <li id="menu-item-1846" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1846"><a href="#">Premium Picks</a></li>
+                <li id="menu-item-1114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1114"><a href="#">Write For Us</a></li>
               </ul>
             </div>
           </ul><!--main-nav-->
@@ -128,7 +121,7 @@
           </div><!--nav-mobi-->
 
           <div id="main-search">
-            <form method="get" id="searchform" action="./assets/Free Sports Picks -.html">
+            <form method="get" id="searchform" action="assets/Free Sports Picks -.html">
               <input type="text" name="s" id="s" value="Search" onfocus="if (this.value == &quot;Search&quot;) { this.value = &quot;&quot;; }" onblur="if (this.value == &quot;&quot;) { this.value = &quot;Search&quot;; }">
               <input type="hidden" id="search-button">
             </form>
@@ -139,7 +132,7 @@
             <div class="main-story">
               <a href="http://www.sharpnation.com/college-basketball/connecticut-vs-cincinnati-predictions/" rel="bookmark">
                 <div class="main-story-shade">
-                  <img width="420" height="400" src="./assets/Cincinnati-420x400.jpg" class="attachment-post-thumb wp-post-image hoverZoomLink" alt="Cincinnati">             
+                  <img width="420" height="400" src="<%= asset_path('Cincinnati-420x400.jpg')%>" class="attachment-post-thumb wp-post-image hoverZoomLink" alt="Cincinnati">             
                 </div><!--main-story-shade-->
                 <div class="main-text">
                   <h1>Connecticut vs Cincinnati Predictions</h1>
@@ -163,7 +156,7 @@
             
             <div class="sub-story">
               <a href="http://www.sharpnation.com/nba-picks-against-the-spread/la-lakers-vs-miami-heat-prediction/" rel="bookmark">
-                <img width="240" height="225" src="./assets/lakers-240x225.jpg" class="attachment-square-thumb wp-post-image hoverZoomLink" alt="lakers">
+                <img width="240" height="225" src="<%= asset_path('lakers-240x225.jpg')%>" class="attachment-square-thumb wp-post-image hoverZoomLink" alt="lakers">
                 <div class="sub-text">
                   <h2>LA Lakers vs Miami Heat Prediction</h2>
                   <p>Thursday, January 23, 2014 8:00 PM ET R.J. Jackson: Over Rodney Blaze:...</p>
@@ -176,7 +169,7 @@
             
             <div class="sub-story">
               <a href="http://www.sharpnation.com/college-basketball/michigan-vs-michigan-state-prediction/" rel="bookmark">
-                <img width="240" height="225" src="./assets/michigan-state-240x225.jpg" class="attachment-square-thumb wp-post-image hoverZoomLink" alt="michigan state">
+                <img width="240" height="225" src="<%= asset_path('michigan-state-240x225.jpg')%>" class="attachment-square-thumb wp-post-image hoverZoomLink" alt="michigan state">
                 <div class="sub-text">
                   <h2>Michigan vs Michigan State Prediction</h2>
                   <p>Saturday, January 25, 2014 7:00 PM ET R.J. Jackson: Over Rodney Blaze:...</p>
@@ -189,7 +182,7 @@
             
             <div class="sub-story">
               <a href="http://www.sharpnation.com/free-nfl-picks-against-the-spread/seattle-seahawks-vs-denver-broncos-prediction/" rel="bookmark">
-                <img width="240" height="162" src="./assets/seattle-seahawks-wilson-coach.jpg" class="attachment-square-thumb wp-post-image hoverZoomLink" alt="seattle-seahawks-wilson-coach">
+                <img width="240" height="162" src="<%= asset_path('seattle-seahawks-wilson-coach.jpg') %>" class="attachment-square-thumb wp-post-image hoverZoomLink" alt="seattle-seahawks-wilson-coach">
                 <div class="sub-text">
                   <h2>Seattle Seahawks vs Denver Broncos Prediction</h2>
                   <p>Sunday, February 2nd, 2014 6:25 PM ET The odds for this&nbsp;Superbowl&nbsp;is Denver...</p>
@@ -221,7 +214,7 @@
                 <li class="sidebar-widget">
                   <span class="sidebar-widget-header"><h3 class="sidebar-widget-header">Premium Picks</h3></span> <div class="textwidget">
                     <center>
-                      <a href="http://www.sharpnation.com/premium-pick.html"><img src="./assets/premium-link-generator-website-150x150.jpg" alt="Smiley face" width="150" height="150" class="hoverZoomLink">
+                      <a href="http://www.sharpnation.com/premium-pick.html"><img src="assets/premium-link-generator-website-150x150.jpg" alt="Smiley face" width="150" height="150" class="hoverZoomLink">
                       </a>
                     </center>
                   </div>
