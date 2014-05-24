@@ -197,47 +197,47 @@ a:focus {
 	}
 
 .fb-but {
-	background: #fff url(images/social-buttons.png) 0 0;
+	background: #fff url(/assets/social-buttons.png) 0 0;
 	}
 
 .fb-but:hover {
-	background: #3b5997 url(images/social-buttons.png) 0 -30px;
+	background: #3b5997 url(/assets/social-buttons.png) 0 -30px;
 	}
 
 .twitter-but {
-	background: #fff url(images/social-buttons.png) -30px 0;
+	background: #fff url(/assets/social-buttons.png) -30px 0;
 	}
 
 .twitter-but:hover {
-	background: #00aced url(images/social-buttons.png) -30px -30px;
+	background: #00aced url(/assets/social-buttons.png) -30px -30px;
 	}
 
 .pinterest-but {
-	background: #fff url(images/social-buttons.png) -60px 0;
+	background: #fff url(/assets/social-buttons.png) -60px 0;
 	}
 
 .pinterest-but:hover {
-	background: #cb2027 url(images/social-buttons.png) -60px -30px;
+	background: #cb2027 url(/assets/social-buttons.png) -60px -30px;
 	}
 
 .instagram-but {
-	background: #fff url(images/social-buttons.png) -234px 0;
+	background: #fff url(/assets/social-buttons.png) -234px 0;
 	}
 
 .instagram-but:hover {
-	background: #36658c url(images/social-buttons.png) -234px -30px;
+	background: #36658c url(/assets/social-buttons.png) -234px -30px;
 	}
 
 .google-but {
-	background: #fff url(images/social-buttons.png) -90px 0;
+	background: #fff url(/assets/social-buttons.png) -90px 0;
 	}
 
 .google-but:hover {
-	background: #000 url(images/social-buttons.png) -90px -30px;
+	background: #000 url(/assets/social-buttons.png) -90px -30px;
 	}
 
 .youtube-but {
-	background: #fff url(images/social-buttons.png) -120px 0;
+	background: #fff url(/assets/social-buttons.png) -120px 0;
 	float: left;
 	transition: all 0.1s;
 	-moz-transition: all 0.1s;
@@ -249,23 +249,23 @@ a:focus {
 	}
 
 .youtube-but:hover {
-	background: #f00 url(images/social-buttons.png) -120px -30px;
+	background: #f00 url(/assets/social-buttons.png) -120px -30px;
 	}
 
 .linkedin-but {
-	background: #fff url(images/social-buttons.png) -174px 0;
+	background: #fff url(/assets/social-buttons.png) -174px 0;
 	}
 
 .linkedin-but:hover {
-	background: #069 url(images/social-buttons.png) -174px -30px;
+	background: #069 url(/assets/social-buttons.png) -174px -30px;
 	}
 
 .rss-but {
-	background: #fff url(images/social-buttons.png) -204px 0;
+	background: #fff url(/assets/social-buttons.png) -204px 0;
 	}
 
 .rss-but:hover {
-	background: #f60 url(images/social-buttons.png) -204px -30px;
+	background: #f60 url(/assets/social-buttons.png) -204px -30px;
 	}
 
 #logo-wrapper {
@@ -376,7 +376,7 @@ ul.main-nav li.current-post-parent {
 	}
 
 ul.main-nav li ul {
-	background: url(images/featured-bg.png);
+	background: url(/assets/featured-bg.png);
 	display: block;
 	max-height: 0;
 	overflow: hidden;
@@ -488,14 +488,14 @@ ul.main-nav li:hover ul li:hover ul {
 	}
 
 #searchform {
-	background: url(images/search-bg.png);
+	background: url(/assets/search-bg.png);
 	float: right;
 	padding-right: 10px;
 	position: relative;
 	}
 
 #searchform input {
-	background: url(images/search.png) no-repeat right;
+	background: url(/assets/search.png) no-repeat right;
 	border: 0;
 	color: #ddd;
 	float: right;
@@ -535,7 +535,7 @@ ul.main-nav li:hover ul li:hover ul {
 	}
 
 h3.ticker-header {
-	background: url(images/ticker-bg.png) no-repeat right center;
+	background: url(/assets/ticker-bg.png) no-repeat right center;
 	color: #fff;
 	float: left;
 	font: 700 20px/20px 'Oswald', sans-serif;
@@ -573,7 +573,7 @@ ul.ticker li h2 a {
 ************************************************/
 
 #main {
-	background: #fff url(images/white-noise.gif);
+	background: #fff url(/assets/white-noise.gif);
 	box-shadow: 0 20px 150px -40px #000;
 		-moz-box-shadow: 0 20px 150px -40px #000;
 		-ms-box-shadow: 0 20px 150px -40px #000;
@@ -720,7 +720,7 @@ ul.ticker li h2 a {
 	}
 
 .comment-bubble {
-	background: url(images/comment-tri.png) no-repeat right bottom;
+	background: url(/assets/comment-tri.png) no-repeat right bottom;
 	float: right;
 	position: absolute;
 		top: 10px;
@@ -1052,8 +1052,8 @@ span.list-byline {
 .es-carousel ul li a{display:block;}
 .es-carousel ul li a img{display:block;border:none;max-height:100%;max-width:100%;padding:0px; margin:0px;}
 .es-nav span{position:absolute;text-indent:-9000px;cursor:pointer;top:45px;}
-.es-nav span.es-nav-next{right:0px;width:33px;height:53px;background:transparent url(images/car-buttons.png) -41px 0; opacity: 0.7;}
-.es-nav span.es-nav-prev{left:0px;width:33px;height:53px;background:transparent url(images/car-buttons.png) 0 0; opacity: 0.7;}
+.es-nav span.es-nav-next{right:0px;width:33px;height:53px;background:transparent url(/assets/car-buttons.png) -41px 0; opacity: 0.7;}
+.es-nav span.es-nav-prev{left:0px;width:33px;height:53px;background:transparent url(/assets/car-buttons.png) 0 0; opacity: 0.7;}
 .es-nav span.es-nav-next:hover{opacity: 1.0;}
 .es-nav span.es-nav-prev:hover{opacity: 1.0;}
 
@@ -1160,7 +1160,7 @@ span.post-byline {
 	}
 
 span.twitter-byline {
-	background: url(images/twitter.png) no-repeat left center;
+	background: url(/assets/twitter.png) no-repeat left center;
 	background-size: 12px 10px;
 	float: left;
 	font: 400 16px/16px 'Alegreya', serif;
@@ -2480,7 +2480,7 @@ li.home-widget #searchform input,
 li.sidebar-widget #searchform input,
 li.sidebar-small-widget #searchform input,
 li.footer-widget #searchform input {
-	background: #fff url(images/search2.png) no-repeat right center!important;
+	background: #fff url(/assets/search2.png) no-repeat right center!important;
 	border: 1px solid #666;
 	box-shadow: none;
 	color: #666;
@@ -2584,7 +2584,7 @@ li.footer-widget .tweet_list li:last-child {
 ************************************************/
 
 #footer-wrapper {
-	background: #333 url(images/dark-noise.gif);
+	background: #333 url(/assets/dark-noise.gif);
 	float: left;
 	width: 100%;
 	}
@@ -3800,12 +3800,12 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	.rss-but:hover,
 	.instagram-but,
 	.instagram-but:hover {
-		background-image: url(images/social-buttons@2x.png);
+		background-image: url(/assets/social-buttons@2x.png);
 		background-size: 264px 60px;
   		}
 
 	span.twitter-byline {
-		background-image: url(images/twitter@2x.png);
+		background-image: url(/assets/twitter@2x.png);
 		background-size: 12px 10px;
 		}
 
