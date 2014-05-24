@@ -124,6 +124,10 @@ a, a:visited {
 	border-radius: 0;
 	border:0;
 }
+.tab-content
+{
+	min-height: 400px;
+}
 #content
 {
 	margin: 10px 10px;
@@ -133,6 +137,30 @@ a, a:visited {
 table tbody
 {
 	font: 13px/17px helvetica, arial, sans-serif;
+	text-align: left !important;
 }
-
-
+.textDiv_Hours h4, .textDiv_Minutes h4, .textDiv_Seconds h4
+{
+	position: absolute;
+	top: 35px;
+	font-size: 12px !important;
+	left: 15px;
+	font: 13px/17px helvetica, arial, sans-serif;
+}
+.table th, .table td
+{
+	padding: 8px 5px;
+}
+span.total
+{
+	display: inline-block;
+	width: 45px;
+}
+.perdiction
+{
+	background-color: #e91b23;
+	padding: 5px 10px;
+	color: #ffffff;
+	top: 35px;
+	position: relative;
+}

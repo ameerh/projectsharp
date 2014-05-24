@@ -42,7 +42,7 @@
             <td></td>
           <%end%>
           <%if event.periods[0].present?%>
-            <td><span>Over</span><%=event.periods[0].tootal_point.to_s %> <br/><span>Under</span><%= event.periods[0].tootal_point.to_s %></td>
+            <td><span class="total">Over</span><%=event.periods[0].tootal_point.to_s %> <br/><span class="total">Under</span><%= event.periods[0].tootal_point.to_s %></td>
           <%else%>
             <td>0</td>
           <%end%>
