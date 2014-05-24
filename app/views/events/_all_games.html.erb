@@ -37,7 +37,7 @@
           <%end%>
           <%if event.periods[0].present?%>
             <td>
-              <%= event.periods[0].moneyline_visiting.to_i > 0 ? "+#{event.periods[0].moneyline_visiting}" : "" %><br/>
+              <%= event.periods[0].moneyline_visiting.to_i > 0 ? "+#{event.periods[0].moneyline_visiting}" : event.periods[0].moneyline_visiting %><br/>
               <%= event.periods[0].moneyline_home %>
             </td>
           <%else%>
