@@ -1,0 +1,83 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date/Time</th>
+      <th>Teams</th>
+<!--       <th>Moneyline</th> -->
+      <th>Odds</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% j =0%>
+    <% events.each do |event| %>
+        <%i = 0%>
+        <tr>
+        <%(event.participants.count/2).times do%>
+        <% if event.participants[(i*2)].participant_name != "2nd Half Wagering" %>
+          <td><%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %></td>
+          <%if event.participants[(i*2)].present? && event.participants[(i*2)+1].present? %>
+            <td>
+              <%= event.participants[(i*2)].participant_name %><br/>
+              <%= event.participants[(i*2)+1].participant_name %>
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
+<!--           <%if event.periods[0].present? %>
+            <td>
+              <%= event.periods[0].moneyline_visiting %><br/>
+              <%= event.periods[0].moneyline_home %>
+            </td>
+          <%else%>
+            <td></td>
+          <%end%> -->
+          <%if event.periods[0].present? %>
+            <td>
+              <%= event.periods[0].spread_visiting %><br/>
+              <%= event.periods[0].spread_home %>
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
+          <%if event.periods[0].present?%>
+            <td><span>Over</span><%=event.periods[0].tootal_point.to_s %> <br/><span>Under</span><%= event.periods[0].tootal_point.to_s %></td>
+          <%else%>
+            <td>0</td>
+          <%end%>
+<!--           <td><a href="../events/previews?team_a=<%= event.participants[(i*2)].participant_name %>&team_b=<%= event.participants[(i*2)+1].participant_name %>">Previews</a></td> -->
+            <% i = i+1 %>
+          </tr>
+          <%end%>
+        <%end%>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate events %>
+<br>
+
+<style>
+  th {
+    text-align: center!important;
+  }
+  td {
+    text-align: center!important;
+  }
+  .datetime{
+    display: none;
+  }
+  /*
+  #canvas-days{
+    display: none;
+  }
+  #canvas-hours{
+    display: none;
+  }
+  #canvas-minutes{
+    display: none;
+  }
+  #canvas-seconds{
+    display: none;
+  }*/
+</style>
