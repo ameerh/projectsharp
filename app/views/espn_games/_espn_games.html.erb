@@ -1,0 +1,73 @@
+<p>Date: <input type="text" id="datepicker"></p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date/Time</th>
+      <th>Teams</th>
+      <th>Pitchers</th>
+      <th>Perdictions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @espn_games.each do |game| %>
+      <tr>
+        <td><%= game.time %></td>
+        <td>
+          <%= EspnTeam.find(game.team_h).name %><br/>
+          <%= EspnTeam.find(game.team_a).name %>
+        </td>
+        <td>
+          <%= Pitcher.find(game.pitcher_h).name %><br/>
+          <%= Pitcher.find(game.pitcher_a).name %>
+        </td>
+        <%
+        if(game.date >= Date.today)
+        %>
+        <% date = (game.date - 1.hours).strftime("%d %b, %Y") %>
+        <td><a href="espn_games/previews?game=<%= game.id %>&date=<%= date %>" class="perdiction">Predictions</a></td>
+        <%
+        else
+          "<td></td>"
+        end  
+        %>  
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script>
+  $(function() {
+    $('#datepicker').datepicker().on('changeDate', function(ev) {
+      var d = new Date(ev.date)
+      
+      var day = d.getDate();
+      var month = d.getMonth()+1;
+      var year = d.getFullYear();
+
+      var date = year +"-"+ month  +"-"+ day; 
+
+      window.location = location.origin + location.pathname + "?date=" + date;
+      $(this).datepicker('hide');
+    });
+  });
+
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd='0'+dd
+  } 
+
+  if(mm<10) {
+      mm='0'+mm
+  } 
+
+  today = yyyy+'-'+dd+'-'+mm;
+  var DATE = location.search.split('date=')[1] ? location.search.split('date=')[1] : today;
+  $("#datepicker").val(DATE);
+  </script>
