@@ -210,9 +210,9 @@ a.perdiction, a.perdiction:visited
 }
 #previews #pitchers, #odds
 {
-	margin-top: 20px;
+	margin-top: 10px;
 }
-#odds
+#pitchers, #odds
 {
 	line-height: 1.3;
 }
