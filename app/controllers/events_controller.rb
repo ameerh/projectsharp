@@ -100,8 +100,8 @@ class EventsController < ApplicationController
       
       # pitcher_a = 116
       # pitcher_h = 116
-      @pitcher_a = Pitcher.find(pitcher_a)
-      @pitcher_h = Pitcher.find(pitcher_h)
+      # @pitcher_a = Pitcher.find(pitcher_a)
+      # @pitcher_h = Pitcher.find(pitcher_h)
     end  
     if params[:event].present? 
       @event = Event.find(params[:event])
