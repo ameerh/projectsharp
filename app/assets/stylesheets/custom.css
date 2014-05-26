@@ -180,7 +180,7 @@ a.perdiction, a.perdiction:visited
 {
 	font-family: 'Open Sans Condensed', sans-serif;
 	text-align: center;
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 1.0;
 }
 #previews .left
@@ -224,7 +224,7 @@ a.perdiction, a.perdiction:visited
 #stats
 {
 	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 18px;
+	font-size: 20px;
 	margin-top: 20px;
 }
 #stats #left, #stats #right
