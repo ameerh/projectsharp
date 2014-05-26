@@ -34,8 +34,12 @@
         <% @pitcher_h_season_totals = @pitcher_h.pitcher_season_totals %>
 
         <p><%= @pitcher_h.name %></p>
-        <% if !@team_h_stats.first.nil? && !@pitcher_h_season_totals.first.nil? %>
-          <p class="position">(<%= @team_h_stats.first.record %>) ERA <%= @pitcher_h_season_totals.first.ERA%></p>
+        <% if !@team_h_stats.first.nil? %>
+          <p class="position">(<%= @team_h_stats.first.record %>)
+          <% if !@pitcher_h_season_totals.first.nil? %>
+            ERA <%= @pitcher_h_season_totals.first.ERA%>
+          <% end %>
+          </p>
         <% end %>  
       <% end %>
     </div>  
@@ -45,8 +49,12 @@
         <% @pitcher_a_season_totals = @pitcher_a.pitcher_season_totals %>
 
         <p><%= @pitcher_a.name %></p>
-        <% if !@team_a_stats.first.nil? && !@pitcher_a_season_totals.first.nil? %>
-          <p class="position">(<%= @team_a_stats.first.record %>) ERA <%= @pitcher_a_season_totals.first.ERA%></p>
+        <% if !@team_a_stats.first.nil? %>
+          <p class="position">(<%= @team_a_stats.first.record %>)
+          <% if !@pitcher_a_season_totals.first.nil? %>
+            ERA <%= @pitcher_a_season_totals.first.ERA%>
+          <% end %>
+          </p>
         <% end %>  
       <% end %>
     </div>  

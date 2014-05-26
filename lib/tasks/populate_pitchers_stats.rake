@@ -152,12 +152,12 @@ task :populate_pitchers_stats => :environment do
 		end
 			
 		#Home/Away Section Scraping - Away
-		@split    = data.css("#hmvis_extra tbody tr")[1].css("td[2]").first.text.to_s
-		@W        = data.css("#hmvis_extra tbody tr")[1].css("td[4]").first.text.to_s
-		@L        = data.css("#hmvis_extra tbody tr")[1].css("td[5]").first.text.to_s
-		@ERA      = data.css("#hmvis_extra tbody tr")[1].css("td[7]").first.text.to_s
-		@GS       = data.css("#hmvis_extra tbody tr")[1].css("td[9]").first.text.to_s
-		@WHIP     = data.css("#hmvis_extra tbody tr")[1].css("td[26]").first.text.to_s
+		@split    = data.css("#hmvis_extra tbody tr")[1].css("td[2]").first.text.to_s if data.css("#hmvis_extra tbody tr")[1].present?
+		@W        = data.css("#hmvis_extra tbody tr")[1].css("td[4]").first.text.to_s if data.css("#hmvis_extra tbody tr")[1].present?
+		@L        = data.css("#hmvis_extra tbody tr")[1].css("td[5]").first.text.to_s if data.css("#hmvis_extra tbody tr")[1].present?
+		@ERA      = data.css("#hmvis_extra tbody tr")[1].css("td[7]").first.text.to_s if data.css("#hmvis_extra tbody tr")[1].present?
+		@GS       = data.css("#hmvis_extra tbody tr")[1].css("td[9]").first.text.to_s if data.css("#hmvis_extra tbody tr")[1].present? 
+		@WHIP     = data.css("#hmvis_extra tbody tr")[1].css("td[26]").first.text.to_s if data.css("#hmvis_extra tbody tr")[1].present?
 		@pitcherHomeAway = PitcherHomeAway.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
 		if @pitcherHomeAway.present?
 			result = @pitcherHomeAway.update(:split => @split, :W => @W, :L => @L, :ERA => @ERA, :GS => @GS, :WHIP => @WHIP, :pitcher_id => @pitcher_id)
