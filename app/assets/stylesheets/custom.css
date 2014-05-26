@@ -185,16 +185,23 @@ a.perdiction, a.perdiction:visited
 }
 #previews .left
 {
-	width: 33%;
+	width: 42.5%;
+	margin-top: 30px;
 }
 #previews .middle
 {
-	width: 33%;
+	width: 15%;
 }
 #previews .right
 {
-	width: 33%;
+	width: 42.5%;
+	margin-top: 30px;
 }
+.date 
+{
+	margin-bottom: 15px;
+}
+
 .name,.vs
 {
 	font-family: 'Oswald', sans-serif;

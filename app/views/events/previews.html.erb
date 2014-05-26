@@ -10,10 +10,12 @@
       <% end %>
     </div>  
     <div class="middle aleft">
+      <% if !@event.nil? %>
+        <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
+      <% end %>  
       <p class="vs">VS</p>      
       <% if !@event.nil? %>
-        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I:%M %p") %></p      
-        <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
+        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I:%M %p") %></p>      
       <% end %>        
     </div>
     <div id="team_a" class="right aleft">
