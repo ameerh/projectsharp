@@ -133,7 +133,6 @@ a, a:visited {
 	margin: 10px 10px;
 	font-family: 'Oswald', sans-serif;
 }
-
 .table tbody
 {
 	font: 13px/17px helvetica, arial, sans-serif;
@@ -165,6 +164,10 @@ span.total
 	position: relative;
 }
 .perdiction:hover
+{
+	color: #ffffff;
+}
+a.perdiction, a.perdiction:visited
 {
 	color: #ffffff;
 }
