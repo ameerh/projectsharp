@@ -1,4 +1,4 @@
-<div id="previews">
+<div id="previews" class="fluid">
   <div id="teams">
     <div id="team_h" class="left aleft">
       <% @team_h_stats = @team_h.espn_team_stats %>
@@ -16,7 +16,7 @@
         <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
       <% end %>        
     </div>
-    <div id="team_a" class="right aright">
+    <div id="team_a" class="right aleft">
       <% @team_a_stats = @team_a.espn_team_stats %>
       <% if !@team_a.nil? %>
         <p class="name"><%= @team_a.name %></p>
