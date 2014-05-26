@@ -3,7 +3,7 @@ require 'open-uri'
 task :populate_pitchers_stats => :environment do
 	# @pitchers = Pitcher.all
 	@pitchers = Pitcher.where("url != ''")
-	@pitchers.each do |pitcher|	
+	@pitchers.each do |pitcher|
 		url = pitcher.url
 		data = Nokogiri::HTML(open(url).read, nil, 'utf-8')
 		@pitcher_id = pitcher.id
@@ -138,12 +138,12 @@ task :populate_pitchers_stats => :environment do
 		end	
 
 		#Home/Away Section Scraping - Home
-		@split    = data.css("#hmvis_extra tbody tr")[0].css("td[2]").first.text.to_s
-		@W        = data.css("#hmvis_extra tbody tr")[0].css("td[4]").first.text.to_s
-		@L        = data.css("#hmvis_extra tbody tr")[0].css("td[5]").first.text.to_s
-		@ERA      = data.css("#hmvis_extra tbody tr")[0].css("td[7]").first.text.to_s
-		@GS       = data.css("#hmvis_extra tbody tr")[0].css("td[9]").first.text.to_s
-		@WHIP     = data.css("#hmvis_extra tbody tr")[0].css("td[26]").first.text.to_s
+		@split    = data.css("#hmvis_extra tbody tr")[0].css("td[2]").first.text.to_s if data.css("#hmvis_extra tbody tr")[0].present?
+		@W        = data.css("#hmvis_extra tbody tr")[0].css("td[4]").first.text.to_s if data.css("#hmvis_extra tbody tr")[0].present?
+		@L        = data.css("#hmvis_extra tbody tr")[0].css("td[5]").first.text.to_s if data.css("#hmvis_extra tbody tr")[0].present?
+		@ERA      = data.css("#hmvis_extra tbody tr")[0].css("td[7]").first.text.to_s if data.css("#hmvis_extra tbody tr")[0].present?
+		@GS       = data.css("#hmvis_extra tbody tr")[0].css("td[9]").first.text.to_s if data.css("#hmvis_extra tbody tr")[0].present?
+		@WHIP     = data.css("#hmvis_extra tbody tr")[0].css("td[26]").first.text.to_s if data.css("#hmvis_extra tbody tr")[0].present?
 		@pitcherHomeAway = PitcherHomeAway.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
 		if @pitcherHomeAway.present?
 			result = @pitcherHomeAway.update(:split => @split, :W => @W, :L => @L, :ERA => @ERA, :GS => @GS, :WHIP => @WHIP, :pitcher_id => @pitcher_id)
