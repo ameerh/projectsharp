@@ -222,8 +222,8 @@ a.perdiction, a.perdiction:visited
 }
 #stats #left, #stats #right
 {
-	width: 50%;
-	margin: 0;
+	width: 45%;
+	padding: 0 1%;
 }
 
 #stats .name
@@ -233,7 +233,11 @@ a.perdiction, a.perdiction:visited
 	text-align: center;
 	font-weight: normal;
 }
-
+#stats h4
+{
+	text-align: left;
+	text-decoration: underline;
+}
 
 
 .aleft

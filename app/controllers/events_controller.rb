@@ -98,8 +98,8 @@ class EventsController < ApplicationController
       @pitcher_a = Pitcher.where("name like ?", "%#{pitcher_a}%").first
       @pitcher_h = Pitcher.where("name like ?", "%#{pitcher_h}%").first
       
-      pitcher_a = 116
-      pitcher_h = 116
+      # pitcher_a = 116
+      # pitcher_h = 116
       @pitcher_a = Pitcher.find(pitcher_a)
       @pitcher_h = Pitcher.find(pitcher_h)
     end  
