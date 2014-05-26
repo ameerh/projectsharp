@@ -1,3 +1,104 @@
+<div id="previews">
+  <div id="teams">
+    <div id="team_h" class="left aleft">
+      <% @team_h_stats = @team_h.espn_team_stats %>
+      <% if !@team_h.nil? %>
+        <p class="name"><%= @team_h.name %></p>
+        <% if !@team_h.nil? %>
+          <p class="position"><%= @team_h_stats.first.position %></p>
+        <% end %>  
+      <% end %>
+    </div>  
+    <div class="middle aleft">
+      <p class="vs">VS</p>      
+      <% if !@event.nil? %>
+        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I:%M %p") %></p      
+        <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
+      <% end %>        
+    </div>
+    <div id="team_a" class="right aright">
+      <% @team_a_stats = @team_a.espn_team_stats %>
+      <% if !@team_a.nil? %>
+        <p class="name"><%= @team_a.name %></p>
+        <% if !@team_a.nil? %>
+          <p class="position"><%= @team_a_stats.first.position %></p>
+        <% end %>  
+      <% end %>
+    </div>  
+    <div class="clear"></div>
+  </div>
+
+  <div id="pitchers">
+    <div id="pitcher_h" class="left aleft">
+      <% if !@pitcher_h.nil? %>
+        <% @pitcher_h_season_totals = @pitcher_h.pitcher_season_totals %>
+
+        <p><%= @pitcher_h.name %></p>
+        <% if !@team_h.nil? %>
+          <p class="position">(<%= @team_h_stats.first.record %>) ERA <%= @pitcher_h_season_totals.first.ERA%></p>
+        <% end %>  
+      <% end %>
+    </div>  
+
+    <div id="pitcher_a" class="right aright">
+      <% if !@pitcher_a.nil? %>
+        <% @pitcher_a_season_totals = @pitcher_a.pitcher_season_totals %>
+
+        <p><%= @pitcher_a.name %></p>
+        <% if !@team_a.nil? %>
+          <p class="position">(<%= @team_a_stats.first.record %>) ERA <%= @pitcher_a_season_totals.first.ERA%></p>
+        <% end %>  
+      <% end %>
+    </div>  
+    <div class="clear"></div>
+  </div>
+
+<% if @event.present? && @event.periods.present? %>
+  <div id="odds">
+    <div id="team_h" class="left aleft">
+        <p class="value"><%= @event.periods[0].moneyline_home %></p>
+    </div>  
+    <div class="middle aleft">
+      <p class="odds"><u>ODDS</u></p>      
+      <p>Total</p>      
+      <p><%=@event.periods[0].tootal_point.to_s %></p>
+    </div>
+    <div id="team_a" class="right aleft">
+        <p class="value"><%= @event.periods[0].moneyline_visiting %></p>
+    </div>  
+    <div class="clear"></div>
+  </div>
+<% end %>
+
+
+<div id="stats">
+  <div id="left" class="aleft">
+    <% if !@team_h.nil? %>
+      <p class="name"><u><%= @team_h.name %></u></p>
+    <% end %>  
+  </div>
+  <div id="right" class="right">
+    <% if !@team_a.nil? %>
+      <p class="name"><u><%= @team_a.name %></u></p>
+    <% end %>  
+  </div>
+  <div class="clear"></div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <% if !@team_h.nil? && !@team_a.nil? %>
 <h1><%= @title %></h1>
 <% end %>
