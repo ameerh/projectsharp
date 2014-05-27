@@ -10,12 +10,10 @@
       <% end %>
     </div>  
     <div class="middle aleft">
-      <% if !@event.nil? %>
-        <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
-      <% end %>  
       <p class="vs">VS</p>      
       <% if !@event.nil? %>
-        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I:%M %p") %></p>      
+        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I:%M %p") %></p      
+        <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
       <% end %>        
     </div>
     <div id="team_a" class="right aleft">
@@ -81,7 +79,154 @@
   <% end %>
 
 
-  <div id="stats">
+  <div id="predictions">
+    <div id="left" class="aleft">
+      <% if !@team_h.nil? %>
+        <p class="name"><u><%= @team_h.name %></u></p>
+      <% end %>  
+      <% 
+        statements = Hash.new
+        statements['Last 7 days'] = Array.new
+        statements['vs RHP'] = Array.new
+        statements['vs LHP'] = Array.new
+        statements['Home'] = Array.new
+        statements['Away'] = Array.new
+        statements['2014 Totals'] = Array.new
+        @team_previews_rules.each do |previews_rule|
+          @team_h_stats.each do |team_h_stat|
+            column_value = 0
+            if(previews_rule.split == 'Last 7 days' || 'vs RHP' || 'vs LHP' || 'Home' || 'Away' || '2014 totals')
+              if previews_rule.column == "R/GS"
+                column_value = (team_h_stat[previews_rule.column.split("/").first].to_f / team_h_stat[previews_rule.column.split("/").last].to_f).round(2)
+              else  
+                column_value = (team_h_stat[previews_rule.column].to_f).round(2)
+              end    
+              if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+                if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+                  statements[previews_rule.split].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+                elsif previews_rule.value2.blank?
+                  statements[previews_rule.split].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+                end  
+                break
+              end  
+            end  
+          end  
+        end  
+      %>
+
+      <% if !statements['Last 7 days'].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft">Recent:</div>
+          <div class="statement aleft"><%= statements['Last 7 days'].sample %></div>
+          <div class="clear"></div>
+        </div>  
+      <% end %>  
+    <%
+      if @pitcher_h.present? && !@pitcher_h.throws.nil? && (@pitcher_h.throws.include? "Right") 
+         @split = 'vs RHP'
+      elsif @pitcher_a.present? && !@pitcher_h.throws.nil? && (@pitcher_h.throws.include? "Left")
+         @split = 'vs LHP'
+      end
+    %>  
+      <% if @split.present? && !statements[@split].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft"><%=@split%></h4>
+          <p class="aleft"><%=statements[@split].sample %></p>
+          <div class="clear"></div>
+        </div>  
+      <% end %>  
+
+      <% if !statements['Home'].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft">Home:</div>
+          <div class="statement aleft"><%= statements['Home'].sample %></div>
+          <div class="clear"></div>
+        </div>    
+      <% end %>  
+
+      <% if !statements['2014 Totals'].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft">Overall:</div>
+          <div class="statement aleft"><%= statements['2014 Totals'].sample %></div>
+          <div class="clear"></div>
+        </div>  
+      <% end %>  
+    </div>
+    <div id="right" class="aleft">
+      <% if !@team_a.nil? %>
+        <p class="name"><u><%= @team_a.name %></u></p>
+      <% end %>  
+      <% 
+        statements = Hash.new
+        statements['Last 7 days'] = Array.new
+        statements['vs RHP'] = Array.new
+        statements['vs LHP'] = Array.new
+        statements['Home'] = Array.new
+        statements['Away'] = Array.new
+        statements['2014 Totals'] = Array.new
+        @team_previews_rules.each do |previews_rule|
+          @team_a_stats.each do |team_a_stat|
+            column_value = 0
+            if(previews_rule.split == 'Last 7 days' || 'vs RHP' || 'vs LHP' || 'Home' || 'Away' || '2014 totals')
+              if previews_rule.column == "R/GS"
+                column_value = (team_a_stat[previews_rule.column.split("/").first].to_f / team_a_stat[previews_rule.column.split("/").last].to_f).round(2)
+              else  
+                column_value = (team_a_stat[previews_rule.column].to_f).round(2)
+              end    
+              if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+                if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
+                  statements[previews_rule.split].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+                elsif previews_rule.value2.blank?
+                  statements[previews_rule.split].push(previews_rule.statement.gsub("<X>",column_value.to_s))
+                end  
+                break
+              end  
+            end  
+          end  
+        end  
+      %>
+
+      <% if !statements['Last 7 days'].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft">Recent:</div>
+          <div class="statement aleft"><%= statements['Last 7 days'].sample %></div>
+          <div class="clear"></div>
+        </div>  
+      <% end %>  
+    <%
+      if @pitcher_h.present? && !@pitcher_h.throws.nil? && (@pitcher_h.throws.include? "Right") 
+         @split = 'vs RHP'
+      elsif @pitcher_a.present? && !@pitcher_h.throws.nil? && (@pitcher_h.throws.include? "Left")
+         @split = 'vs LHP'
+      end
+    %>  
+      <% if @split.present? && !statements[@split].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft"><%=@split%></h4>
+          <p class="aleft"><%=statements[@split].sample %></p>
+          <div class="clear"></div>
+        </div>  
+      <% end %>  
+
+      <% if !statements['Home'].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft">Home:</div>
+          <div class="statement aleft"><%= statements['Home'].sample %></div>
+          <div class="clear"></div>
+        </div>    
+      <% end %>  
+
+      <% if !statements['2014 Totals'].first.nil? %>
+        <div class="prediction-block">
+          <div class="heading aleft">Overall:</div>
+          <div class="statement aleft"><%= statements['2014 Totals'].sample %></div>
+          <div class="clear"></div>
+        </div>  
+      <% end %>  
+    </div>
+    <div class="clear"></div>
+  </div>
+<div id="stats">
     <div id="left" class="aleft">
       <% if !@team_h.nil? %>
         <p class="name"><u><%= @team_h.name %></u></p>
