@@ -40,6 +40,14 @@ SportsOdds::Application.routes.draw do
   end
   resources :previews_rules
 
+  resources :mlb do
+    collection do
+      get :index
+      get :mlb_picks
+    end
+  end
+  get 'mlb/mlb_picks/:id' => 'mlb#mlb_picks'
+
   # Example resource route with options:
   #   resources :products do
   #     member do

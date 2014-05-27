@@ -110,19 +110,5 @@ class EspnGamesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def espn_game_params
       params[:espn_game]
-    end
-    
-    def check_condition(operator, value1, value2)
-      if operator == ">"
-        return value1 > value2
-      elsif operator == ">="
-        return value1 >= value2
-      elsif operator == "<"
-        return value1 < value2
-      elsif operator == "<="
-        return value1 <= value2
-      elsif operator == "=="
-        return value1 == value2
-      end  
-    end
+    end    
 end
