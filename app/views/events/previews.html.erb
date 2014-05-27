@@ -12,7 +12,7 @@
     <div class="middle aleft">
       <p class="vs">VS</p>      
       <% if !@event.nil? %>
-        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I:%M %p") %></p      
+        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I%M %p") %></p      
         <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
       <% end %>        
     </div>
@@ -116,7 +116,7 @@
 
       <% if !statements['Last 7 days'].first.nil? %>
         <div class="prediction-block">
-          <div class="heading aleft">Recent:</div>
+          <div class="heading aleft">Recent</div>
           <div class="statement aleft"><%= statements['Last 7 days'].sample %></div>
           <div class="clear"></div>
         </div>  
@@ -138,7 +138,7 @@
 
       <% if !statements['Home'].first.nil? %>
         <div class="prediction-block">
-          <div class="heading aleft">Home:</div>
+          <div class="heading aleft">Home</div>
           <div class="statement aleft"><%= statements['Home'].sample %></div>
           <div class="clear"></div>
         </div>    
@@ -146,7 +146,7 @@
 
       <% if !statements['2014 Totals'].first.nil? %>
         <div class="prediction-block">
-          <div class="heading aleft">Overall:</div>
+          <div class="heading aleft">Overall</div>
           <div class="statement aleft"><%= statements['2014 Totals'].sample %></div>
           <div class="clear"></div>
         </div>  
@@ -188,7 +188,7 @@
 
       <% if !statements['Last 7 days'].first.nil? %>
         <div class="prediction-block">
-          <div class="heading aleft">Recent:</div>
+          <div class="heading aleft">Recent</div>
           <div class="statement aleft"><%= statements['Last 7 days'].sample %></div>
           <div class="clear"></div>
         </div>  
@@ -210,7 +210,7 @@
 
       <% if !statements['Home'].first.nil? %>
         <div class="prediction-block">
-          <div class="heading aleft">Home:</div>
+          <div class="heading aleft">Home</div>
           <div class="statement aleft"><%= statements['Home'].sample %></div>
           <div class="clear"></div>
         </div>    
@@ -218,7 +218,7 @@
 
       <% if !statements['2014 Totals'].first.nil? %>
         <div class="prediction-block">
-          <div class="heading aleft">Overall:</div>
+          <div class="heading aleft">Overall</div>
           <div class="statement aleft"><%= statements['2014 Totals'].sample %></div>
           <div class="clear"></div>
         </div>  
@@ -231,7 +231,7 @@
       <% if !@team_h.nil? %>
         <p class="name"><u><%= @team_h.name %></u></p>
       <% end %>  
-      <h4>Past 7 days:</h4>
+      <h4>Past 7 days</h4>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -319,7 +319,7 @@
         </tbody>
       </table>
 
-      <h4>Overall:</h4>
+      <h4>Overall</h4>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -348,7 +348,7 @@
       <% if !@team_a.nil? %>
         <p class="name"><u><%= @team_a.name %></u></p>
       <% end %>  
-      <h4>Past 7 days:</h4>
+      <h4>Past 7 days</h4>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -436,7 +436,7 @@
         </tbody>
       </table>
 
-      <h4>Overall:</h4>
+      <h4>Overall</h4>
       <table class="table table-striped">
         <thead>
           <tr>
