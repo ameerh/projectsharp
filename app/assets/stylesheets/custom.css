@@ -185,8 +185,9 @@ a.perdiction, a.perdiction:visited
 }
 #previews .left
 {
-	width: 42%;
+	width: 27%;
 	margin-top: 30px;
+	margin-left: 15%;
 }
 #previews .middle
 {
@@ -194,8 +195,9 @@ a.perdiction, a.perdiction:visited
 }
 #previews .right
 {
-	width: 42%;
+	width: 27%;
 	margin-top: 30px;
+	margin-right: 15%;
 }
 .date 
 {
