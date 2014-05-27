@@ -3205,7 +3205,7 @@ h3.footer-widget-header a {
 		float: left;
 		margin-top: 10px;
 		}
-	#stats #left, #stats #right{
+	#previews #left, #previews #right{
 		width: auto !important;
 		}
 
@@ -3475,7 +3475,7 @@ h3.footer-widget-header a {
 		float: left;
 		margin-top: 10px;
 		}
-	#stats #left, #stats #right{
+	#previews #left, #previews #right{
 		width: auto !important;
 		}
 
@@ -3786,7 +3786,7 @@ h3.footer-widget-header a {
 		float: left;
 		margin-top: 10px;
 		}
-	#stats #left, #stats #right{
+	#previews #left, #previews #right{
 		width: auto !important;
 		}
 
