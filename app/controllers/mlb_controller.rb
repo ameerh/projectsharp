@@ -10,6 +10,7 @@ class MlbController < ApplicationController
       @date = Date.today
     end
     @espn_games = EspnGame.where(:date => @date).order('time ASC')  	
+	render :layout => "2_column"
   end	
 
   def mlb_picks
@@ -33,8 +34,8 @@ class MlbController < ApplicationController
 		end
 
 		#Get Game
-		@team_a = EspnTeam.where("name LIKE '%#{team_a}%'").first
-		@team_b = EspnTeam.where("name LIKE '%#{team_b}%'").first
+		@team_a = EspnTeam.where("name LIKE '%#{team_a.split(" ").last}%'").first
+		@team_b = EspnTeam.where("name LIKE '%#{team_b.split(" ").last}%'").first
 		if(@team_a.present? && @team_b.present?)
 			@game = EspnGame.where("((team_a = ? AND team_h = ?) OR (team_a = ? AND team_h = ?)) AND date = ?",@team_a.id,@team_b.id,@team_b.id,@team_a.id,date).first
 			if(@game.present?)

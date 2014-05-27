@@ -69,6 +69,7 @@ class EventsController < ApplicationController
 
   def nba
     @events = Event.where("league = ? AND event_datetime >= ?", "NBA", Time.now.to_datetime).order('event_datetime ASC').paginate(:page => params[:page], :per_page => 20)
+    render :layout => "2_column"
   end
 
   def mlb

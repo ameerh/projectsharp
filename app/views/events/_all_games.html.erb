@@ -52,8 +52,8 @@
             <div id="time_<%="#{j}"%>" data-date="<%= "#{(event.event_datetime)}" %>" style="width: 150px;">
             </div>
           </td>
-          <% date = (event.event_datetime).strftime("%d %b, %Y") %>
-          <td><a href="events/previews?team_a=<%= event.participants[(i*2)].participant_name %>&pitcher_a=<%= event.participants[(i*2)].pitcher %>&team_b=<%= event.participants[(i*2)+1].participant_name %>&pitcher_b=<%= event.participants[(i*2)+1].pitcher %>&date=<%= date %>&event=<%= event.id %>" class="perdiction">Predictions</a></td>
+          <% date = (event.event_datetime).strftime("%Y-%d-%m") %>
+          <td><a href="/mlb/mlb-picks/<%= "#{event.participants[(i*2)].participant_name}"+"-vs-"+"#{event.participants[(i*2)+1].participant_name}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
             <% i = i+1 %>
             <% j = j+1 %>
           </tr>
