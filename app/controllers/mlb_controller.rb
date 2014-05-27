@@ -34,8 +34,8 @@ class MlbController < ApplicationController
 		end
 
 		#Get Game
-		@team_a = EspnTeam.where("name LIKE '%#{team_a.split(" ").last}%'").first
-		@team_b = EspnTeam.where("name LIKE '%#{team_b.split(" ").last}%'").first
+		@team_a = EspnTeam.where("name LIKE '%#{team_a}%'").first
+		@team_b = EspnTeam.where("name LIKE '%#{team_b}%'").first
 		if(@team_a.present? && @team_b.present?)
 			@game = EspnGame.where("((team_a = ? AND team_h = ?) OR (team_a = ? AND team_h = ?)) AND date = ?",@team_a.id,@team_b.id,@team_b.id,@team_a.id,date).first
 			if(@game.present?)
