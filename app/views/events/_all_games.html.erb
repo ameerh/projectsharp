@@ -42,7 +42,7 @@
             <td></td>
           <%end%>
           <td id="count">
-            <div id="time_<%="#{j}"%>" data-date="<%= "#{ DateTime.parse( "#{game.date} #{game.time}")}" %>" style="width: 150px;">
+            <div id="time_<%="#{j}"%>" data-date="<%= "#{ DateTime.parse("#{game.date} #{game.time}")}" %>" style="width: 150px;">
             </div>
           </td>
           <% date = (game.date - 1.hours).strftime("%Y-%d-%m") %>
