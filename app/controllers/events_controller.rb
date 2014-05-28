@@ -7,11 +7,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @date = Date.today
+    @date = Date.today.to_date
     @events = Event.where("DATE(event_datetime) = ? AND league = 'MLB'",@date)
     # @events = Event.where("(league = ? OR league = ?) AND event_datetime >= ?", "NBA", "MLB",  Time.now.to_datetime).order('event_datetime ASC').limit(5)
-    @nba = Event.where("league = ? AND event_datetime >= ?", "NBA",  Time.now.to_datetime).order('event_datetime ASC').limit(2) 
-    @mlb = Event.where("league = ? AND event_datetime >= ?", "MLB",  Time.now.to_datetime).order('event_datetime ASC').limit(5-@nba.count)
+    @nba = Event.where("league = ? AND event_datetime >= ? AND DATE(event_datetime) = ?", "NBA",  Time.now.to_datetime, @date).order('event_datetime ASC').limit(2) 
+    @mlb = Event.where("league = ? AND event_datetime >= ? AND DATE(event_datetime) = ?", "MLB",  Time.now.to_datetime, @date).order('event_datetime ASC').limit(5 - @nba.count)
     @all_games = @nba + @mlb
     @all_nba = Event.where("league = ? AND event_datetime >= ?", "NBA", Time.now.to_datetime).order('event_datetime ASC').paginate(:page => params[:page], :per_page => 5)
     @all_mlb = EspnGame.where(:date => @date).order('time ASC')
