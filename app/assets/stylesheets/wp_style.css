@@ -620,7 +620,7 @@ ul.ticker li h2 a {
 
 .main-story img {
 	float: left;
-	opacity: .6;
+	opacity: .9;
 	margin-left: -25px;
 	min-width: 620px !important;
 	}
@@ -748,7 +748,7 @@ span.comment-count {
 
 .sub-story img {
 	float: left;
-	opacity: .5;
+	opacity: .9;
 	}
 
 .sub-story:hover img {
