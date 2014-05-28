@@ -2,7 +2,6 @@
   <thead>
     <tr>
       <th>Date/Time</th>
-      <th>Type</th>
       <th>Teams</th>
       <th>Odds</th>
 <!--       <th>Spreads</th> -->
@@ -14,51 +13,44 @@
 
   <tbody>
     <%j = 0%>
-    <% events.each do |event| %>
+    <% @all_games.each do |game| %>
+      <% team_h = EspnTeam.find(game.team_h).name %>
+      <% team_a = EspnTeam.find(game.team_a).name %>
         <%i = 0%>
         <tr>
-        <%(event.participants.count/2).times do%>
-        <% if event.participants[(i*2)].participant_name != "Away Runs" %>
           <td>
-            <%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %>
+            <%= (game.time.to_time - 1.hours).strftime("%d, %b @ %I:%M%p ET") %>
           </td>
-          <%if event.league.present?%>
-            <td><%= event.league %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.participants[(i*2)].present? && event.participants[(i*2)+1].present?%>
-            <td>
-              <%= event.participants[(i*2)].participant_name %><br/>
-              <%= event.participants[(i*2)+1].participant_name %>
-            </td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.periods[0].present?%>
-            <td>
-              <%= event.periods[0].moneyline_visiting.to_i > 0 ? "+#{event.periods[0].moneyline_visiting}" : event.periods[0].moneyline_visiting %><br/>
-              <%= event.periods[0].moneyline_home.to_i > 0 ? "+#{event.periods[0].moneyline_home}" : event.periods[0].moneyline_home %><br/>
-            </td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.periods[0].present?%>
-            <td><span class="total">Over </span><%=event.periods[0].tootal_point.to_s %> <br/> <span class="total">Under </span><%= event.periods[0].tootal_point.to_s %></td>
+          <td><%= team_h %><br/>
+              <%= team_a %></td>
+          <td>
+              <% @events.each do |event| %>
+                <% if event.participants.present? %>
+                  <%if(event.participants.first.participant_name.include? team_a) && (event.participants.last.participant_name.include? team_h) %>
+                    <% @event = event %>
+                    <% if @event.periods.present? %> 
+                    <span class="total">Over </span><%=@event.periods[0].moneyline_visiting.to_s %> <br/> <span class="total">Under </span><%= @event.periods[0].moneyline_home.to_s %>
+                    <%break%>
+                  <% end %>
+                  <% end %>  
+                <% end %>
+               <% end %>
+          </td>
+          <%if @event.periods[0].present?%>
+            <td><span class="total">Over </span><%=@event.periods[0].tootal_point.to_s %> <br/> <span class="total">Under </span><%=@event.periods[0].tootal_point.to_s %></td>
           <%else%>
             <td></td>
           <%end%>
           <td id="count">
-            <div id="time_<%="#{j}"%>" data-date="<%= "#{(event.event_datetime)}" %>" style="width: 150px;">
+            <div id="time_<%="#{j}"%>" data-date="<%= "#{ DateTime.parse( "#{game.date} #{game.time}")}" %>" style="width: 150px;">
             </div>
           </td>
-          <% date = (event.event_datetime - 1.hours).strftime("%Y-%d-%m") %>
-          <td><a href="/mlb/mlb-picks/<%= "#{event.participants[(i*2)].participant_name.split(' ').last}"+"-vs-"+"#{event.participants[(i*2)+1].participant_name.split(' ').last}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
+          <% date = (game.date - 1.hours).strftime("%Y-%d-%m") %>
+          <td><% date = (game.date).strftime("%Y-%d-%m") %>
+              <td><a href="/mlb/mlb-picks/<%= "#{team_h}"+"-vs-"+"#{team_a}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
             <% i = i+1 %>
             <% j = j+1 %>
           </tr>
-          <%end%>
-        <%end%>
     <% end %>
   </tbody>
 </table>
