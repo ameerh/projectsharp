@@ -47,7 +47,7 @@
         <% if !@team_h_stats.first.nil? %>
           <p class="position">
           <% if !@pitcher_h_season_totals.first.nil? %>
-            (<%= "(#{@pitcher_h_season_totals.first.W}-#{@pitcher_h_season_totals.first.L})" %>) ERA <%= @pitcher_h_season_totals.first.ERA%>
+            <%= "(#{@pitcher_h_season_totals.first.W}-#{@pitcher_h_season_totals.first.L})" %> ERA <%= @pitcher_h_season_totals.first.ERA%>
           <% end %>
           </p>
         <% end %>  
@@ -62,7 +62,7 @@
         <% if !@team_a_stats.first.nil? %>
           <p class="position">
           <% if !@pitcher_a_season_totals.first.nil? %>
-            (<%= "(#{@pitcher_a_season_totals.first.W}-#{@pitcher_a_season_totals.first.L})" %>) ERA <%= @pitcher_a_season_totals.first.ERA%>
+            <%= "(#{@pitcher_a_season_totals.first.W}-#{@pitcher_a_season_totals.first.L})" %> ERA <%= @pitcher_a_season_totals.first.ERA%>
           <% end %>
           </p>
         <% end %>  
