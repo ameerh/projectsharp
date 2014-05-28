@@ -32,7 +32,7 @@
               <%
               if(game.date >= Date.today)
               %>
-              <% date = (game.date - 1.hours).strftime("%Y-%d-%m") %>
+              <% date = (game.date).strftime("%Y-%d-%m") %>
               <td><a href="/mlb/mlb-picks/<%= "#{team_h}"+"-vs-"+"#{team_a}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
               <%
               else
