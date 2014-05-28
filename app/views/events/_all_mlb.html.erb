@@ -6,8 +6,9 @@
           <tr>
             <th>Date/Time</th>
             <th>Teams</th>
-            <th>Pitchers</th>
-            <th>Perdictions</th>
+<!--       <th>Moneyline</th> -->
+            <th>Odds</th>
+            <th>Total</th>
           </tr>
         </thead>
 
@@ -22,8 +23,17 @@
                 <%= team_a %>
               </td>
               <td>
-                <%= Pitcher.find(game.pitcher_h).name %><br/>
-                <%= Pitcher.find(game.pitcher_a).name %>
+                <% @events.each do |event| %>
+                <% if event.participants.present? %>
+                  <%if(event.participants.first.participant_name.include? team_a) || (event.participants.last.participant_name.include? team_h) %>
+                    <% @event = event %>
+                    <% if @event.periods.present? %> 
+                    <span class="total">Over </span><%=@event.periods[0].moneyline_visiting.to_s %> <br/> <span class="total">Under </span><%= @event.periods[0].moneyline_home.to_s %>
+                    <%break%>
+                  <% end %>
+                  <% end %>  
+                <% end %>
+               <% end %>
               </td>
               <%
               if(game.date >= Date.today)
