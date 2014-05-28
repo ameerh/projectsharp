@@ -36,10 +36,12 @@
                 <% end %>
                <% end %>
           </td>
+          <%if @event.present?%>
           <%if @event.periods[0].present?%>
             <td><span class="total">Over </span><%=@event.periods[0].tootal_point.to_s %> <br/> <span class="total">Under </span><%=@event.periods[0].tootal_point.to_s %></td>
           <%else%>
             <td></td>
+          <%end%>
           <%end%>
           <td id="count">
             <div id="time_<%="#{j}"%>" data-date="<%= "#{ DateTime.parse("#{game.date} #{game.time}")}" %>" style="width: 150px;">
