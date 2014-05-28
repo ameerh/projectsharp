@@ -49,7 +49,7 @@
           <%else%>
             <td></td>
           <%end%>
-          <% date = (event.event_datetime).strftime("%Y-%d-%m") %>
+          <% date = (event.event_datetime - 1.hours).strftime("%Y-%d-%m") %>
           <td><a href="/mlb/mlb-picks/<%= "#{event.participants[(i*2)].participant_name.split(' ').last}"+"-vs-"+"#{event.participants[(i*2)+1].participant_name.split(' ').last}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
             <% i = i+1 %>
           </tr>
