@@ -1,63 +1,52 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Date/Time</th>
-      <th>Teams</th>
-      <th>Pitchers</th>
-      <th>Odds</th>
-      <th>Total</th>
-      <th>Perdictions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% j =0%>
-    <% events.each do |event| %>
-        <%i = 0%>
-        <tr>
-        <%(event.participants.count/2).times do%>
-        <% if event.participants[(i*2)].participant_name != "Away Runs" %>
-         <td>
-          <%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %>
-         </td>
-          <%if event.participants[(i*2)].present? && event.participants[(i*2)+1].present?%>
-            <td>
-              <%= event.participants[(i*2)].participant_name %><br/>
-              <%= event.participants[(i*2)+1].participant_name %>
-            </td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.participants[(i*2)].present? && event.participants[(i*2)+1].present?%>
-            <td>
-              <%= event.participants[(i*2)].pitcher %><br/>
-              <%= event.participants[(i*2)+1].pitcher %>
-            </td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.periods[0].present? %>
-            <td>
-              <%= event.periods[0].moneyline_visiting %><br/>
-              <%= event.periods[0].moneyline_home %>
-            </td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <%if event.periods[0].present?%>
-            <td><span class="total">Over</span><%=event.periods[0].tootal_point.to_s %> <br/><span class="total">Under</span><%= event.periods[0].tootal_point.to_s %></td>
-          <%else%>
-            <td></td>
-          <%end%>
-          <% date = (event.event_datetime - 1.hours).strftime("%Y-%d-%m") %>
-          <td><a href="/mlb/mlb-picks/<%= "#{event.participants[(i*2)].participant_name.split(' ').last}"+"-vs-"+"#{event.participants[(i*2)+1].participant_name.split(' ').last}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
-            <% i = i+1 %>
+<div class="tabbable tabs-below" id="content">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#A" data-toggle="tab">All MLB</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="A">
+      <p>Date: <input type="text" id="datepicker"></p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date/Time</th>
+            <th>Teams</th>
+            <th>Pitchers</th>
+            <th>Perdictions</th>
           </tr>
-          <%end%>
-        <%end%>
-    <% end %>
-  </tbody>
-</table>
+        </thead>
+
+        <tbody>
+          <% @all_mlb.each do |game| %>
+            <% team_h = EspnTeam.find(game.team_h).name %>
+            <% team_a = EspnTeam.find(game.team_a).name %>
+            <tr>
+              <td><%= game.time %></td>
+              <td>
+                <%= team_h %><br/>
+                <%= team_a %>
+              </td>
+              <td>
+                <%= Pitcher.find(game.pitcher_h).name %><br/>
+                <%= Pitcher.find(game.pitcher_a).name %>
+              </td>
+              <%
+              if(game.date >= Date.today)
+              %>
+              <% date = (game.date).strftime("%Y-%d-%m") %>
+              <td><a href="/mlb/mlb-picks/<%= "#{team_h}"+"-vs-"+"#{team_a}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
+              <%
+              else
+                "<td></td>"
+              end  
+              %>  
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <br>
 
 
