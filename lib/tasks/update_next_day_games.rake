@@ -4,6 +4,7 @@ task :update_next_day_games => :environment do
 	start_date = Date.today 
 	end_date   = Date.today + 5
 	(start_date..end_date).each do |date| 
+		puts "Scraping: " + date.to_s
 		url = "http://scores.espn.go.com/mlb/scoreboard?date="+@date.to_s
 		data = Nokogiri::HTML(open(url))
 
