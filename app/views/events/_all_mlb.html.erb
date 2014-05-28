@@ -25,7 +25,7 @@
               <td>
                 <% @events.each do |event| %>
                 <% if event.participants.present? %>
-                  <%if(event.participants.first.participant_name.include? team_a) || (event.participants.last.participant_name.include? team_h) %>
+                  <%if(event.participants.first.participant_name.include? team_a) && (event.participants.last.participant_name.include? team_h) %>
                     <% @event = event %>
                     <% if @event.periods.present? %> 
                     <span class="total">Over </span><%=@event.periods[0].moneyline_visiting.to_s %> <br/> <span class="total">Under </span><%= @event.periods[0].moneyline_home.to_s %>
