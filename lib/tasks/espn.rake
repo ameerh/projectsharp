@@ -59,6 +59,6 @@ task :espn => :environment do
 		end	
 	end
 	#Remove Duplicates
-	duplicates_query = "DELETE n1 FROM espn_games n1, espn_games n2 WHERE n1.id < n2.id AND n1.team_a = n2.team_a AND n1.team_h = n2.team_h AND n1.pitcher_a = n2.pitcher_a AND n1.pitcher_h = n2.pitcher_h AND n1.date = n2.date AND n1.time = n2.time"
+	duplicates_query = "DELETE n1 FROM espn_games n1, espn_games n2 WHERE n1.id > n2.id AND n1.team_a = n2.team_a AND n1.team_h = n2.team_h AND n1.date = n2.date AND n1.time = n2.time"
 	result = ActiveRecord::Base.connection.execute(duplicates_query)
 end
