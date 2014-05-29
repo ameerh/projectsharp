@@ -14,8 +14,16 @@
 
   <tbody>
     <%j = 0%>
+    <% @date = nil %>
     <% @all_games.each do |game| %>
-      <% @event = nil %>
+      <% 
+        @event = nil 
+        if(@date.nil? || @date != game.date)
+          @date = game.date
+          @events = Event.where("DATE(event_datetime) = ? AND league = 'MLB'",@date)
+        end  
+      %>
+
       <% team_h = EspnTeam.find(game.team_h).name %>
       <% team_a = EspnTeam.find(game.team_a).name %>
       <%
@@ -27,12 +35,11 @@
          if (j >= 5)
           break
          end 
-          @events = Event.where("DATE(event_datetime) = ? AND league = 'MLB'",game.date)
-          @events.each do |event|
+         @events.each do |event|
             if(event.participants.first.participant_name.include? team_a) || (event.participants.last.participant_name.include? team_h)
               @event = event
             end  
-          end
+         end
       %>
 
 
