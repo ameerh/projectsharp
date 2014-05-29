@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     @date = Date.today.to_date
     @events = Event.where("DATE(event_datetime) >= ? AND league = 'MLB'",@date)
     @mlb_games = EspnGame.where(:date => @date).order("Time(time) ASC")
-    @all_games = @mlb_games.first(5)
+    @all_games = @mlb_games
     @all_nba = Event.where("league = ? AND event_datetime >= ?", "NBA", Time.now.to_datetime).order('event_datetime ASC').paginate(:page => params[:page], :per_page => 5)
     @all_mlb = @mlb_games
   end
