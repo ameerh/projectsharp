@@ -111,11 +111,9 @@
             column_value = 0
             if(previews_rule.split == 'Last 7 days' || 'vs RHP' || 'vs LHP' || 'Home' || 'Away' || '2014 totals')
               if previews_rule.column == "R/GS"
-                column_value = (team_h_stat[previews_rule.column.split("/").first].to_f / team_h_stat[previews_rule.column.split("/").last].to_f).round(2)
-              else  
-                column_value = (team_h_stat[previews_rule.column].to_f).round(2)
+                column_value = (team_h_stat['R'].to_f / team_h_stat['GS'].to_f).round(2)
               end    
-              if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+              if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f) && !column_value.infinite?
                 if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
                   statements[previews_rule.split].push(previews_rule.statement.gsub("<X>",column_value.to_s))
                 elsif previews_rule.value2.blank?
@@ -183,11 +181,9 @@
             column_value = 0
             if(previews_rule.split == 'Last 7 days' || 'vs RHP' || 'vs LHP' || 'Home' || 'Away' || '2014 totals')
               if previews_rule.column == "R/GS"
-                column_value = (team_a_stat[previews_rule.column.split("/").first].to_f / team_a_stat[previews_rule.column.split("/").last].to_f).round(2)
-              else  
-                column_value = (team_a_stat[previews_rule.column].to_f).round(2)
+                column_value = (team_a_stat['R'].to_f / team_a_stat['GS'].to_f).round(2)
               end    
-              if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f)
+              if check_condition(previews_rule.operator1, column_value.to_f, previews_rule.value1.to_f) && !column_value.infinite?
                 if !previews_rule.value2.blank? && check_condition(previews_rule.operator2, column_value.to_f, previews_rule.value2.to_f)
                   statements[previews_rule.split].push(previews_rule.statement.gsub("<X>",column_value.to_s))
                 elsif previews_rule.value2.blank?
