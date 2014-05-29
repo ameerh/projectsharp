@@ -2952,6 +2952,10 @@ h3.footer-widget-header a {
 	#previews #left, #previews #right{
 		width: auto !important;
 		}
+	#sign_up_form
+	{
+		margin-left: 0!important;
+	}
 	#login_form{
 		float: left !important
 		}
@@ -3211,6 +3215,10 @@ h3.footer-widget-header a {
 	#previews #left, #previews #right{
 		width: auto !important;
 		}
+	#sign_up_form
+	{
+		margin-left: 0!important;
+	}
 	#login_form
 	{
 		float: left !important
@@ -3485,6 +3493,10 @@ h3.footer-widget-header a {
 	#previews #left, #previews #right{
 		width: auto !important;
 		}
+	#sign_up_form
+	{
+		margin-left: 0!important;
+	}
 	#login_form
 	{
 		float: left !important
@@ -3800,6 +3812,10 @@ h3.footer-widget-header a {
 	#previews #left, #previews #right{
 		width: auto !important;
 		}
+	#sign_up_form
+	{
+		margin-left: 0!important;
+	}
 	#login_form
 	{
 		float: left !important

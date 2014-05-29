@@ -307,6 +307,35 @@ a.perdiction, a.perdiction:visited
 	height: auto;
 	margin-bottom: 15px; 
 }
+
+#content {
+	margin: 15px 30px;
+	font-family: 'Oswald', sans-serif;
+	text-align: justify;
+}
+
+#content h2
+{
+	font-size: 24px;
+}
+#content .text
+{
+	margin: 10px 0;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+
+} 
+.big_input
+{
+	width: 275px !important;
+}
+#sign_up_form
+{
+	margin-left: 250px;
+}
 .aleft
 {
 	float: left;

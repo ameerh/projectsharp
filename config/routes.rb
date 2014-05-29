@@ -48,6 +48,12 @@ SportsOdds::Application.routes.draw do
   end
   get 'mlb/mlb-picks/:id' => 'mlb#mlb_picks'
 
+  resources :pages do
+    collection do
+      get :premium_picks
+    end
+  end
+  get '/premium_picks' => 'pages#premium_picks'
   # Example resource route with options:
   #   resources :products do
   #     member do
