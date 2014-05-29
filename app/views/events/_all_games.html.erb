@@ -33,17 +33,17 @@
           <td><%= team_h %><br/>
               <%= team_a %></td>
           <td>
-              <% @events.each do |event| %>
-                <% if event.participants.present? %>
-                  <%if(event.participants.first.participant_name.include? team_a) && (event.participants.last.participant_name.include? team_h) %>
-                    <% @event = event %>
-                    <% if @event.periods.present? %> 
+            <% @events.each do |event| %>
+              <% if event.participants.present? %>
+                <%if(event.participants.first.participant_name.include? team_a) && (event.participants.last.participant_name.include? team_h) %>
+                  <% @event = event %>
+                  <% if @event.periods.present? %> 
                     <%=@event.periods[0].moneyline_visiting.to_s %> <br/><%= @event.periods[0].moneyline_home.to_s %>
                     <%break%>
                   <% end %>
-                  <% end %>  
-                <% end %>
-               <% end %>
+                <% end %>  
+              <% end %>
+            <% end %>
           </td>
           <%if @event.present?%>
           <%if @event.periods[0].present?%>

@@ -14,12 +14,16 @@
       <% end %>
     </div>  
     <div class="middle aleft">
-      <% if !@event.nil? %>
-        <p class="date"><%= (@event.event_datetime - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
+      <%
+         date_time = DateTime.parse(@game.date.to_s + " " + @game.time).in_time_zone("Eastern Time (US & Canada)")
+         date_time = date_time.in_time_zone(Time.zone.name)
+      %>
+      <% if !@game.nil? %>
+        <p class="date"><%= (date_time - 1.hours).strftime("%A %B #{@event.event_datetime.day.ordinalize}") %></p>
       <% end %>        
       <p class="vs">VS</p>      
       <% if !@event.nil? %>
-        <p class="time"><%= (@event.event_datetime - 1.hours).strftime("%I:%M %p") %></p>      
+        <p class="time"><%= (date_time - 1.hours).strftime("%I:%M %p") %></p>      
       <% end %>        
     </div>
     <div id="team_a" class="right aleft">
@@ -419,7 +423,7 @@
         </tbody>
       </table>
 
-      <h4>Home Stats</h4>
+      <h4>Away Stats</h4>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -433,7 +437,7 @@
 
         <tbody>
           <% 2.times do |count|%>
-            <%if @team_a_stats[count+6].split == "Home" %>  
+            <%if @team_a_stats[count+6].split == "Away" %>  
               <tr>
                 <td><%= @team_a_stats[count+6].GS %></td>
                 <td><%= @team_a_stats[count+6].R %></td>
