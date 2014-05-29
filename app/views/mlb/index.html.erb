@@ -19,8 +19,12 @@
           <% @espn_games.each do |game| %>
             <% team_h = EspnTeam.find(game.team_h).name %>
             <% team_a = EspnTeam.find(game.team_a).name %>
+            <%
+               date_time = DateTime.parse(game.date.to_s + " " + game.time) + 5.hours
+               date_time = date_time.in_time_zone(Time.zone.name)
+            %> 
             <tr>
-              <td><%= game.time %></td>
+              <td><%= (date_time-1.hours).strftime("%d, %b @ %I:%M%p") %></td>
               <td>
                 <%= team_h %><br/>
                 <%= team_a %>
