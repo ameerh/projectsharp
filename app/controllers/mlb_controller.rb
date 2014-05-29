@@ -9,7 +9,7 @@ class MlbController < ApplicationController
     else
       @date = Date.today
     end
-    @espn_games = EspnGame.where(:date => @date).order('time ASC')  	
+    @espn_games = EspnGame.where(:date => @date).order('TIME(time) ASC')  	
 	render :layout => "2_column"
   end	
 

@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Date/Time</th>
+      <th>Type</th>
       <th>Teams</th>
       <th>Odds</th>
 <!--       <th>Spreads</th> -->
@@ -21,6 +22,7 @@
           <td>
             <%= (game.time.to_time - 1.hours).strftime("%d, %b @ %I:%M%p ET") %>
           </td>
+          <td>MLB</td>
           <td><%= team_h %><br/>
               <%= team_a %></td>
           <td>
@@ -29,7 +31,7 @@
                   <%if(event.participants.first.participant_name.include? team_a) && (event.participants.last.participant_name.include? team_h) %>
                     <% @event = event %>
                     <% if @event.periods.present? %> 
-                    <span class="total">Over </span><%=@event.periods[0].moneyline_visiting.to_s %> <br/> <span class="total">Under </span><%= @event.periods[0].moneyline_home.to_s %>
+                    <%=@event.periods[0].moneyline_visiting.to_s %> <br/><%= @event.periods[0].moneyline_home.to_s %>
                     <%break%>
                   <% end %>
                   <% end %>  
@@ -40,8 +42,10 @@
           <%if @event.periods[0].present?%>
             <td><span class="total">Over </span><%=@event.periods[0].tootal_point.to_s %> <br/> <span class="total">Under </span><%=@event.periods[0].tootal_point.to_s %></td>
           <%else%>
-            <td></td>
+            <td>&nbsp;</td>
           <%end%>
+          <%else%>
+            <td>&nbsp;</td>
           <%end%>
           <td id="count">
             <div id="time_<%="#{j}"%>" data-date="<%= "#{ DateTime.parse("#{game.date} #{game.time}")}" %>" style="width: 150px;">

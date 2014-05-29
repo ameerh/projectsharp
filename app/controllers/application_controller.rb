@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone 
 
   def set_timezone  
-	min = request.cookies["time_zone"].to_i
-	Time.zone = ActiveSupport::TimeZone[-min.minutes]
-	puts Time.zone.to_s
+  	min = request.cookies["time_zone"].to_i
+  	Time.zone = ActiveSupport::TimeZone[-min.minutes]
+  	puts Time.zone.to_s
   end 
 
   def after_sign_in_path_for(resource)

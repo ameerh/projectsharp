@@ -14,6 +14,7 @@
 
         <tbody>
           <% @all_mlb.each do |game| %>
+            <% @event = nil %>
             <% team_h = EspnTeam.find(game.team_h).name %>
             <% team_a = EspnTeam.find(game.team_a).name %>
             <tr>
@@ -35,6 +36,15 @@
                 <% end %>
                <% end %>
               </td>
+              <%if @event.present?%>
+              <%if @event.periods[0].present?%>
+                <td><span class="total">Over </span><%=@event.periods[0].tootal_point.to_s %> <br/> <span class="total">Under </span><%=@event.periods[0].tootal_point.to_s %></td>
+              <%else%>
+                <td>&nbsp;</td>
+              <%end%>
+              <%else%>
+                <td>&nbsp;</td>
+              <%end%>
               <%
               if(game.date >= Date.today)
               %>
