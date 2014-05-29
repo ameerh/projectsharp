@@ -148,10 +148,10 @@
         </div>  
       <% end %>  
 
-      <% if !statements['Home'].first.nil? %>
+      <% if !statements['Away'].first.nil? %>
         <div class="prediction-block">
-          <div class="heading aleft">Home</div>
-          <div class="statement aleft"><%= statements['Home'].sample %></div>
+          <div class="heading aleft">Away</div>
+          <div class="statement aleft"><%= statements['Away'].sample %></div>
           <div class="clear"></div>
         </div>    
       <% end %>  
