@@ -29,7 +29,7 @@
       <%
          date_time = DateTime.parse(game.date.to_s + " " + game.time) + 5.hours
          date_time = date_time.in_time_zone(Time.zone.name)
-         if (date_time < Time.now)          
+         if ((date_time-2.hours) < Time.now)          
           next
          end 
          if (j >= 5)
@@ -46,7 +46,7 @@
         <%i = 0%>
         <tr>
           <td>
-            <%= (date_time-1.hours).strftime("%d, %b @ %I:%M%p") %>
+            <%= (date_time-2.hours).strftime("%d, %b @ %I:%M%p") %>
           </td>
           <td>MLB</td>
           <td><%= team_h %><br/>
@@ -66,7 +66,7 @@
             <td>&nbsp;</td>
           <%end%>
           <td id="count">
-            <div id="time_<%="#{j}"%>" data-date="<%= "#{(date_time- 1.hours)}" %>" style="width: 150px;">
+            <div id="time_<%="#{j}"%>" data-date="<%= "#{(date_time- 2.hours)}" %>" style="width: 150px;">
             </div>
           </td>
           <% date = (game.date).strftime("%Y-%d-%m") %>
