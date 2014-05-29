@@ -27,6 +27,12 @@
          if (j >= 5)
           break
          end 
+          @events = Event.where("DATE(event_datetime) = ? AND league = 'MLB'",game.date)
+          @events.each do |event|
+            if(event.participants.first.participant_name.include? team_a) || (event.participants.last.participant_name.include? team_h)
+              @event = event
+            end  
+          end
       %>
 
 
@@ -39,17 +45,9 @@
           <td><%= team_h %><br/>
               <%= team_a %></td>
           <td>
-            <% @events.each do |event| %>
-              <% if event.participants.present? %>
-                <%if(event.participants.first.participant_name.include? team_a) && (event.participants.last.participant_name.include? team_h) %>
-                  <% @event = event %>
-                  <% if @event.periods.present? %> 
-                    <%=@event.periods[0].moneyline_visiting.to_s %> <br/><%= @event.periods[0].moneyline_home.to_s %>
-                    <%break%>
-                  <% end %>
-                <% end %>  
+              <% if @event.present? && @event.periods.present? %> 
+                <%=@event.periods[0].moneyline_visiting.to_s %> <br/><%= @event.periods[0].moneyline_home.to_s %>
               <% end %>
-            <% end %>
           </td>
           <%if @event.present?%>
           <%if @event.periods[0].present?%>

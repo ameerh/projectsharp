@@ -59,6 +59,7 @@ class MlbController < ApplicationController
 		          @event = event
 		        end  
 		      end
+		      #binding.pry
 
 		      @title  = "#{@team_h.name} VS #{@team_a.name} Perdiction - #{date}"
 		      set_meta_tags :title => @title
