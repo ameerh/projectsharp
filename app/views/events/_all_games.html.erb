@@ -19,9 +19,9 @@
       <% team_h = EspnTeam.find(game.team_h).name %>
       <% team_a = EspnTeam.find(game.team_a).name %>
       <%
-         date_time = DateTime.parse(game.date.to_s + " " + game.time).in_time_zone("Eastern Time (US & Canada)")
+         date_time = DateTime.parse(game.date.to_s + " " + game.time) + 5.hours
          date_time = date_time.in_time_zone(Time.zone.name)
-         if (date_time < Time.now)
+         if (date_time < Time.now)          
           next
          end 
          if (j >= 5)
@@ -33,7 +33,7 @@
         <%i = 0%>
         <tr>
           <td>
-            <%= (date_time - 1.hours).strftime("%d, %b @ %I:%M%p") %>
+            <%= (date_time-1.hours).strftime("%d, %b @ %I:%M%p") %>
           </td>
           <td>MLB</td>
           <td><%= team_h %><br/>
@@ -64,7 +64,7 @@
             <div id="time_<%="#{j}"%>" data-date="<%= "#{(date_time- 1.hours)}" %>" style="width: 150px;">
             </div>
           </td>
-          <% date = (date_time - 1.hours).strftime("%Y-%d-%m") %>
+          <% date = (date_time-1.hours).strftime("%Y-%d-%m") %>
           <td><a href="/mlb/mlb-picks/<%= "#{team_h}"+"-vs-"+"#{team_a}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
             <% i = i+1 %>
             <% j = j+1 %>

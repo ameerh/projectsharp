@@ -18,7 +18,7 @@
             <% team_h = EspnTeam.find(game.team_h).name %>
             <% team_a = EspnTeam.find(game.team_a).name %>
             <%
-               date_time = DateTime.parse(game.date.to_s + " " + game.time).in_time_zone("Eastern Time (US & Canada)")
+               date_time = DateTime.parse(game.date.to_s + " " + game.time) + 5.hours
                date_time = date_time.in_time_zone(Time.zone.name)
             %>
             <tr>
