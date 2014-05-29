@@ -62,7 +62,7 @@
             <div id="time_<%="#{j}"%>" data-date="<%= "#{(date_time- 1.hours)}" %>" style="width: 150px;">
             </div>
           </td>
-          <% date = (date_time-1.hours).strftime("%Y-%d-%m") %>
+          <% date = (game.date).strftime("%Y-%d-%m") %>
           <td><a href="/mlb/mlb-picks/<%= "#{team_h}"+"-vs-"+"#{team_a}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
             <% i = i+1 %>
             <% j = j+1 %>
