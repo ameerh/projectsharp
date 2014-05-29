@@ -15,12 +15,19 @@
   <tbody>
     <%j = 0%>
     <% @all_games.each do |game| %>
+      <% @event = nil %>
       <% team_h = EspnTeam.find(game.team_h).name %>
       <% team_a = EspnTeam.find(game.team_a).name %>
+      <%
+         date_time = DateTime.parse(game.date.to_s + " " + game.time).in_time_zone("Eastern Time (US & Canada)")
+         date_time = date_time.in_time_zone(Time.zone.name)
+      %>
+
+
         <%i = 0%>
         <tr>
           <td>
-            <%= (game.time.to_time - 1.hours).strftime("%d, %b @ %I:%M%p ET") %>
+            <%= (date_time - 1.hours).strftime("%d, %b @ %I:%M%p") %>
           </td>
           <td>MLB</td>
           <td><%= team_h %><br/>
@@ -48,12 +55,11 @@
             <td>&nbsp;</td>
           <%end%>
           <td id="count">
-            <div id="time_<%="#{j}"%>" data-date="<%= "#{ DateTime.parse("#{game.date} #{game.time}")}" %>" style="width: 150px;">
+            <div id="time_<%="#{j}"%>" data-date="<%= "#{(date_time- 1.hours)}" %>" style="width: 150px;">
             </div>
           </td>
-          <% date = (game.date - 1.hours).strftime("%Y-%d-%m") %>
-          <td><% date = (game.date).strftime("%Y-%d-%m") %>
-              <td><a href="/mlb/mlb-picks/<%= "#{team_h}"+"-vs-"+"#{team_a}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
+          <% date = (date_time - 1.hours).strftime("%Y-%d-%m") %>
+          <td><a href="/mlb/mlb-picks/<%= "#{team_h}"+"-vs-"+"#{team_a}"+"-predictions-"+"#{date}" %>" class="perdiction">Predictions</a></td>
             <% i = i+1 %>
             <% j = j+1 %>
           </tr>

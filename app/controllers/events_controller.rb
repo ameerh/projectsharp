@@ -11,10 +11,13 @@ class EventsController < ApplicationController
     @events = Event.where("DATE(event_datetime) = ? AND league = 'MLB'",@date)
     # @events = Event.where("(league = ? OR league = ?) AND event_datetime >= ?", "NBA", "MLB",  Time.now.to_datetime).order('event_datetime ASC').limit(5)
     @nba = Event.where("league = ? AND event_datetime >= ? AND DATE(event_datetime) = ?", "NBA",  Time.now.to_datetime, @date).order('event_datetime ASC').limit(2) 
-    @mlb = EspnGame.where("time >= ?", Time.now.to_datetime).order('time ASC').limit(5)
-    @all_games = @mlb
+    #@mlb = EspnGame.where("time >= ?", Time.now.to_datetime).order('time ASC').limit(5)
+
+
+    @mlb_games = EspnGame.where(:date => @date).order("Time(time) ASC")
+    @all_games = @mlb_games.first(5)
     @all_nba = Event.where("league = ? AND event_datetime >= ?", "NBA", Time.now.to_datetime).order('event_datetime ASC').paginate(:page => params[:page], :per_page => 5)
-    @all_mlb = EspnGame.where(:date => @date).order('time ASC')
+    @all_mlb = @mlb_games
   end
 
   # GET /events/1
