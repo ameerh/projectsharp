@@ -79,7 +79,18 @@
           </div><!--top-header-wrapper-->
           
           <div id="logo-wrapper" itemscope="" itemtype="http://schema.org/Organization">
-            <a itemprop="url" href="assets/Free Sports Picks -.html"><img itemprop="logo" src="<%= asset_path('sharpnation.png')%>" alt="Free Sports Picks"></a>
+            <a itemprop="url" href="/" class="aleft"><img itemprop="logo" src="<%= asset_path('sharpnation.png')%>" alt="Free Sports Picks"></a>
+
+            <form action="#" class="aright" id="login_form">
+              <div class="box aleft">
+                <span>Username:</span><br/><input type="text" id="username" name="username" value=""/>
+              </div>
+              <div class="box aleft">
+                <span>Password:</span><br/><input type="password" id="password" name="password" value=""/>
+              </div>  
+              <input type="submit" value="Login" class="login" onclick="return false;" />
+            </form>
+
           </div><!--logo-wrapper-->
         </div><!--header-wrapper-->
         
