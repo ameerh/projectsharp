@@ -15,7 +15,7 @@
     </div>  
     <div class="middle aleft">
       <%
-         date_time = DateTime.parse(game.date.to_s + " " + game.time) + 5.hours
+         date_time = DateTime.parse(@game.date.to_s + " " + @game.time) + 5.hours
          date_time = date_time.in_time_zone(Time.zone.name)
       %>
       <% if !@game.nil? %>
