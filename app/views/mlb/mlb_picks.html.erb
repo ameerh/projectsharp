@@ -19,11 +19,11 @@
          date_time = date_time.in_time_zone(Time.zone.name)
       %>
       <% if !@game.nil? %>
-        <p class="date"><%= (date_time - 1.hours).strftime("%A %B #{date_time.day.ordinalize}") %></p>
+        <p class="date"><%= (date_time - 2.hours).strftime("%A %B #{date_time.day.ordinalize}") %></p>
       <% end %>        
       <p class="vs">VS</p>      
-      <% if !@event.nil? %>
-        <p class="time"><%= (date_time - 1.hours).strftime("%I:%M %p") %></p>      
+      <% if !@game.nil? %>
+        <p class="time"><%= (date_time - 2.hours).strftime("%I:%M %p") %></p>      
       <% end %>        
     </div>
     <div id="team_h" class="right aleft">
