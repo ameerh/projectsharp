@@ -326,7 +326,7 @@ a.perdiction, a.perdiction:visited
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
-
+	line-height: 1.5;
 } 
 .big_input
 {
@@ -336,6 +336,15 @@ a.perdiction, a.perdiction:visited
 {
 	margin-left: 250px;
 }
+.text span
+{
+	display: inline-block;
+	font: 400 14px/12px 'Open Sans', sans-serif;
+	font-weight: bold;
+	width: 160px;
+}
+
+
 .aleft
 {
 	float: left;
