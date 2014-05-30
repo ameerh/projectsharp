@@ -135,8 +135,8 @@ task :populate_pitchers_stats => :environment do
 		end	
 
 		#Ploatoon Splits - vs LHB
-		@split    = data.css("#plato tbody tr")[1].css("td[1]").first.text.to_s
-		@BA       = data.css("#plato tbody tr")[1].css("td[16]").first.text.to_s
+		@split    = data.css("#plato tbody tr")[1].css("td[1]").first.text.to_s if data.css("#plato tbody tr")[1].present?
+		@BA       = data.css("#plato tbody tr")[1].css("td[16]").first.text.to_s if data.css("#plato tbody tr")[1].present?
 		@PitcherPlatoonSplit = PitcherPlatoonSplit.where("split=? AND pitcher_id=?",@split,@pitcher_id).first
 		if @PitcherPlatoonSplit.present?
 			result    = @PitcherPlatoonSplit.update(:split => @split, :BA => @BA, :pitcher_id => @pitcher_id)
