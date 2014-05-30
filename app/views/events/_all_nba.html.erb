@@ -16,7 +16,7 @@
         <tr>
         <%(event.participants.count/2).times do%>
         <% if event.participants[(i*2)].participant_name != "2nd Half Wagering" %>
-          <td><%= (event.event_datetime - 1.hours).strftime("%d, %b @ %I:%M%p") %></td>
+          <td><%= (event.event_datetime - 1.hours).strftime("%b %d @ %I:%M%p") %></td>
           <%if event.participants[(i*2)].present? && event.participants[(i*2)+1].present? %>
             <td>
               <%= event.participants[(i*2)].participant_name %><br/>
