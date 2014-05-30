@@ -99,7 +99,7 @@ a, a:visited {
 .tabs-below>.nav-tabs {
 	border-top: none;
 	background: #FBFBFB;
-	width: 450px;
+	width: 100%;
 	height: 45px;
 	font-size: 16px;
 	color: #000000;

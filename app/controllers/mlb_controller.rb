@@ -4,11 +4,11 @@ class MlbController < ApplicationController
 
 
   def index
-    if params[:date].present?
-      @date = params[:date]
-    else
+    # if params[:date].present?
+    #   @date = params[:date]
+    # else
       @date = Date.today
-    end
+    # end
     @espn_games = EspnGame.where(:date => @date).order('TIME(time) ASC')  	
 	render :layout => "2_column"
   end	
